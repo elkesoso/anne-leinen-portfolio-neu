@@ -1,0 +1,11 @@
+SEKTION: Hero (ganz oben auf der Startseite)
+============================================
+
+BILD oder VIDEO:
+→ Großes Kunstwerk-Foto ODER kurzes Video (Loop, kein Ton)
+→ Querformat, mind. 1920x1080px
+
+TEXT:
+Name: Anne Leinen (bereits fix im Design)
+Untertitel DE: Abstrakte Kompositionen mit metallischen Texturen in Rosa & Gold
+Untertitel EN: Abstract Compositions with Metallic Textures in Rose & Gold

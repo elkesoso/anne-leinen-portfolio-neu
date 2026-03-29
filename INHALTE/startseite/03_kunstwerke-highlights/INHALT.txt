@@ -1,0 +1,46 @@
+SEKTION: Kunstwerke-Highlights (4 ausgewählte Werke auf der Startseite)
+=======================================================================
+
+→ Wähle 4 deiner schönsten Gemälde aus
+→ Kopiere die Fotos in diesen Ordner
+→ Fülle pro Bild die Infos aus:
+
+WERK 1:
+Foto:
+Titel DE:
+Titel EN:
+Technik DE:
+Technik EN:
+Maße (B x H cm):
+Jahr:
+
+WERK 2:
+Foto:
+Titel DE:
+Titel EN:
+Technik DE:
+Technik EN:
+Maße (B x H cm):
+Jahr:
+
+WERK 3:
+Foto:
+Titel DE:
+Titel EN:
+Technik DE:
+Technik EN:
+Maße (B x H cm):
+Jahr:
+
+WERK 4:
+Foto:
+Titel DE:
+Titel EN:
+Technik DE:
+Technik EN:
+Maße (B x H cm):
+Jahr:
+
+BUTTON (unter der Galerie):
+Beschriftung DE: Alle Werke ansehen
+Beschriftung EN: View all Works

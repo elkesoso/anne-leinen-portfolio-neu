@@ -1,0 +1,17 @@
+SEKTION: Stimmen der Sammler (3 Rezensionen / Zitate)
+=====================================================
+
+ZITAT 1:
+Text DE:
+Text EN:
+Name + Rolle (z.B. "Dr. Marc Wellmann, Kurator"):
+
+ZITAT 2:
+Text DE:
+Text EN:
+Name + Rolle:
+
+ZITAT 3:
+Text DE:
+Text EN:
+Name + Rolle:

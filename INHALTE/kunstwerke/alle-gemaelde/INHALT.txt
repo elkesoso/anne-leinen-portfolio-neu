@@ -1,0 +1,18 @@
+SEKTION: Alle Kunstwerke (Galerie-Seite, 20 Werke)
+==================================================
+
+→ Alle 20 Gemälde-Fotos in diesen Ordner
+→ Pro Werk die Infos unten ausfüllen (einfach kopieren und wiederholen)
+
+---
+Foto:
+Titel DE:
+Titel EN:
+Technik DE:
+Technik EN:
+Maße (B x H cm):
+Jahr:
+Status: Verfügbar / Auf Anfrage / Privatsammlung / Verkauft
+Beschreibung DE (optional):
+Beschreibung EN (optional):
+---

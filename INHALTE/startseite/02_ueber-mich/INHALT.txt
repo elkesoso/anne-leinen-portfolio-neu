@@ -1,0 +1,19 @@
+SEKTION: Über mich
+==================
+
+BILD:
+→ Portrait-Foto von Anne Leinen
+→ Hochformat (3:4), Handy-Foto vorerst ok
+
+TEXT DE:
+Ich bin Anne Leinen, geboren 1985 in Karlsruhe, heute lebe und arbeite ich in Berlin. Als autodidaktische Künstlerin mit gestalterischem Hintergrund (Akademie für Kommunikation, Grafikdesign) bin ich der kreative Kopf hinter artful_anne. Seit Februar 2024 widme ich mich intensiv der abstrakten Kunst - meiner wahren Berufung. Meine Werke entstehen aus klar definierten Themen, die mich bewegen, mit dem Wunsch, Impulse zu setzen und Entwicklung anzustoßen. Mit Mixed Media erschaffe ich ausdrucksstarke Unikate mit Tiefe und Aussagekraft. 
+
+TEXT EN:
+I am Anne Leinen, born in 1985 in Karlsruhe, now living and working in Berlin. As a self-taught artist with a background in design (Academy of Communication, Graphic Design), I am the creative mind behind artful_anne. Since February 2024, I have been dedicating myself intensively to abstract art — my true calling.
+
+My works emerge from clearly defined themes that move me, with the desire to inspire and spark growth. Using mixed media, I create expressive, one-of-a-kind pieces with depth and meaning.
+
+BUTTON:
+Beschriftung DE:
+Beschriftung EN:
+Ziel: (z.B. → Kunstwerke-Seite)

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ausstellungen | Anne Leinen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Manrope:wght@200;300;400;500;600;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "tertiary-container": "#c3a5aa","surface-tint": "#914756","on-error": "#ffffff","surface-variant": "#efdfe0","surface-container-highest": "#efdfe0","secondary-container": "#fdd48d","on-primary-fixed-variant": "#74303f","on-tertiary-fixed-variant": "#574145","secondary-fixed-dim": "#e8c17c","primary-fixed-dim": "#ffb2be","on-surface-variant": "#534345","on-surface": "#22191a","outline-variant": "#d8c1c3","surface": "#fff8f7","surface-dim": "#e7d6d7","on-tertiary": "#ffffff","inverse-surface": "#382e2f","secondary-fixed": "#ffdea7","outline": "#857275","on-primary-fixed": "#3c0415","tertiary-fixed-dim": "#debfc4","on-secondary": "#ffffff","on-secondary-container": "#785a1f","surface-container": "#fbeaeb","inverse-on-surface": "#feedee","on-primary-container": "#6d2a39","on-secondary-fixed-variant": "#5d4207","secondary": "#77591f","surface-container-low": "#fff0f1","tertiary": "#70585c","on-primary": "#ffffff","on-tertiary-container": "#503b3f","on-error-container": "#93000a","on-secondary-fixed": "#271900","inverse-primary": "#ffb2be","on-background": "#22191a","surface-bright": "#fff8f7","primary-fixed": "#ffd9de","primary": "#914756","on-tertiary-fixed": "#28171a","tertiary-fixed": "#fbdbe0","background": "#fff8f7","primary-container": "#ed93a3","error-container": "#ffdad6","surface-container-lowest": "#ffffff","surface-container-high": "#f5e4e5","error": "#ba1a1a"
+        },
+        fontFamily: { "headline": ["Noto Serif","serif"], "body": ["Manrope","sans-serif"], "label": ["Manrope","sans-serif"] },
+        borderRadius: {"DEFAULT": "0px","lg": "0px","xl": "0px","full": "9999px"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+  body { background-color: #77591f; }
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+</style>
+</head>
+<body class="font-body text-on-secondary-fixed selection:bg-primary-container selection:text-on-primary-container">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-[#77591f]/90 backdrop-blur-xl flex justify-between items-center px-8 md:px-16 py-6">
+  <a href="index.html" class="font-['Noto_Serif'] text-2xl italic text-[#fdd48d]">Anne Leinen</a>
+  <div class="hidden md:flex gap-10 font-['Noto_Serif'] text-lg tracking-wide">
+    <a href="index.html"       class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Portfolio</a>
+    <a href="artworks.html"     class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Kunstwerke</a>
+    <a href="artworks2.html"    class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Kunstwerke 2</a>
+    <a href="exhibitions.html"  class="text-white border-b border-secondary-container pb-1">Ausstellungen</a>
+    <a href="exhibitions2.html" class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Ausstellungen 2</a>
+    <a href="contact.html"      class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Kontakt</a>
+  </div>
+  <button id="menu-toggle" class="md:hidden text-[#fdd48d]"><span class="material-symbols-outlined">menu</span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full z-40 bg-[#77591f] flex-col items-center justify-center gap-10">
+  <button id="menu-close" class="absolute top-6 right-8 text-[#fdd48d]"><span class="material-symbols-outlined text-3xl">close</span></button>
+  <a href="index.html"       onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Portfolio</a>
+  <a href="artworks.html"     onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Kunstwerke</a>
+  <a href="artworks2.html"    onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Kunstwerke 2</a>
+  <a href="exhibitions.html"  onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-white">Ausstellungen</a>
+  <a href="exhibitions2.html" onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Ausstellungen 2</a>
+  <a href="contact.html"      onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Kontakt</a>
+</div>
+
+<main class="pt-32 pb-24">
+
+  <!-- HEADER -->
+  <header class="px-8 md:px-24 mb-24">
+    <div class="max-w-7xl mx-auto">
+      <span class="font-label text-sm uppercase tracking-[0.3em] text-secondary-container mb-4 block">Upcoming &amp; Current</span>
+      <h1 class="font-headline text-5xl md:text-8xl text-secondary-container leading-tight max-w-4xl italic">Ausstellungen &amp; Vernissagen</h1>
+    </div>
+  </header>
+
+  <div class="space-y-32 md:space-y-48">
+
+    <!-- AUSSTELLUNG 1 -->
+    <article class="flex flex-col md:flex-row items-center gap-12 md:gap-24 px-8 md:px-24">
+      <div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCitY850a-uhyGK-C6mX4Sz0N8mEvngAx7EflRCJqVLbK3WINL2lHq2iHcv7EIP-_rW8-tErfaDQRCkzGQTvIiyj8Osq2CDtsAB3t23SxlS6Rmj8hNIrxjUwqyLvF_3bzYzamlOAy_5EdeN9cDYsAbMN0O-KT7z_0jbHllf18tUI2OGoDIuleQHxjG7NZyngd1Xg_JJxFIPb1XYa8a52bKUIE45m9GEm5Sf1lhQN19KzFRcdOzdr5HPJZa8RyySXPgow7qAYSG7133U" alt="Galerie Innenansicht"/>
+      </div>
+      <div class="w-full md:w-5/12 flex flex-col">
+        <div class="bg-primary-container inline-block px-4 py-1 self-start mb-6">
+          <span class="font-label text-xs font-bold uppercase tracking-widest text-on-primary-container">Vernissage</span>
+        </div>
+        <h2 class="font-headline text-4xl md:text-5xl text-secondary-container leading-tight mb-8">Lange Nacht der Bilder 2025</h2>
+        <div class="space-y-6 mb-10">
+          <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-secondary-container mt-1">location_on</span>
+            <div>
+              <p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Location</p>
+              <p class="font-headline text-xl text-secondary-container">Galerie der oskar</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-secondary-container mt-1">calendar_today</span>
+            <div>
+              <p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Datum &amp; Uhrzeit</p>
+              <p class="font-headline text-xl text-secondary-container">05. September 2025, 18:00 Uhr</p>
+            </div>
+          </div>
+        </div>
+        <p class="font-body text-secondary-container opacity-80 leading-relaxed mb-10 max-w-md">Ein immersiver Abend zum Erkunden der neuesten Serie taktiler Ölkompositionen. Die „Lange Nacht der Bilder" feiert die lebendige Kunstszene Berlins.</p>
+        <button class="bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label text-sm uppercase tracking-widest py-5 px-10 transition-all self-start flex items-center gap-3">
+          RSVP Event <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- AUSSTELLUNG 2 -->
+    <article class="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-24 px-8 md:px-24">
+      <div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden">
+        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnVXxA0yssbWlhOz8uDzrVyaNJt_MIHPhy_XxdWVkCD1amwPpi1OZwlrMzTPmyrgZsBQx2rx_iaeItOZ5oclqiaKDU0priltoBwNTnYq_hDmLKMk4Qi42FWUgSPZix1tiacIO_BnVLBKxJpbfSNOSa1FF2S_XpCYrSOwwjl7gnk7zrRBQG33UHIBEkJFXY5QVyaoenCk9kFqXmAW03UJ_OvARW1MxFLxIQEEmbFDXkKPDoQ7jE0NYFoHntGAvBMp3Wsp_Vrh1o1E-y" alt="Abstraktes Gemälde"/>
+      </div>
+      <div class="w-full md:w-5/12 flex flex-col">
+        <div class="bg-primary-container inline-block px-4 py-1 self-start mb-6">
+          <span class="font-label text-xs font-bold uppercase tracking-widest text-on-primary-container">Finissage</span>
+        </div>
+        <h2 class="font-headline text-4xl md:text-5xl text-secondary-container leading-tight mb-8">Not an Advent Art Sale – Finissage</h2>
+        <div class="space-y-6 mb-10">
+          <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-secondary-container mt-1">location_on</span>
+            <div>
+              <p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Location</p>
+              <p class="font-headline text-xl text-secondary-container">Envision Berlin</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-secondary-container mt-1">calendar_today</span>
+            <div>
+              <p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Datum &amp; Uhrzeit</p>
+              <p class="font-headline text-xl text-secondary-container">28. November 2025, 19:00 Uhr</p>
+            </div>
+          </div>
+        </div>
+        <p class="font-body text-secondary-container opacity-80 leading-relaxed mb-10 max-w-md">Ein letzter Blick auf die „Winter Solstice" Kollektion – eine seltene Gelegenheit, Originalwerke in intimem Rahmen zu erwerben.</p>
+        <button class="bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label text-sm uppercase tracking-widest py-5 px-10 transition-all self-start flex items-center gap-3">
+          Katalog anfragen <span class="material-symbols-outlined text-sm">download</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- KURATOREN-ZITAT -->
+    <aside class="mx-8 md:mx-auto max-w-4xl px-12 py-16 bg-secondary-fixed">
+      <div class="flex flex-col gap-6">
+        <span class="material-symbols-outlined text-on-secondary-fixed text-4xl">format_quote</span>
+        <p class="font-headline text-2xl md:text-3xl italic text-on-secondary-fixed leading-relaxed">"Ausstellungsräume sind mehr als Räume – sie sind stille Dialoge zwischen der Leinwand und dem inneren Horizont des Betrachters."</p>
+        <div class="h-px w-12 bg-on-secondary-fixed opacity-30 mt-4"></div>
+        <p class="font-label text-sm uppercase tracking-widest text-on-secondary-fixed-variant">Ein Wort der Kuratorin</p>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ARCHIV-TEASER -->
+  <section class="mt-32 px-8 md:px-24">
+    <div class="max-w-7xl mx-auto border-t border-secondary-container/20 pt-16 flex flex-col md:flex-row justify-between items-end gap-8">
+      <div>
+        <h3 class="font-headline text-3xl text-secondary-container mb-4">Vergangene Ausstellungen</h3>
+        <p class="font-body text-secondary-container opacity-70 max-w-md">Erkunden Sie die Reise vergangener Ausstellungen, von frühen Studien 2018 bis zu internationalen Präsentationen.</p>
+      </div>
+      <a href="#" class="font-headline text-xl text-secondary-container border-b border-primary-container pb-2 hover:text-primary-container transition-all">Archiv 2018—2024 ansehen</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[#6b4f1b] flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 border-t border-secondary-fixed/10">
+  <div class="font-['Noto_Serif'] italic text-lg text-[#ffdea7]">Anne Leinen</div>
+  <div class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 text-center">© 2024 Anne Leinen. Alle Rechte vorbehalten.</div>
+  <div class="flex gap-8">
+    <a href="#" class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 hover:text-white transition-colors duration-300 underline underline-offset-8">Impressum</a>
+    <a href="#" class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 hover:text-white transition-colors duration-300">Datenschutz</a>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('menu-close');
+  toggle.addEventListener('click', () => menu.classList.add('open'));
+  closeBtn.addEventListener('click', () => menu.classList.remove('open'));
+  function closeMenu() { menu.classList.remove('open'); }
+</script>
+</body>
+</html>

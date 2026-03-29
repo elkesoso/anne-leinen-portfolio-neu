@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ausstellungen 2 | Anne Leinen</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-tertiary-fixed-variant": "#574145",
+          "inverse-primary": "#ffb2be",
+          "outline": "#857275",
+          "on-error-container": "#93000a",
+          "on-surface-variant": "#5d4207",
+          "tertiary-container": "#c3a5aa",
+          "tertiary": "#70585c",
+          "surface-tint": "#914756",
+          "surface-dim": "#77591f",
+          "surface-container": "#8b6e31",
+          "on-tertiary-fixed": "#28171a",
+          "error": "#ba1a1a",
+          "secondary-fixed": "#ffdea7",
+          "primary-fixed-dim": "#ffb2be",
+          "secondary-container": "#fdd48d",
+          "on-primary-fixed": "#3c0415",
+          "primary-fixed": "#ffd9de",
+          "on-primary": "#ffffff",
+          "on-secondary-container": "#785a1f",
+          "surface": "#77591f",
+          "on-error": "#ffffff",
+          "tertiary-fixed-dim": "#debfc4",
+          "secondary": "#77591f",
+          "on-secondary-fixed-variant": "#5d4207",
+          "inverse-on-surface": "#feedee",
+          "secondary-fixed-dim": "#e8c17c",
+          "surface-bright": "#8b6e31",
+          "on-secondary": "#ffffff",
+          "outline-variant": "#d8c1c3",
+          "on-primary-fixed-variant": "#74303f",
+          "primary-container": "#914756",
+          "on-secondary-fixed": "#271900",
+          "on-primary-container": "#ffffff",
+          "surface-container-high": "#8b6e31",
+          "surface-container-highest": "#6b4f1b",
+          "inverse-surface": "#382e2f",
+          "error-container": "#ffdad6",
+          "on-tertiary-container": "#503b3f",
+          "on-tertiary": "#ffffff",
+          "on-surface": "#22191a",
+          "tertiary-fixed": "#fbdbe0",
+          "background": "#77591f",
+          "surface-container-lowest": "#ffdea7",
+          "surface-container-low": "#77591f",
+          "primary": "#914756",
+          "surface-variant": "#efdfe0",
+          "on-background": "#22191a"
+        },
+        fontFamily: {
+          "headline": ["Noto Serif"],
+          "body": ["Manrope"],
+          "label": ["Manrope"]
+        },
+        borderRadius: {"DEFAULT": "0rem", "lg": "0rem", "xl": "0rem", "full": "9999px"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  body { background-color: #77591f; }
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+</style>
+</head>
+<body class="font-body text-on-surface bg-surface selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-[#77591f]/90 backdrop-blur-xl flex justify-between items-center px-8 md:px-16 py-6">
+  <a href="index.html" class="font-['Noto_Serif'] text-2xl italic text-[#fdd48d]">Anne Leinen</a>
+  <div class="hidden md:flex gap-10 font-['Noto_Serif'] text-lg tracking-wide">
+    <a href="index.html"         class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Portfolio</a>
+    <a href="artworks.html"      class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Kunstwerke</a>
+    <a href="artworks2.html"     class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Kunstwerke 2</a>
+    <a href="exhibitions.html"   class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Ausstellungen</a>
+    <a href="exhibitions2.html"  class="text-white border-b border-secondary-container pb-1">Ausstellungen 2</a>
+    <a href="contact.html"       class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Kontakt</a>
+  </div>
+  <button id="menu-toggle" class="md:hidden text-[#fdd48d]"><span class="material-symbols-outlined">menu</span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full z-40 bg-[#77591f] flex-col items-center justify-center gap-10">
+  <button id="menu-close" class="absolute top-6 right-8 text-[#fdd48d]"><span class="material-symbols-outlined text-3xl">close</span></button>
+  <a href="index.html"        onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Portfolio</a>
+  <a href="artworks.html"     onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Kunstwerke</a>
+  <a href="artworks2.html"    onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Kunstwerke 2</a>
+  <a href="exhibitions.html"  onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Ausstellungen</a>
+  <a href="exhibitions2.html" onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-white">Ausstellungen 2</a>
+  <a href="contact.html"      onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Kontakt</a>
+</div>
+
+<main class="pt-32">
+
+<!-- Hero Section -->
+<header class="px-8 md:px-16 mb-24 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+    <div class="md:col-span-8">
+      <p class="font-label text-xs uppercase tracking-[0.3em] text-[#ffdea7]/60 mb-4">Veranstaltungen &amp; Werkschauen</p>
+      <h1 class="font-headline text-6xl md:text-8xl text-secondary-fixed font-light leading-none">Ausstellungen</h1>
+    </div>
+    <div class="md:col-span-4 pb-2">
+      <p class="font-body text-lg text-secondary-container leading-relaxed italic">
+        Ein Dialog zwischen Materie und Raum. Entdecken Sie die physische Präsenz meiner Arbeiten in ausgewählten Galerien weltweit.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- Current Exhibition: High-End Bento Focus -->
+<section class="mb-32 px-8 md:px-16 max-w-7xl mx-auto">
+  <div class="flex items-center justify-between mb-12 border-b border-[#ffdea7]/20 pb-4">
+    <h2 class="font-headline text-3xl text-secondary-fixed">Aktuelle Ausstellungen</h2>
+    <span class="font-label text-xs uppercase tracking-widest text-[#fdd48d] flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-[#fdd48d] animate-pulse"></span> Jetzt Geöffnet
+    </span>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden shadow-2xl shadow-black/20">
+    <div class="lg:col-span-7 aspect-[4/5] md:aspect-video lg:aspect-auto">
+      <img alt="Galerie-Innenraum" class="w-full h-full object-cover filter contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTaKIva1gyZ1-qCGOLQQ7kHGqwlXgppGwvv6jYLUCL_jXljBucLnjSKho0X_ChKFIg9ligTBiWrZZaF0mLOzY-Nm77ItHNPp6T_C32G5ZAKAjsn_tgruRCh_iEjN5GtKfwgQYudMZ3lS_n6zo6rjo-OTLD7cdkRfl1vA6qXXQ1f5cCMPxW7D_ZnX_RwT_MPOp4cf6rkyuWIg_avJ4DsR0uA-W_ozDi1gmQZtlUWfForWdvoI6yyAe5TKM4CzY8EQvn-_WEz0EBfOd3"/>
+    </div>
+    <div class="lg:col-span-5 bg-surface-container-highest flex flex-col justify-center p-12 md:p-16 lg:p-20">
+      <div class="space-y-8">
+        <div>
+          <p class="font-label text-xs uppercase tracking-[0.2em] text-[#ffdea7]/60 mb-2">Soloshow</p>
+          <h3 class="font-headline text-4xl text-secondary-fixed mb-4">Stille im Fragment</h3>
+          <p class="font-body text-secondary-container text-lg">Berlin Modern Art Gallery</p>
+          <p class="font-body text-secondary-container/60">15. Oktober — 20. Dezember 2024</p>
+        </div>
+        <div class="bg-secondary-fixed-dim/10 p-8 border-l-2 border-secondary-fixed">
+          <p class="font-headline text-lg italic text-secondary-fixed">"Leinens Arbeiten fordern den Betrachter auf, die Pause zwischen den Pinselstrichen als eigenständiges Narrativ zu begreifen."</p>
+          <p class="font-label text-xs uppercase tracking-widest mt-4 text-[#ffdea7]/60">— Curator's Note</p>
+        </div>
+        <a class="inline-block bg-primary text-on-primary px-10 py-4 font-label text-xs uppercase tracking-[0.2em] hover:bg-on-primary-fixed-variant transition-colors" href="#">
+          Details Ansehen
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming Dates -->
+<section class="py-32 px-8 md:px-16 bg-surface-container-low">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-20 text-center max-w-2xl mx-auto">
+      <h2 class="font-headline text-4xl mb-6 text-secondary-fixed">Kommende Termine</h2>
+      <p class="font-body text-secondary-container/80">Zukünftige Gelegenheiten, neue Werkzyklen und exklusive Previews in internationalem Kontext zu erleben.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div class="group border-b border-[#ffdea7]/20 pb-8 hover:border-[#ffdea7] transition-all">
+        <p class="font-label text-xs uppercase tracking-widest text-[#ffdea7]/60 mb-4">Januar 2025</p>
+        <h4 class="font-headline text-2xl mb-2 text-secondary-fixed group-hover:italic transition-all">Munich Art Week</h4>
+        <p class="font-body text-secondary-container/80 mb-6">Installation &amp; Artist Talk<br/>Pinakothek der Moderne</p>
+        <div class="flex items-center gap-2 text-xs uppercase tracking-widest text-secondary-fixed">
+          <span class="material-symbols-outlined text-sm">calendar_today</span> Vormerken
+        </div>
+      </div>
+      <div class="group border-b border-[#ffdea7]/20 pb-8 hover:border-[#ffdea7] transition-all">
+        <p class="font-label text-xs uppercase tracking-widest text-[#ffdea7]/60 mb-4">März 2025</p>
+        <h4 class="font-headline text-2xl mb-2 text-secondary-fixed group-hover:italic transition-all">Echoes of Clay</h4>
+        <p class="font-body text-secondary-container/80 mb-6">Gruppenausstellung<br/>Galerie im Turm, Wien</p>
+        <div class="flex items-center gap-2 text-xs uppercase tracking-widest text-secondary-fixed">
+          <span class="material-symbols-outlined text-sm">calendar_today</span> Vormerken
+        </div>
+      </div>
+      <div class="group border-b border-[#ffdea7]/20 pb-8 hover:border-[#ffdea7] transition-all">
+        <p class="font-label text-xs uppercase tracking-widest text-[#ffdea7]/60 mb-4">Juni 2025</p>
+        <h4 class="font-headline text-2xl mb-2 text-secondary-fixed group-hover:italic transition-all">Venice Biennale Fringe</h4>
+        <p class="font-body text-secondary-container/80 mb-6">Pavilion of Shadows<br/>Palazzo Contarini</p>
+        <div class="flex items-center gap-2 text-xs uppercase tracking-widest text-secondary-fixed">
+          <span class="material-symbols-outlined text-sm">calendar_today</span> Vormerken
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Archive Section -->
+<section class="py-32 px-8 md:px-16 max-w-7xl mx-auto">
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+    <h2 class="font-headline text-4xl text-secondary-fixed">Vergangene Ausstellungen</h2>
+    <div class="flex gap-8 font-label text-xs uppercase tracking-widest text-secondary-container/60">
+      <button class="text-secondary-fixed border-b border-secondary-fixed">Alle</button>
+      <button class="hover:text-secondary-fixed">Solo</button>
+      <button class="hover:text-secondary-fixed">Gruppe</button>
+    </div>
+  </div>
+  <div class="space-y-0">
+    <div class="group grid grid-cols-1 md:grid-cols-12 py-10 border-t border-[#ffdea7]/10 items-center hover:bg-surface-container-high transition-colors px-4 -mx-4">
+      <div class="md:col-span-2 font-label text-xs text-secondary-container/60 uppercase tracking-tighter">2023</div>
+      <div class="md:col-span-5">
+        <h5 class="font-headline text-2xl text-secondary-fixed group-hover:translate-x-2 transition-transform duration-500">The Weight of Light</h5>
+        <p class="font-body text-sm text-secondary-container/60">Einzelausstellung</p>
+      </div>
+      <div class="md:col-span-4 font-body text-secondary-container">London Contemporary Gallery, UK</div>
+      <div class="md:col-span-1 text-right">
+        <span class="material-symbols-outlined text-secondary-container/60 group-hover:text-secondary-fixed transition-colors">north_east</span>
+      </div>
+    </div>
+    <div class="group grid grid-cols-1 md:grid-cols-12 py-10 border-t border-[#ffdea7]/10 items-center hover:bg-surface-container-high transition-colors px-4 -mx-4">
+      <div class="md:col-span-2 font-label text-xs text-secondary-container/60 uppercase tracking-tighter">2023</div>
+      <div class="md:col-span-5">
+        <h5 class="font-headline text-2xl text-secondary-fixed group-hover:translate-x-2 transition-transform duration-500">Form &amp; Flow</h5>
+        <p class="font-body text-sm text-secondary-container/60">Art Basel Guest Program</p>
+      </div>
+      <div class="md:col-span-4 font-body text-secondary-container">Basel Art Fair, Schweiz</div>
+      <div class="md:col-span-1 text-right">
+        <span class="material-symbols-outlined text-secondary-container/60 group-hover:text-secondary-fixed transition-colors">north_east</span>
+      </div>
+    </div>
+    <div class="group grid grid-cols-1 md:grid-cols-12 py-10 border-t border-[#ffdea7]/10 items-center hover:bg-surface-container-high transition-colors px-4 -mx-4">
+      <div class="md:col-span-2 font-label text-xs text-secondary-container/60 uppercase tracking-tighter">2022</div>
+      <div class="md:col-span-5">
+        <h5 class="font-headline text-2xl text-secondary-fixed group-hover:translate-x-2 transition-transform duration-500">Unearthing Silhouettes</h5>
+        <p class="font-body text-sm text-secondary-container/60">Retrospektive</p>
+      </div>
+      <div class="md:col-span-4 font-body text-secondary-container">Museum für Moderne Kunst, Frankfurt</div>
+      <div class="md:col-span-1 text-right">
+        <span class="material-symbols-outlined text-secondary-container/60 group-hover:text-secondary-fixed transition-colors">north_east</span>
+      </div>
+    </div>
+    <div class="group grid grid-cols-1 md:grid-cols-12 py-10 border-t border-b border-[#ffdea7]/10 items-center hover:bg-surface-container-high transition-colors px-4 -mx-4">
+      <div class="md:col-span-2 font-label text-xs text-secondary-container/60 uppercase tracking-tighter">2021</div>
+      <div class="md:col-span-5">
+        <h5 class="font-headline text-2xl text-secondary-fixed group-hover:translate-x-2 transition-transform duration-500">Organic Minimalisms</h5>
+        <p class="font-body text-sm text-secondary-container/60">Duo-Show mit K. Tanaka</p>
+      </div>
+      <div class="md:col-span-4 font-body text-secondary-container">Kyoto Zen Arts, Japan</div>
+      <div class="md:col-span-1 text-right">
+        <span class="material-symbols-outlined text-secondary-container/60 group-hover:text-secondary-fixed transition-colors">north_east</span>
+      </div>
+    </div>
+  </div>
+  <div class="mt-16 text-center">
+    <button class="font-label text-xs uppercase tracking-widest text-secondary-fixed hover:opacity-70 underline underline-offset-8 decoration-primary decoration-2 transition-all">Vollständiges Archiv laden</button>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[#6b4f1b] flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 border-t border-secondary-fixed/10">
+  <div class="font-['Noto_Serif'] italic text-lg text-[#ffdea7]">Anne Leinen</div>
+  <div class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 text-center">© 2024 Anne Leinen. Alle Rechte vorbehalten.</div>
+  <div class="flex gap-8">
+    <a href="#" class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 hover:text-white transition-colors duration-300 underline underline-offset-8">Impressum</a>
+    <a href="#" class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 hover:text-white transition-colors duration-300">Datenschutz</a>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('menu-close');
+  toggle.addEventListener('click', () => menu.classList.add('open'));
+  closeBtn.addEventListener('click', () => menu.classList.remove('open'));
+  function closeMenu() { menu.classList.remove('open'); }
+</script>
+</body>
+</html>

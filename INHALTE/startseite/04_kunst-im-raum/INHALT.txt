@@ -1,0 +1,16 @@
+SEKTION: Kunst im Raum (Mockup-Foto + Text)
+===========================================
+
+BILD:
+→ Foto eines Gemäldes an einer echten Wand / in einem Raum
+→ Querformat bevorzugt
+
+TEXT DE:
+Überschrift:
+Absatz (2–3 Sätze, wie wirkt das Werk im Raum):
+Bildunterschrift (z.B. "Abgebildet: Aurelia II in einem Loft in Berlin"):
+
+TEXT EN:
+Heading:
+Paragraph:
+Caption:

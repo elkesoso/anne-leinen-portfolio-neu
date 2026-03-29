@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kontakt | Anne Leinen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Manrope:wght@200;300;400;500;600;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "tertiary-container": "#c3a5aa","surface-tint": "#914756","on-error": "#ffffff","surface-variant": "#efdfe0","surface-container-highest": "#efdfe0","secondary-container": "#fdd48d","on-primary-fixed-variant": "#74303f","on-tertiary-fixed-variant": "#574145","secondary-fixed-dim": "#e8c17c","primary-fixed-dim": "#ffb2be","on-surface-variant": "#534345","on-surface": "#22191a","outline-variant": "#d8c1c3","surface": "#fff8f7","surface-dim": "#e7d6d7","on-tertiary": "#ffffff","inverse-surface": "#382e2f","secondary-fixed": "#ffdea7","outline": "#857275","on-primary-fixed": "#3c0415","tertiary-fixed-dim": "#debfc4","on-secondary": "#ffffff","on-secondary-container": "#785a1f","surface-container": "#fbeaeb","inverse-on-surface": "#feedee","on-primary-container": "#6d2a39","on-secondary-fixed-variant": "#5d4207","secondary": "#77591f","surface-container-low": "#fff0f1","tertiary": "#70585c","on-primary": "#ffffff","on-tertiary-container": "#503b3f","on-error-container": "#93000a","on-secondary-fixed": "#271900","inverse-primary": "#ffb2be","on-background": "#22191a","surface-bright": "#fff8f7","primary-fixed": "#ffd9de","primary": "#914756","on-tertiary-fixed": "#28171a","tertiary-fixed": "#fbdbe0","background": "#fff8f7","primary-container": "#ed93a3","error-container": "#ffdad6","surface-container-lowest": "#ffffff","surface-container-high": "#f5e4e5","error": "#ba1a1a"
+        },
+        fontFamily: { "headline": ["Noto Serif","serif"], "body": ["Manrope","sans-serif"], "label": ["Manrope","sans-serif"] },
+        borderRadius: {"DEFAULT": "0px","lg": "0px","xl": "0px","full": "9999px"},
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24; vertical-align: middle; }
+  body { background-color: #77591f; }
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+</style>
+</head>
+<body class="font-body text-on-secondary-fixed selection:bg-primary-container selection:text-on-primary-container">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-[#77591f]/90 backdrop-blur-xl flex justify-between items-center px-8 md:px-16 py-6">
+  <a href="index.html" class="font-['Noto_Serif'] text-2xl italic text-[#fdd48d]">Anne Leinen</a>
+  <div class="hidden md:flex gap-10 font-['Noto_Serif'] text-lg tracking-wide">
+    <a href="index.html"       class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Portfolio</a>
+    <a href="artworks.html"     class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Kunstwerke</a>
+    <a href="artworks2.html"    class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Kunstwerke 2</a>
+    <a href="exhibitions.html"  class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Ausstellungen</a>
+    <a href="exhibitions2.html" class="text-[#ffdea7]/70 hover:text-white transition-colors duration-300">Ausstellungen 2</a>
+    <a href="contact.html"      class="text-white border-b border-secondary-container pb-1">Kontakt</a>
+  </div>
+  <button id="menu-toggle" class="md:hidden text-[#fdd48d]"><span class="material-symbols-outlined">menu</span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full z-40 bg-[#77591f] flex-col items-center justify-center gap-10">
+  <button id="menu-close" class="absolute top-6 right-8 text-[#fdd48d]"><span class="material-symbols-outlined text-3xl">close</span></button>
+  <a href="index.html"       onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Portfolio</a>
+  <a href="artworks.html"     onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Kunstwerke</a>
+  <a href="artworks2.html"    onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Kunstwerke 2</a>
+  <a href="exhibitions.html"  onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Ausstellungen</a>
+  <a href="exhibitions2.html" onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-[#ffdea7]">Ausstellungen 2</a>
+  <a href="contact.html"      onclick="closeMenu()" class="font-['Noto_Serif'] text-3xl text-white">Kontakt</a>
+</div>
+
+<main class="pt-32 pb-24">
+
+  <!-- PAGE HEADER -->
+  <header class="px-8 md:px-24 mb-24 max-w-7xl mx-auto">
+    <span class="font-label text-sm uppercase tracking-[0.3em] text-secondary-container mb-4 block">Ich freue mich auf Ihre Nachricht</span>
+    <h1 class="font-headline text-5xl md:text-8xl text-secondary-container leading-tight italic">Kontakt</h1>
+  </header>
+
+  <div class="px-8 md:px-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
+
+    <!-- KONTAKTFORMULAR -->
+    <div class="bg-secondary-fixed px-12 py-16">
+      <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
+      <p class="font-body text-on-secondary-fixed-variant mb-12">Interesse an einem Werk, einer Auftragsarbeit oder Kooperation? Schreiben Sie mir.</p>
+      <form class="space-y-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="flex flex-col">
+            <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Name</label>
+            <input class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text"/>
+          </div>
+          <div class="flex flex-col">
+            <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">E-Mail</label>
+            <input class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="ihre@email.de" type="email"/>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Betreff</label>
+          <input class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="z.B. Auftragsarbeit, Ankauf, Kooperation" type="text"/>
+        </div>
+        <div class="flex flex-col">
+          <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Nachricht</label>
+          <textarea class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none" placeholder="Wie kann ich Ihnen helfen?" rows="5"></textarea>
+        </div>
+        <div class="pt-4">
+          <button class="w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:bg-on-secondary-fixed hover:text-secondary-fixed transition-all duration-500" type="submit">Nachricht senden</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- KONTAKTINFO -->
+    <div class="flex flex-col justify-between gap-16">
+
+      <!-- Info-Blöcke -->
+      <div class="space-y-12">
+        <div class="flex items-start gap-6">
+          <span class="material-symbols-outlined text-secondary-container text-3xl mt-1">mail</span>
+          <div>
+            <p class="font-label text-xs uppercase tracking-widest text-secondary-container/60 mb-1">E-Mail</p>
+            <a href="mailto:contact@anneleinen.art" class="font-headline text-xl text-secondary-fixed hover:text-secondary-container transition-colors">contact@anneleinen.art</a>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <span class="material-symbols-outlined text-secondary-container text-3xl mt-1">location_on</span>
+          <div>
+            <p class="font-label text-xs uppercase tracking-widest text-secondary-container/60 mb-1">Atelier</p>
+            <p class="font-headline text-xl text-secondary-fixed">Berlin, Deutschland</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-6">
+          <span class="material-symbols-outlined text-secondary-container text-3xl mt-1">schedule</span>
+          <div>
+            <p class="font-label text-xs uppercase tracking-widest text-secondary-container/60 mb-1">Atelierbesuche</p>
+            <p class="font-headline text-xl text-secondary-fixed">Nach Vereinbarung</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zitat -->
+      <div class="border-l-4 border-secondary-fixed pl-8 py-4">
+        <p class="font-headline text-2xl italic text-secondary-fixed leading-relaxed">"Erschaffen wir gemeinsam etwas Einzigartiges."</p>
+        <p class="font-label text-xs uppercase tracking-widest text-secondary-container/60 mt-4">Anne Leinen</p>
+      </div>
+
+      <!-- Auftragsarbeiten-Box -->
+      <div class="bg-secondary-fixed/10 p-10 border border-secondary-fixed/20">
+        <h3 class="font-headline text-2xl text-secondary-fixed mb-4">Auftragsarbeiten</h3>
+        <p class="font-body text-secondary-container/80 leading-relaxed mb-6">Anne Leinen fertigt exklusive Auftragswerke für private Sammler und architektonische Projekte – individuell abgestimmt auf Räumlichkeiten und persönliche Wünsche.</p>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+            <span class="font-body text-sm text-secondary-container">Persönliches Beratungsgespräch</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+            <span class="font-body text-sm text-secondary-container">Individuelle Formate &amp; Materialien</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+            <span class="font-body text-sm text-secondary-container">Zertifikat &amp; Echtheitsdokumentation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[#6b4f1b] flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 border-t border-secondary-fixed/10 mt-24">
+  <div class="font-['Noto_Serif'] italic text-lg text-[#ffdea7]">Anne Leinen</div>
+  <div class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 text-center">© 2024 Anne Leinen. Alle Rechte vorbehalten.</div>
+  <div class="flex gap-8">
+    <a href="#" class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 hover:text-white transition-colors duration-300 underline underline-offset-8">Impressum</a>
+    <a href="#" class="font-['Manrope'] text-[10px] tracking-[0.2em] uppercase text-[#ffdea7]/50 hover:text-white transition-colors duration-300">Datenschutz</a>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('menu-close');
+  toggle.addEventListener('click', () => menu.classList.add('open'));
+  closeBtn.addEventListener('click', () => menu.classList.remove('open'));
+  function closeMenu() { menu.classList.remove('open'); }
+</script>
+</body>
+</html>

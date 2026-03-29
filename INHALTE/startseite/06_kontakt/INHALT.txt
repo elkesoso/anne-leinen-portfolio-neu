@@ -1,0 +1,12 @@
+SEKTION: Kontakt (Formular auf der Startseite)
+==============================================
+
+→ Nur die Texte ausfüllen, das Formular selbst wird in Kadence gebaut
+
+Überschrift DE:
+Überschrift EN:
+Unterzeile DE:
+Unterzeile EN:
+
+Button-Beschriftung DE: Senden
+Button-Beschriftung EN: Send

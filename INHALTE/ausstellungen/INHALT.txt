@@ -1,0 +1,20 @@
+SEKTION: Ausstellungen
+======================
+
+→ Fotos der Ausstellungsräume / Vernissage in den Ordner "bilder/"
+
+Pro Ausstellung ausfüllen:
+
+---
+Foto (Dateiname):
+Titel DE:
+Titel EN:
+Typ: Solo / Gruppe / Vernissage / Finissage
+Location:
+Stadt, Land:
+Datum (von – bis):
+Status: Aktuell / Kommend / Vergangen
+Beschreibung DE (2–3 Sätze):
+Beschreibung EN:
+RSVP-Link (falls vorhanden):
+---
