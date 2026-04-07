@@ -1,0 +1,16 @@
+# macOS-Systemmüll
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Originale und Archive (nur lokal auf dem Mac, nicht in Git)
+**/originals_archive/
+
+# Rohe Bilddateien – nur optimierte WebPs gehören ins Repo
+**/*.jpg
+**/*.jpeg
+**/*.png
+
+# Ausnahme: WebP-Dateien im webp-Unterordner immer tracken
+# (gilt für INHALTE/kunstwerke/alle-gemaelde/webp/ und alle ähnlichen Pfade)
+!**/webp/**/*.webp

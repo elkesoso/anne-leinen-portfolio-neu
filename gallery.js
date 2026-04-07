@@ -1,0 +1,277 @@
+// gallery.js – Renderer für Bento-Grid, Slider und Modal
+// Nutzt window.AnneLeinen.galleryData aus data.js
+
+(function () {
+  'use strict';
+
+  window.AnneLeinen = window.AnneLeinen || {};
+  var AL = window.AnneLeinen;
+
+  // ─── MODAL ───────────────────────────────────────────────────────────────
+
+  AL.openModal = function (index) {
+    var item = AL.galleryData[index];
+    if (!item) return;
+
+    // Reset-Guard: immer mit Werkansicht starten
+    var img    = document.getElementById('modal-img');
+    var toggle = document.getElementById('modal-view-toggle');
+    var btnWork   = document.getElementById('btn-view-work');
+    var btnMockup = document.getElementById('btn-view-mockup');
+
+    img.src = item.pfad;
+    img.alt = item.titel;
+    document.getElementById('modal-titel').textContent       = item.titel;
+    document.getElementById('modal-beschreibung').textContent = item.beschreibung;
+
+    // View-Toggle nur zeigen wenn mockupPfad vorhanden und nicht leer
+    if (item.mockupPfad) {
+      toggle.classList.remove('hidden');
+      // Werk-Button als aktiv markieren
+      btnWork.classList.add('bg-primary', 'text-on-primary');
+      btnWork.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
+      btnWork.setAttribute('aria-pressed', 'true');
+      btnMockup.classList.remove('bg-primary', 'text-on-primary');
+      btnMockup.classList.add('border-on-surface-variant', 'text-on-surface-variant');
+      btnMockup.setAttribute('aria-pressed', 'false');
+
+      // Switch-Logik: Werk
+      btnWork.onclick = function () {
+        img.src = item.pfad;
+        btnWork.classList.add('bg-primary', 'text-on-primary');
+        btnWork.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
+        btnWork.setAttribute('aria-pressed', 'true');
+        btnMockup.classList.remove('bg-primary', 'text-on-primary');
+        btnMockup.classList.add('border-on-surface-variant', 'text-on-surface-variant');
+        btnMockup.setAttribute('aria-pressed', 'false');
+      };
+
+      // Switch-Logik: Mockup (lädt erst beim Klick – lazy)
+      btnMockup.onclick = function () {
+        img.src = item.mockupPfad;
+        btnMockup.classList.add('bg-primary', 'text-on-primary');
+        btnMockup.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
+        btnMockup.setAttribute('aria-pressed', 'true');
+        btnWork.classList.remove('bg-primary', 'text-on-primary');
+        btnWork.classList.add('border-on-surface-variant', 'text-on-surface-variant');
+        btnWork.setAttribute('aria-pressed', 'false');
+      };
+    } else {
+      toggle.classList.add('hidden');
+      btnWork.onclick = null;
+      btnMockup.onclick = null;
+    }
+
+    var overlay = document.getElementById('modal-overlay');
+    overlay.classList.remove('hidden', 'is-minimal');  // is-minimal nie im Voll-Modal
+    overlay.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Öffnet das Modal anhand eines Namens-Fragments (Titel oder Pfad-Substring).
+  // Robuster als Index-basierter Aufruf – funktioniert auch nach Umsortierung.
+  AL.openModalByName = function (name) {
+    var found = -1;
+    AL.galleryData.forEach(function (item, i) {
+      if (found !== -1) return;
+      if (item.titel === name || item.pfad.indexOf(name) !== -1) {
+        found = i;
+      }
+    });
+    if (found !== -1) {
+      AL.openModal(found);
+    } else {
+      console.warn('openModalByName: kein Eintrag gefunden für "' + name + '"');
+    }
+  };
+
+  AL.closeModal = function () {
+    var overlay = document.getElementById('modal-overlay');
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex', 'is-minimal');  // is-minimal immer entfernen
+    document.body.style.overflow = 'auto';
+    // Reset-Guard: Bild leeren damit kein altes Bild aufblitzt
+    document.getElementById('modal-img').src = '';
+    // Fokus zurück zum letzten Slider-Element (falls gesetzt)
+    if (_lastSliderFocus && typeof _lastSliderFocus.focus === 'function') {
+      _lastSliderFocus.focus();
+      _lastSliderFocus = null;
+    }
+  };
+
+  function initModal() {
+    var overlay = document.getElementById('modal-overlay');
+    var content = document.getElementById('modal-content');
+    var closeBtn = document.getElementById('modal-close');
+    var imgEl    = document.getElementById('modal-img');
+    if (!overlay) return;
+
+    // Schließen per ╳-Button
+    closeBtn.addEventListener('click', AL.closeModal);
+
+    // Schließen per Klick auf dunkles Overlay oder direkt aufs Bild
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay || e.target === imgEl) AL.closeModal();
+    });
+
+    // Ausnahme: Klicks im Inhalt (Buttons, Text) stoppen Propagation → schließen nicht
+    content.addEventListener('click', function (e) {
+      // Nur stoppen wenn NICHT das Bild selbst geklickt wurde
+      if (e.target !== imgEl) e.stopPropagation();
+    });
+
+    // Schließen per Escape (Barrierefreiheit)
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') AL.closeModal();
+    });
+  }
+
+  // ─── BENTO-GRID (artworks.html) ──────────────────────────────────────────
+
+  function initGalleryGrid() {
+    var grid = document.getElementById('gallery-grid');
+    if (!grid) return;
+
+    var html = '';
+    AL.galleryData.forEach(function (item, index) {
+      html += '<div class="bento-item group relative overflow-hidden cursor-pointer ' + item.layoutClass + '"'
+            + ' onclick="AnneLeinen.openModal(' + index + ')">'
+            + '<img'
+            + ' src="'          + item.thumbnailPfad + '"'
+            + ' alt="'          + item.titel + '"'
+            + ' loading="lazy"'
+            + ' decoding="async"'
+            + ' class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"'
+            + '>'
+            + '<div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-end p-4">'
+            + '<span class="font-headline text-white text-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-300">'
+            + item.titel
+            + '</span>'
+            + '</div>'
+            + '</div>';
+    });
+
+    grid.innerHTML = html;
+  }
+
+  // ─── SLIDER-MODAL (index.html) ───────────────────────────────────────────
+
+  var _lastSliderFocus = null; // Fokus-Merker für closeModal
+
+  AL.openSliderModal = function (index) {
+    var sliderItem = AL.sliderData[index];
+    if (!sliderItem) return;
+
+    // Vollständige Infos aus galleryData per Titel-Lookup (für Beschreibung)
+    var fullItem = null;
+    if (AL.galleryData) {
+      AL.galleryData.forEach(function (g) {
+        if (g.titel === sliderItem.titel) fullItem = g;
+      });
+    }
+
+    var img = document.getElementById('modal-img');
+    img.src = fullItem ? fullItem.pfad : sliderItem.pfad;
+    img.alt = sliderItem.titel;
+    document.getElementById('modal-titel').textContent       = sliderItem.titel;
+    document.getElementById('modal-beschreibung').textContent =
+      fullItem ? fullItem.beschreibung : '';
+
+    // Mockup-Toggle immer ausblenden im Slider-Kontext
+    var toggle = document.getElementById('modal-view-toggle');
+    if (toggle) toggle.classList.add('hidden');
+
+    // Fokus-Merker setzen (für Rückgabe beim Schließen)
+    _lastSliderFocus = document.activeElement;
+
+    var overlay = document.getElementById('modal-overlay');
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex', 'is-minimal');  // minimal = kein Textbereich
+    document.body.style.overflow = 'hidden';
+  };
+
+  // ─── SCROLL-SNAP SLIDER (index.html) ─────────────────────────────────────
+
+  AL.scrollSlider = function (direction) {
+    var viewport = document.getElementById('al-slider-viewport');
+    if (!viewport) return;
+    var slide = viewport.querySelector('.al-slide');
+    var slideWidth = slide ? slide.offsetWidth + 16 : 300; // +16px gap
+    viewport.scrollBy({ left: direction * slideWidth, behavior: 'smooth' });
+  };
+
+  function initSlider() {
+    var viewport = document.getElementById('al-slider-viewport');
+    if (!viewport) return;
+
+    // Slides aus sliderData – Klick öffnet Modal via openSliderModal
+    var slidesHtml = '';
+    AL.sliderData.forEach(function (item, index) {
+      slidesHtml += '<div'
+                  + ' class="al-slide flex-none w-[85vw] md:w-1/4 h-[350px] md:h-[500px] overflow-hidden cursor-pointer"'
+                  + ' style="scroll-snap-align: start;"'
+                  + ' role="button"'
+                  + ' tabindex="0"'
+                  + ' aria-label="' + item.titel + ' – Bild vergrößern"'
+                  + ' onclick="AnneLeinen.openSliderModal(' + index + ')"'
+                  + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openSliderModal(' + index + ')">'
+                  + '<img'
+                  + ' src="'     + item.pfad + '"'
+                  + ' alt="'     + item.titel + '"'
+                  + ' loading="lazy"'
+                  + ' decoding="async"'
+                  + ' class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"'
+                  + '>'
+                  + '</div>';
+    });
+    viewport.innerHTML = slidesHtml;
+
+    // Pfeil-Buttons verdrahten
+    var prevBtn = document.getElementById('slider-prev');
+    var nextBtn = document.getElementById('slider-next');
+    if (prevBtn) prevBtn.addEventListener('click', function () { AL.scrollSlider(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { AL.scrollSlider(1); });
+  }
+
+  // ─── SCROLL-ANIMATIONEN (Bento-Grid) ─────────────────────────────────────
+
+  function initScrollAnimations() {
+    if (!('IntersectionObserver' in window)) {
+      // Fallback für ältere Browser: alle sofort einblenden
+      document.querySelectorAll('.bento-item').forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+
+        // Stagger: Position im Grid → kleine Verzögerung pro Spalte
+        var items   = Array.from(document.querySelectorAll('.bento-item'));
+        var pos     = items.indexOf(entry.target);
+        var delay   = (pos % 3) * 80; // 0, 80, 160 ms je nach Spalte
+        entry.target.style.transitionDelay = delay + 'ms';
+        entry.target.classList.add('is-visible');
+
+        // Nach dem Einblenden nicht mehr beobachten → spart CPU
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.bento-item').forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
+  // ─── INIT ────────────────────────────────────────────────────────────────
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initModal();
+    initGalleryGrid();
+    initSlider();
+    initScrollAnimations();
+  });
+
+}());

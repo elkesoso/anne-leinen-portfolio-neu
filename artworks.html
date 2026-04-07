@@ -14,6 +14,22 @@
   .editorial-shadow { box-shadow: 0 40px 100px -20px rgba(34,25,26,0.15); }
   #mobile-menu { display: none; }
   #mobile-menu.open { display: flex; }
+  /* Scroll-Animation: Bento-Grid */
+  .bento-item {
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: opacity, transform;
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .bento-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Modal: Cursor-Feedback für Click-to-Exit */
+  #modal-overlay { cursor: zoom-out; }
+  #modal-img     { cursor: zoom-out; }
+  #modal-content { cursor: default; }
 </style>
 </head>
 <body class="bg-nav-bg font-body selection:bg-primary-container selection:text-on-primary-container">
@@ -54,64 +70,23 @@
     </div>
   </header>
 
-  <!-- 6er GALERIE GRID -->
+  <!-- BENTO-GRID GALERIE -->
   <section class="px-8 md:px-16 mb-32">
     <div class="mb-12 flex justify-between items-baseline">
       <h2 class="font-headline text-3xl text-secondary-fixed">Aktuelle Kollektion</h2>
-      <span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs">2023 — 2024</span>
+      <span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs">2024</span>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-      <div class="group">
-        <div class="aspect-square overflow-hidden mb-6 bg-secondary-container p-2">
-          <img alt="Aurelia I" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChUpztFMVyTF6sVLrX6YZy8yQQt0qacUuCMvgLicSM1vRvzKDIJFDh-72L9wzNAyDgMTowUrmBPmy8b8lyKDCjEU4tUZ7HQ9VSVpRLApQeM-BtZtqXe3zgcsgQ7xQokePgkFA7XWsEMwywyzYeSymfNUOQ_zi6cz0pvEgIgOthbHbQEZ9d5Xvh3RNIMmFTIE-ZPLArPM5XEltnFDqwWXjL5vXvgbq8SFFCBmafy_2ORHENhFoScqmTWSZ1kaqylBCgVUdIshqZ9hqN"/>
-        </div>
-        <h3 class="font-headline text-xl text-secondary-fixed mb-1">Aurelia I</h3>
-        <p class="font-label text-secondary-container/70 text-sm italic">Mischtechnik auf Leinwand, 120x120cm</p>
-      </div>
-      <div class="group mt-12 md:mt-0">
-        <div class="aspect-[4/5] overflow-hidden mb-6 bg-secondary-container p-2">
-          <img alt="Staub und Glanz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuhvMR5jweKnDakroKpLJPE9QZoLkjqH042l4tz8RGUeuLNqL75MwPn88P9AwVsNXW85S88EFciKKaap4HqaSduab1mpBsJwSv7lMk6O3rLid6sYcf-wrGPL0VxVB4oANgvUP5a5j-L_t4FsrBu2PB0sqgYb_Gr42E7VVtj2zHuN6_7RkvyhUFKyIxiqwNAa_sPV-0837QxhBPoc7Utu-1R--68g_04bna2o4ac7IVPgHC0p29bVgl4hrL1HdwIjxHXIU552wxnncX"/>
-        </div>
-        <h3 class="font-headline text-xl text-secondary-fixed mb-1">Staub und Glanz</h3>
-        <p class="font-label text-secondary-container/70 text-sm italic">Acryl &amp; Blattgold, 100x150cm</p>
-      </div>
-      <div class="group">
-        <div class="aspect-square overflow-hidden mb-6 bg-secondary-container p-2">
-          <img alt="Morgentau" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD7R-MZpQ1ydrXsibO1_wVe9KRTorH26l7dip7Xun_61nEhiJ0TvKaSmgj_vMMSfM03oaudOXtzAVKgmwFsJCzSp0F3g_sd1KQLHV3K115sGdTJPVJpAccT9Mlu0AnEMSW6YlBDrByDB5EtvooQM4L4k9AmjgD1fxgj8qAdnpiPnq7ZqxYUigaefFF0LHZ7n0koQQMS1tGmi_hH0xnG-dlYOtz95fFNCzyUu19mfdNcTIA_rRJowylkj3IecNCXZH1LxIl9gJTQlD2"/>
-        </div>
-        <h3 class="font-headline text-xl text-secondary-fixed mb-1">Morgentau</h3>
-        <p class="font-label text-secondary-container/70 text-sm italic">Öl auf Holz, 80x80cm</p>
-      </div>
-      <div class="group lg:mt-[-4rem]">
-        <div class="aspect-[3/4] overflow-hidden mb-6 bg-secondary-container p-2">
-          <img alt="Horizont" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0qBuNHpzu4hebTFhv3khnE0NyYld6n2sZ6ppZzCsDhB8KKy7e07GdfY3zBr2FaZygBICVVf9qi6omEfp2HaZuVWp70f5dungDq9rbqeSiuzwurGtCKePrMKq4fynIKOv3rpYlpSOhYRg5anbxIcyxH8J4blKXQ9tJq_r2qUGxWpn7V-tW0vUtn9sjawpGpXkFL2U--_kwrXYwZLoZ5tyBM02VRvoXRmXrGPuymI66mIduiP64DXalKJr8LoEg7UVXcCzU-lGw631S"/>
-        </div>
-        <h3 class="font-headline text-xl text-secondary-fixed mb-1">Horizont</h3>
-        <p class="font-label text-secondary-container/70 text-sm italic">Mischtechnik, 90x120cm</p>
-      </div>
-      <div class="group">
-        <div class="aspect-square overflow-hidden mb-6 bg-secondary-container p-2">
-          <img alt="Elysium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAyT7HQvBUSEUdOZJ5E-r8m3jkZ4DRibfyYRcpFIq3fxDw6kRaNHUtziK6PDbhE-Sd6UDzVMiknD1cmwYjxXfXubiE3oDMoUSBpmaC-NkrE-96ai8fF-Yf3CUywGplEwut_j2-hN5dLaZxtKGIcSCPFbvyaRRKjEDNgqiZoGp5XkcJkhZEot1fyGzpyOr-LQGdPgz7nFYvHfsJPZnS2qI9WQuwx6QojYWCtil_-ZG4Gm9zRrweRp6IVcgSK_mdFZvdGuh5QgsQm22e"/>
-        </div>
-        <h3 class="font-headline text-xl text-secondary-fixed mb-1">Elysium</h3>
-        <p class="font-label text-secondary-container/70 text-sm italic">Acryl, 110x110cm</p>
-      </div>
-      <div class="group lg:mt-12">
-        <div class="aspect-[4/5] overflow-hidden mb-6 bg-secondary-container p-2">
-          <img alt="Oxidation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIoy_rMXKG1aLYmqLtwmmebqZR0n8JTCBwr0U6V-MBmj-7OO3yC0uLKwmUBSG_0iLPBSk353u8v7YQZN8MYNMl0hss6o04TjnxVAxJiNKrMJBbzMKkCHmgJy5H1ty4x0dTZQE9RX17Ze_H8iUFgbnQL1QCc2GGliNc8ZP3eCwMMX_y8syhcxvzEtFNBlG8yElqvJ3CIIW7NhYfnLntUUc9Mu4ZAoGNDzwbHDBtgMZqKK4lsKgYE0cyaUthLho842QO1qHyW39RXYdt"/>
-        </div>
-        <h3 class="font-headline text-xl text-secondary-fixed mb-1">Oxidation</h3>
-        <p class="font-label text-secondary-container/70 text-sm italic">Mischtechnik, 100x130cm</p>
-      </div>
+    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 auto-rows-[150px] md:auto-rows-[300px]">
+      <!-- wird von gallery.js befüllt -->
     </div>
   </section>
 
-  <!-- ASYMMETRISCHES LAYOUT -->
+    <!-- ASYMMETRISCHES LAYOUT -->
   <section class="px-8 md:px-16 mb-32">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
       <div class="md:col-span-7 group">
         <div class="relative overflow-hidden bg-secondary-container p-4">
-          <img alt="Goldene Resilienz" class="w-full aspect-[4/5] object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTf05xeOTcWQDuV-ksEcas490s4NmgAPa5bjV51NuDHlxCanqhH7ysbywn-kiJLUb4N0FqU_Eqk1PBUZDKxpKqB8k5_i3PpJvRtSjbm6_1av-WVAYiLIl2G-HJcdfM-j714X6Hcxj0RzEscrnTFST5oBxmrbMt6x_TYa1MAhWyQ3FQ7Zk2EjuwbSjNj-36MHvC-BUL0l4gVuHXVmmjYpikOEaWuf5JhrMsojUj4ibLhF_mBRU2hzuOdfiFnBkx_Y-k0EY1gSdJpcA0"/>
+          <img alt="Goldene Resilienz" class="w-full aspect-[4/5] object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" src="INHALTE/kunstwerke/alle-gemaelde/webp/Synapse Deep Blue REMSTAGE.webp"/>
           <div class="absolute bottom-10 left-10 bg-surface/90 backdrop-blur-md p-8 max-w-xs shadow-xl">
             <span class="font-label text-[10px] tracking-widest uppercase text-primary mb-2 block">I. Fragment</span>
             <h3 class="font-headline text-2xl text-on-surface mb-4">Goldene Resilienz</h3>
@@ -121,14 +96,14 @@
       </div>
       <div class="md:col-span-5 flex flex-col gap-24 mt-24">
         <div class="bg-secondary-container p-4 self-end w-full md:w-4/5">
-          <img alt="Das Unsichtbare" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxHLnYrpT5FED9agCm21Fl-IpAmobrz0ZepKgK96zv_gwgvoph7qNg-xjWw4V_c6l477hXTJFDYTdgvuZTiNB9G7GOxk9_Lo2HxwEB4DDjxwu-BMi1h0QQKGpWp1Xzf4Afs0CihEUEn4O7maEkweTU1mo-4gxk3kpGcJsVpimfOpvkrPwf9ISDsQL3hM424BWZyPlqJ5_bH6l0x_rSNJjxtFuDsAT7YoVsoAJAyHyBmBdtVauvpgRAd2ZH6e3maOty_j3sY2WfaEWj"/>
+          <img alt="Das Unsichtbare" class="w-full aspect-square object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Epizentrum.webp"/>
           <div class="mt-6">
             <h4 class="font-headline italic text-xl text-secondary-fixed">Das Unsichtbare</h4>
             <p class="font-label text-xs text-secondary-container/60 mt-2">Mischtechnik auf Leinwand, 120 x 120 cm</p>
           </div>
         </div>
         <div class="bg-secondary-container p-4 w-full">
-          <img alt="Rosé-Metamorphose" class="w-full aspect-[3/4] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrvGf6t01h88H4_TiR_zv1_y3X1M43VVQV2IIHezNWkbnsVbAylYsFYZoei22Pe3t1ZP9v-NG5XE-zy4KnRtMGbIDlOvFNRUmZKhpEf_xW2navnNXQppyoEKJGPUEt5mtySOjVctTcOvOlNEhIZIQ0etF6gkw0JFsr4eMAIY2tVQJbQmtvAssn2MsLfNZF9oBtCKeXZ7R6MdxaqO1AacHkqx8WXJQuZO8wGVqWIc77gmv9kYbJUuxFxV_n58eovnBuQEDsp5JG3d5t"/>
+          <img alt="Rosé-Metamorphose" class="w-full aspect-[3/4] object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Awakening in Pastel.webp"/>
           <div class="mt-6 text-right">
             <h4 class="font-headline italic text-xl text-secondary-fixed">Rosé-Metamorphose</h4>
             <p class="font-label text-xs text-secondary-container/60 mt-2">Pigmente &amp; Kupfer, 2023</p>
@@ -142,7 +117,7 @@
   <section class="bg-secondary-fixed/10 py-24 px-8 md:px-24">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
       <div>
-        <img alt="Textur-Detail" class="w-full h-[500px] object-cover editorial-shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1CIieN58id0oY5eA93p7oDBHIZ_zKz9jYbA_fCg0BYc4CzQkv0PrT2Xth8r8DyFt9PE6BK1jX4Uka-X6-BQVSGqtp06Kd18frzTLeELjIOJY1kDxPAElFAqzoepYz1jj17UNqoVJvkf-_afUlho2q1loyNU118ZMsFbPo2wapGf3uWK9toqQISuCUES94oHxAUUcrGI1B5tUlLCNn1LTfvh2NFO8-vAEGBiKJIgR2GpBEutsuI7J0uyAzumNQ5rJT0SM-kv5-OvmB"/>
+        <img alt="Textur-Detail" class="w-full h-[500px] object-cover editorial-shadow" src="INHALTE/kunstwerke/alle-gemaelde/webp/Her Momentum.webp"/>
       </div>
       <div class="space-y-10">
         <div class="border-b border-secondary-fixed/20 pb-8">
@@ -172,7 +147,7 @@
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 overflow-x-auto pb-8 snap-x">
       <div class="min-w-[340px] md:min-w-[420px] snap-center bg-surface p-6 editorial-shadow">
         <div class="aspect-square bg-surface-container mb-6 overflow-hidden">
-          <img alt="Atelier" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASmqENHkMq_tvOEXw6A5Vz16JbSkf0jR_v2tXrBuzHvBoxHh89aOZdt-QHKoHaz5WC9ze3Y_peXfw88ocSFzroriCzbcRi09rPFUPZnsuMqpy0TPWTH8auaFGnyoCR-olAg8QDSR_VrhTbihurdGTL6p3V5S-Wpo0u0D4u7AHn_x-0yUWVb9Uswt96ZyjgHeTiw8NsZgrxXE4o8hlsZQclCTvow8OFn1jE6ut7-Y0gMob9u42MeX9kphb7z20NkI4dxQ5_v6zR4-Qx"/>
+          <img alt="Atelier" class="w-full h-full object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Aurora Bloom.webp"/>
         </div>
         <div class="flex justify-between items-center mb-4">
           <div class="flex items-center gap-3">
@@ -185,7 +160,7 @@
       </div>
       <div class="min-w-[340px] md:min-w-[420px] snap-center bg-surface p-6 editorial-shadow">
         <div class="aspect-square bg-surface-container mb-6 overflow-hidden">
-          <img alt="Galerie" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgE5NtPadQ9AkKbFJArSlCNGIYvhTPXuWEaMmtpQsWcBnuNRGeI_uXK6sqLge9_xLJBxUBpwB-AUow53S6FkTF2I7PwszOb8CS_hVzagBnVaOim11CmDIrm16pTUSs-t37U6J7OeJFetAM5bOb3zWKieHd0ydln__Vn6fN0bNQPQjt8oQlr7m7SjV18_7N7DYAnMmkkUEBS64EkVpCY-D6CrNhsA7rCfioJFerShl_ikka-hyCUeegrmZuOTL6Wog_CwLEduSDjz2N"/>
+          <img alt="Galerie" class="w-full h-full object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Tightrope walking.webp"/>
         </div>
         <div class="flex justify-between items-center mb-4">
           <div class="flex items-center gap-3">
@@ -198,7 +173,7 @@
       </div>
       <div class="min-w-[340px] md:min-w-[420px] snap-center bg-surface p-6 editorial-shadow">
         <div class="aspect-square bg-surface-container mb-6 overflow-hidden">
-          <img alt="Studio" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkHHMz9xft0sSxsgeflxWwtI5Ru5I7SqRp78OjcNKnXM-HZv4v9nJbj_uc61uLjk1XTuBrHv0fRgUvnmYXAI-v-R4NMD9r_RTCfgiY4ePsnRUp8UjsRLgFqzR6jl3gm90vNP9eCtMfEG3nf2GTCoaxtQZiY5hc2Eudx9tHlYqhSyBgJ1LfSvuCikmBmqO-FkQ1fgnOyxA-y1dtfk2wBQE40nTeHUg42Q9DSFC-tpPKNjJBeNIX-7iSXGIAHMYA9Rx9iHOGCKHJALaP"/>
+          <img alt="Studio" class="w-full h-full object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Infinite Future.webp"/>
         </div>
         <div class="flex justify-between items-center mb-4">
           <div class="flex items-center gap-3">
@@ -214,6 +189,37 @@
 
 </main>
 
+<!-- MODAL LIGHTBOX -->
+<div id="modal-overlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80">
+  <div id="modal-content" class="relative bg-surface max-w-5xl w-full flex flex-col md:flex-row max-h-[90vh] overflow-hidden">
+    <button id="modal-close" class="absolute top-4 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors" aria-label="Schließen">&#10005;</button>
+    <img id="modal-img" src="" alt="" class="w-full md:w-3/5 object-cover max-h-[50vh] md:max-h-[90vh]"/>
+    <div id="modal-text" class="p-8 md:w-2/5 flex flex-col justify-center gap-6">
+      <!-- View-Toggle: nur sichtbar wenn mockupPfad vorhanden -->
+      <div id="modal-view-toggle" class="hidden flex gap-3">
+        <button id="btn-view-work"
+          class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
+                 border-primary text-primary bg-transparent
+                 transition-colors duration-200
+                 hover:bg-primary hover:text-on-primary"
+          aria-pressed="true">
+          🎨 Werk
+        </button>
+        <button id="btn-view-mockup"
+          class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
+                 border-on-surface-variant text-on-surface-variant bg-transparent
+                 transition-colors duration-200
+                 hover:bg-primary hover:text-on-primary"
+          aria-pressed="false">
+          🏠 Raumansicht
+        </button>
+      </div>
+      <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
+      <p id="modal-beschreibung" class="font-body text-on-surface-variant leading-relaxed"></p>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="bg-footer-bg flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 border-t border-secondary-fixed/10">
   <div class="font-headline italic text-lg text-secondary-fixed">Anne Leinen</div>
@@ -224,6 +230,8 @@
   </div>
 </footer>
 
+<script src="data.js?v=202604071601"></script>
+<script src="gallery.js?v=202604071601"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
