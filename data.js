@@ -259,3 +259,92 @@ window.AnneLeinen.galleryData = [
     layoutClass:   "col-span-1 row-span-2"
   }
 ];
+
+// ─── AUSSTELLUNGS-DATEN (exhibitions.html) ────────────────────────────────
+// archiv: false = aktuelle/kommende Ausstellungen | archiv: true = Vergangenheit
+window.AnneLeinen.exhibitionData = [
+  {
+    titel:        "Lange Nacht der Bilder 2025",
+    typ:          "Vernissage",
+    ort:          "Galerie der oskar",
+    datum:        "05. September 2025",
+    uhrzeit:      "18:00 Uhr",
+    beschreibung: "Ein immersiver Abend zum Erkunden der neuesten Serie taktiler Ölkompositionen. Die „Lange Nacht der Bilder" feiert die lebendige Kunstszene Berlins.",
+    bildPfad:     "INHALTE/kunstwerke/alle-gemaelde/webp/Dance of Tides.webp",
+    bildAlt:      "Dance of Tides – Ausstellungsansicht",
+    bildName:     "Dance of Tides",
+    ctaText:      "RSVP Event",
+    ctaIcon:      "arrow_forward",
+    archiv:       false
+  },
+  {
+    titel:        "Not an Advent Art Sale – Finissage",
+    typ:          "Finissage",
+    ort:          "Envision Berlin",
+    datum:        "28. November 2025",
+    uhrzeit:      "19:00 Uhr",
+    beschreibung: "Ein letzter Blick auf die „Winter Solstice" Kollektion – eine seltene Gelegenheit, Originalwerke in intimem Rahmen zu erwerben.",
+    bildPfad:     "INHALTE/kunstwerke/alle-gemaelde/webp/Voices Like Storms.webp",
+    bildAlt:      "Voices Like Storms – Ausstellungsansicht",
+    bildName:     "Voices Like Storms",
+    ctaText:      "Katalog anfragen",
+    ctaIcon:      "download",
+    archiv:       false
+  },
+  {
+    titel:        "hinschauen Festival 2024",
+    typ:          "Gruppenausstellung",
+    ort:          "Kunstmeile Berlin",
+    datum:        "14. Juli 2024",
+    uhrzeit:      "11:00 Uhr",
+    beschreibung: "",
+    bildPfad:     "",
+    bildAlt:      "",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
+  },
+  {
+    titel:        "KunstKrebs Charity Ausstellung",
+    typ:          "Gruppenausstellung",
+    ort:          "Berlin",
+    datum:        "12. Oktober 2023",
+    uhrzeit:      "18:00 Uhr",
+    beschreibung: "",
+    bildPfad:     "",
+    bildAlt:      "",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
+  },
+  {
+    titel:        "Epizentrum – Einzelausstellung",
+    typ:          "Einzelausstellung",
+    ort:          "Galerie der oskar, Berlin",
+    datum:        "März 2022",
+    uhrzeit:      "",
+    beschreibung: "",
+    bildPfad:     "",
+    bildAlt:      "",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
+  },
+  {
+    titel:        "Frühe Studien",
+    typ:          "Gruppenausstellung",
+    ort:          "Atelierhaus Berlin",
+    datum:        "September 2018",
+    uhrzeit:      "",
+    beschreibung: "",
+    bildPfad:     "",
+    bildAlt:      "",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
+  }
+];

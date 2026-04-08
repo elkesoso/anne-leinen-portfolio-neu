@@ -13,6 +13,10 @@
   .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24; vertical-align: middle; }
   #mobile-menu { display: none; }
   #mobile-menu.open { display: flex; }
+  /* Modal: Cursor-Feedback für Click-to-Exit */
+  #modal-overlay { cursor: zoom-out; }
+  #modal-img     { cursor: zoom-out; }
+  #modal-content { cursor: default; }
 </style>
 </head>
 <body class="bg-nav-bg font-body selection:bg-primary-container selection:text-on-primary-container">
@@ -48,85 +52,20 @@
     </div>
   </header>
 
-  <div class="space-y-32 md:space-y-48">
-
-    <!-- AUSSTELLUNG 1 -->
-    <article class="flex flex-col md:flex-row items-center gap-12 md:gap-24 px-8 md:px-24">
-      <div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="INHALTE/kunstwerke/alle-gemaelde/webp/Dance of Tides.webp" alt="Galerie Innenansicht"/>
-      </div>
-      <div class="w-full md:w-5/12 flex flex-col">
-        <div class="bg-primary-container inline-block px-4 py-1 self-start mb-6">
-          <span class="font-label text-xs font-bold uppercase tracking-widest text-on-primary-container">Vernissage</span>
-        </div>
-        <h2 class="font-headline text-4xl md:text-5xl text-secondary-container leading-tight mb-8">Lange Nacht der Bilder 2025</h2>
-        <div class="space-y-6 mb-10">
-          <div class="flex items-start gap-4">
-            <span class="material-symbols-outlined text-secondary-container mt-1">location_on</span>
-            <div>
-              <p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Location</p>
-              <p class="font-headline text-xl text-secondary-container">Galerie der oskar</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <span class="material-symbols-outlined text-secondary-container mt-1">calendar_today</span>
-            <div>
-              <p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Datum &amp; Uhrzeit</p>
-              <p class="font-headline text-xl text-secondary-container">05. September 2025, 18:00 Uhr</p>
-            </div>
-          </div>
-        </div>
-        <p class="font-body text-secondary-container opacity-80 leading-relaxed mb-10 max-w-md">Ein immersiver Abend zum Erkunden der neuesten Serie taktiler Ölkompositionen. Die „Lange Nacht der Bilder" feiert die lebendige Kunstszene Berlins.</p>
-        <button class="bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label text-sm uppercase tracking-widest px-10 py-4 transition-all self-start flex items-center gap-3">
-          RSVP Event <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </button>
-      </div>
-    </article>
-
-    <!-- AUSSTELLUNG 2 -->
-    <article class="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-24 px-8 md:px-24">
-      <div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden">
-        <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" src="INHALTE/kunstwerke/alle-gemaelde/webp/Voices Like Storms.webp" alt="Abstraktes Gemälde"/>
-      </div>
-      <div class="w-full md:w-5/12 flex flex-col">
-        <div class="bg-primary-container inline-block px-4 py-1 self-start mb-6">
-          <span class="font-label text-xs font-bold uppercase tracking-widest text-on-primary-container">Finissage</span>
-        </div>
-        <h2 class="font-headline text-4xl md:text-5xl text-secondary-container leading-tight mb-8">Not an Advent Art Sale – Finissage</h2>
-        <div class="space-y-6 mb-10">
-          <div class="flex items-start gap-4">
-            <span class="material-symbols-outlined text-secondary-container mt-1">location_on</span>
-            <div>
-              <p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Location</p>
-              <p class="font-headline text-xl text-secondary-container">Envision Berlin</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <span class="material-symbols-outlined text-secondary-container mt-1">calendar_today</span>
-            <div>
-              <p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Datum &amp; Uhrzeit</p>
-              <p class="font-headline text-xl text-secondary-container">28. November 2025, 19:00 Uhr</p>
-            </div>
-          </div>
-        </div>
-        <p class="font-body text-secondary-container opacity-80 leading-relaxed mb-10 max-w-md">Ein letzter Blick auf die „Winter Solstice" Kollektion – eine seltene Gelegenheit, Originalwerke in intimem Rahmen zu erwerben.</p>
-        <button class="bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label text-sm uppercase tracking-widest px-10 py-4 transition-all self-start flex items-center gap-3">
-          Katalog anfragen <span class="material-symbols-outlined text-sm">download</span>
-        </button>
-      </div>
-    </article>
-
-    <!-- KURATOREN-ZITAT -->
-    <aside class="mx-8 md:mx-auto max-w-4xl px-12 py-16 bg-secondary-fixed">
-      <div class="flex flex-col gap-6">
-        <span class="material-symbols-outlined text-on-secondary-fixed text-4xl">format_quote</span>
-        <p class="font-headline text-2xl md:text-3xl italic text-on-secondary-fixed leading-relaxed">"Ausstellungsräume sind mehr als Räume – sie sind stille Dialoge zwischen der Leinwand und dem inneren Horizont des Betrachters."</p>
-        <div class="h-px w-12 bg-on-secondary-fixed opacity-30 mt-4"></div>
-        <p class="font-label text-sm uppercase tracking-widest text-on-secondary-fixed-variant">Ein Wort der Kuratorin</p>
-      </div>
-    </aside>
-
+  <!-- AUSSTELLUNGS-LISTE (von exhibitions.js befüllt) -->
+  <div id="exhibitions-list" class="space-y-32 md:space-y-48">
+    <!-- renderExhibitions() schreibt hier die article-Blöcke rein -->
   </div>
+
+  <!-- KURATOREN-ZITAT (statischer Inhalt, kein Datensatz) -->
+  <aside class="mt-32 mx-8 md:mx-auto max-w-4xl px-12 py-16 bg-secondary-fixed">
+    <div class="flex flex-col gap-6">
+      <span class="material-symbols-outlined text-on-secondary-fixed text-4xl">format_quote</span>
+      <p class="font-headline text-2xl md:text-3xl italic text-on-secondary-fixed leading-relaxed">"Ausstellungsräume sind mehr als Räume – sie sind stille Dialoge zwischen der Leinwand und dem inneren Horizont des Betrachters."</p>
+      <div class="h-px w-12 bg-on-secondary-fixed opacity-30 mt-4"></div>
+      <p class="font-label text-sm uppercase tracking-widest text-on-secondary-fixed-variant">Ein Wort der Kuratorin</p>
+    </div>
+  </aside>
 
   <!-- ARCHIV-TEASER -->
   <section class="mt-32 px-8 md:px-24">
@@ -135,11 +74,49 @@
         <h3 class="font-headline text-3xl text-secondary-container mb-4">Vergangene Ausstellungen</h3>
         <p class="font-body text-secondary-container opacity-70 max-w-md">Erkunden Sie die Reise vergangener Ausstellungen, von frühen Studien 2018 bis zu internationalen Präsentationen.</p>
       </div>
-      <a href="#" class="font-headline text-xl text-secondary-container border-b border-primary-container pb-2 hover:text-primary-container transition-all">Archiv 2018—2024 ansehen</a>
+      <a id="archive-link" href="#" class="font-headline text-xl text-secondary-container border-b border-primary-container pb-2 hover:text-primary-container transition-all">Archiv 2018&#8202;—&#8202;2024 ansehen</a>
+    </div>
+
+    <!-- ARCHIV-INHALT (initial versteckt, per exhibitions.js eingeblendet) -->
+    <div id="archive-section" class="hidden mt-16 max-w-7xl mx-auto">
+      <div id="archive-list">
+        <!-- renderArchive() schreibt hier die Jahreslisten rein -->
+      </div>
     </div>
   </section>
 
 </main>
+
+<!-- MODAL LIGHTBOX (identisch zu artworks.html – gallery.js initModal() verdrahtet es) -->
+<div id="modal-overlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80">
+  <div id="modal-content" class="relative bg-surface max-w-5xl w-full flex flex-col md:flex-row max-h-[90vh] overflow-hidden">
+    <button id="modal-close" class="absolute top-4 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors" aria-label="Schließen">&#10005;</button>
+    <img id="modal-img" src="" alt="" class="w-full md:w-3/5 object-cover max-h-[50vh] md:max-h-[90vh]"/>
+    <div id="modal-text" class="p-8 md:w-2/5 flex flex-col justify-center gap-6">
+      <!-- View-Toggle: nur sichtbar wenn mockupPfad vorhanden -->
+      <div id="modal-view-toggle" class="hidden flex gap-3">
+        <button id="btn-view-work"
+          class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
+                 border-primary text-primary bg-transparent
+                 transition-colors duration-200
+                 hover:bg-primary hover:text-on-primary"
+          aria-pressed="true">
+          🎨 Werk
+        </button>
+        <button id="btn-view-mockup"
+          class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
+                 border-on-surface-variant text-on-surface-variant bg-transparent
+                 transition-colors duration-200
+                 hover:bg-primary hover:text-on-primary"
+          aria-pressed="false">
+          🏠 Raumansicht
+        </button>
+      </div>
+      <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
+      <p id="modal-beschreibung" class="font-body text-on-surface-variant leading-relaxed"></p>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="bg-footer-bg flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 border-t border-secondary-fixed/10">
@@ -151,6 +128,9 @@
   </div>
 </footer>
 
+<script src="data.js?v=202604081800"></script>
+<script src="gallery.js?v=202604081800"></script>
+<script src="exhibitions.js?v=202604081800"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
