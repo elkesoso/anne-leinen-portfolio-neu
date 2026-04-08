@@ -126,32 +126,98 @@
     });
   }
 
-  // ─── BENTO-GRID (artworks.html) ──────────────────────────────────────────
+  // ─── HYBRID-GALERIE (artworks.html) ─────────────────────────────────────
+
+  // Escape-Helfer: sicher für onclick-Strings, alt-Attribute und HTML-Inhalt
+  function escQ(s) { return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+  function escA(s) { return String(s).replace(/"/g, '&quot;'); }
+  function escH(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
   function initGalleryGrid() {
-    var grid = document.getElementById('gallery-grid');
-    if (!grid) return;
+    var highlightGrid = document.getElementById('highlight-grid');
+    var catalogGrid   = document.getElementById('catalog-grid');
 
-    var html = '';
-    AL.galleryData.forEach(function (item, index) {
-      html += '<div class="bento-item group relative overflow-hidden cursor-pointer ' + item.layoutClass + '"'
-            + ' onclick="AnneLeinen.openModal(' + index + ')">'
-            + '<img'
-            + ' src="'          + item.thumbnailPfad + '"'
-            + ' alt="'          + item.titel + '"'
-            + ' loading="lazy"'
-            + ' decoding="async"'
-            + ' class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"'
-            + '>'
-            + '<div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-end p-4">'
-            + '<span class="font-headline text-white text-sm italic opacity-0 group-hover:opacity-100 transition-opacity duration-300">'
-            + item.titel
-            + '</span>'
-            + '</div>'
-            + '</div>';
-    });
+    // ── Highlight-Sektion: Bilder 0–2 (groß, Overlay-Design) ────────────────
+    if (highlightGrid) {
+      var HIGHLIGHT_COUNT = 3;
+      var hHtml = '';
+      AL.galleryData.slice(0, HIGHLIGHT_COUNT).forEach(function (item, i) {
+        var label = i === 0 ? 'Highlight' : 'Kollektion';
+        var badge = item.mockupPfad
+          ? '<span class="font-label text-xs text-on-surface-variant/70 mt-1 block">🏠 Raumansicht verfügbar</span>'
+          : '';
+        hHtml += '<div class="relative overflow-hidden cursor-pointer group aspect-[4/5] md:aspect-auto md:h-[80vh]"'
+               + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
+               + ' role="button" tabindex="0"'
+               + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
+               + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')">'
+               + '<img src="' + item.pfad + '"'
+               + ' alt="' + escA(item.titel) + '"'
+               + ' decoding="async"'
+               + ' class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700">'
+               + '<div class="absolute bottom-0 left-0 right-0'
+               + ' md:bottom-10 md:left-10 md:right-auto md:max-w-xs'
+               + ' bg-white/85 backdrop-blur-sm shadow-xl p-6 md:p-8">'
+               + '<span class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-2 block">' + label + '</span>'
+               + '<h3 class="font-headline text-2xl md:text-3xl text-on-surface italic">' + escH(item.titel) + '</h3>'
+               + badge
+               + '</div>'
+               + '</div>';
+      });
+      highlightGrid.innerHTML = hHtml;
+    }
 
-    grid.innerHTML = html;
+    // ── Katalog-Sektion: Index 3 bis Ende (kompaktes Grid, Card-Design) ──────
+    if (catalogGrid) {
+      var INITIAL_TOTAL   = 10;
+      var HIGHLIGHT_COUNT = 3;
+      var catalogItems    = AL.galleryData.slice(HIGHLIGHT_COUNT);
+      var cHtml = '';
+
+      catalogItems.forEach(function (item, i) {
+        var globalIdx = i + HIGHLIGHT_COUNT;
+        var isHidden  = globalIdx >= INITIAL_TOTAL;
+        var lazyAttr  = globalIdx >= 5 ? 'loading="lazy" decoding="async"' : 'decoding="async"';
+        var hiddenCls = isHidden ? ' hidden' : '';
+
+        cHtml += '<div class="cursor-pointer group' + hiddenCls + '"'
+               + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
+               + ' role="button" tabindex="0"'
+               + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
+               + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')">'
+               + '<div class="overflow-hidden aspect-[3/4]">'
+               + '<img src="' + item.thumbnailPfad + '"'
+               + ' alt="' + escA(item.titel) + '"'
+               + ' ' + lazyAttr
+               + ' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">'
+               + '</div>'
+               + '<div class="pt-3">'
+               + '<h4 class="font-headline italic text-secondary-fixed text-sm md:text-base leading-tight">' + escH(item.titel) + '</h4>'
+               + '</div>'
+               + '</div>';
+      });
+
+      catalogGrid.innerHTML = cHtml;
+
+      // Werkanzahl anzeigen
+      var countEl = document.getElementById('catalog-count');
+      if (countEl) countEl.textContent = catalogItems.length + ' Werke';
+
+      // "Mehr ansehen"-Button: zeigen wenn versteckte Elemente vorhanden
+      var hiddenItems  = catalogGrid.querySelectorAll('.hidden');
+      var btnContainer = document.getElementById('btn-mehr-container');
+      var btnMehr      = document.getElementById('btn-mehr-ansehen');
+
+      if (hiddenItems.length > 0 && btnContainer) {
+        btnContainer.classList.remove('hidden');
+        if (btnMehr) {
+          btnMehr.addEventListener('click', function () {
+            hiddenItems.forEach(function (el) { el.classList.remove('hidden'); });
+            btnContainer.classList.add('hidden');
+          });
+        }
+      }
+    }
   }
 
   // ─── SLIDER-MODAL (index.html) ───────────────────────────────────────────

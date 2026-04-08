@@ -58,11 +58,11 @@
 <main class="pt-32 pb-24">
 
   <!-- HEADER -->
-  <header class="px-8 md:px-24 mb-24 max-w-7xl mx-auto">
+  <header class="px-8 md:px-24 mb-20 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
       <div class="md:col-span-8">
-        <span class="font-label text-xs uppercase tracking-[0.3em] text-secondary-container/60 mb-6 block">Sammlung 2024</span>
-        <h1 class="font-headline text-5xl md:text-8xl text-secondary-fixed leading-tight italic">Die Galerie der Texturen</h1>
+        <span class="font-label text-xs uppercase tracking-[0.3em] text-secondary-container/60 mb-6 block">Sammlung</span>
+        <h1 class="font-headline text-5xl md:text-8xl text-secondary-fixed leading-tight italic">Die Galerie</h1>
       </div>
       <div class="md:col-span-4 pb-4">
         <p class="font-body text-lg leading-relaxed text-secondary-container/80 border-l border-secondary-fixed/30 pl-6">Eine haptische Reise durch Schichten von Pigment, Metall und Emotion. Jedes Werk ein Zeugnis der Zeit.</p>
@@ -70,122 +70,40 @@
     </div>
   </header>
 
-  <!-- BENTO-GRID GALERIE -->
-  <section class="px-8 md:px-16 mb-32">
-    <div class="mb-12 flex justify-between items-baseline">
-      <h2 class="font-headline text-3xl text-secondary-fixed">Aktuelle Kollektion</h2>
-      <span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs">2024</span>
+  <!-- HIGHLIGHT-SEKTION (Bilder 0–2): Editorial, einspaltig, Overlay-Design -->
+  <section class="px-8 md:px-16 mb-20">
+    <div class="mb-10 flex justify-between items-baseline">
+      <h2 class="font-headline text-2xl text-secondary-fixed">Highlights</h2>
+      <span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs">Auswahl</span>
     </div>
-    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 auto-rows-[150px] md:auto-rows-[300px]">
-      <!-- wird von gallery.js befüllt -->
-    </div>
-  </section>
-
-    <!-- ASYMMETRISCHES LAYOUT -->
-  <section class="px-8 md:px-16 mb-32">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-      <div class="md:col-span-7 group">
-        <div class="relative overflow-hidden bg-secondary-container p-4">
-          <img alt="Goldene Resilienz" class="w-full aspect-[4/5] object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" src="INHALTE/kunstwerke/alle-gemaelde/webp/Synapse Deep Blue REMSTAGE.webp"/>
-          <div class="absolute bottom-10 left-10 bg-surface/90 backdrop-blur-md p-8 max-w-xs shadow-xl">
-            <span class="font-label text-[10px] tracking-widest uppercase text-primary mb-2 block">I. Fragment</span>
-            <h3 class="font-headline text-2xl text-on-surface mb-4">Goldene Resilienz</h3>
-            <p class="font-body text-sm text-on-surface-variant leading-relaxed">Gold steht hier nicht für Prunk, sondern für die Stärke, die aus den Rissen der Erfahrung hervorgeht.</p>
-          </div>
-        </div>
-      </div>
-      <div class="md:col-span-5 flex flex-col gap-24 mt-24">
-        <div class="bg-secondary-container p-4 self-end w-full md:w-4/5">
-          <img alt="Das Unsichtbare" class="w-full aspect-square object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Epizentrum.webp"/>
-          <div class="mt-6">
-            <h4 class="font-headline italic text-xl text-secondary-fixed">Das Unsichtbare</h4>
-            <p class="font-label text-xs text-secondary-container/60 mt-2">Mischtechnik auf Leinwand, 120 x 120 cm</p>
-          </div>
-        </div>
-        <div class="bg-secondary-container p-4 w-full">
-          <img alt="Rosé-Metamorphose" class="w-full aspect-[3/4] object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Awakening in Pastel.webp"/>
-          <div class="mt-6 text-right">
-            <h4 class="font-headline italic text-xl text-secondary-fixed">Rosé-Metamorphose</h4>
-            <p class="font-label text-xs text-secondary-container/60 mt-2">Pigmente &amp; Kupfer, 2023</p>
-          </div>
-        </div>
-      </div>
+    <div id="highlight-grid" class="grid grid-cols-1 gap-12">
+      <!-- von gallery.js befüllt -->
     </div>
   </section>
 
-  <!-- ALCHEMIE -->
-  <section class="bg-secondary-fixed/10 py-24 px-8 md:px-24">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-      <div>
-        <img alt="Textur-Detail" class="w-full h-[500px] object-cover editorial-shadow" src="INHALTE/kunstwerke/alle-gemaelde/webp/Her Momentum.webp"/>
-      </div>
-      <div class="space-y-10">
-        <div class="border-b border-secondary-fixed/20 pb-8">
-          <h2 class="font-headline text-4xl text-secondary-fixed mb-6">Die Alchemie der Materialien</h2>
-          <p class="font-body text-lg text-secondary-container/80 italic leading-relaxed">"In meiner Arbeit suche ich die Balance zwischen Zerstörung und Heilung. Die Textur ist die Sprache meiner Narben."</p>
-        </div>
-        <div class="flex gap-6 items-start">
-          <span class="font-headline text-primary text-3xl">01</span>
-          <div>
-            <h5 class="font-bold text-sm tracking-widest uppercase text-secondary-fixed mb-2">Gold für Resilienz</h5>
-            <p class="text-secondary-container/80 leading-relaxed">Gold wird Schicht um Schicht aufgetragen, um den Prozess der inneren Stärkung zu versinnbildlichen.</p>
-          </div>
-        </div>
-        <div class="flex gap-6 items-start">
-          <span class="font-headline text-primary text-3xl">02</span>
-          <div>
-            <h5 class="font-bold text-sm tracking-widest uppercase text-secondary-fixed mb-2">Bronze für das Unsichtbare</h5>
-            <p class="text-secondary-container/80 leading-relaxed">Oxidierte Bronze repräsentiert die Zeit und die Dinge, die unter der Oberfläche wirken und uns formen.</p>
-          </div>
-        </div>
-      </div>
+  <!-- TRENNLINIE -->
+  <div class="px-8 md:px-16 mb-14">
+    <div class="border-t border-secondary-fixed/20"></div>
+  </div>
+
+  <!-- KATALOG-SEKTION (Index 3+): Kompaktes Grid, Card-Design -->
+  <section class="px-8 md:px-16 mb-12">
+    <div class="mb-10 flex justify-between items-baseline">
+      <h2 class="font-headline text-2xl text-secondary-fixed">Alle Werke</h2>
+      <span id="catalog-count" class="font-label text-secondary-container/60 tracking-widest uppercase text-xs"></span>
+    </div>
+    <div id="catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      <!-- von gallery.js befüllt -->
     </div>
   </section>
 
-  <!-- SOCIAL CARDS -->
-  <section class="py-24 px-6 overflow-hidden">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 overflow-x-auto pb-8 snap-x">
-      <div class="min-w-[340px] md:min-w-[420px] snap-center bg-surface p-6 editorial-shadow">
-        <div class="aspect-square bg-surface-container mb-6 overflow-hidden">
-          <img alt="Atelier" class="w-full h-full object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Aurora Bloom.webp"/>
-        </div>
-        <div class="flex justify-between items-center mb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-secondary-container"></div>
-            <span class="font-label text-xs font-semibold text-on-surface">@anne_leinen_art</span>
-          </div>
-          <span class="material-symbols-outlined text-primary">favorite</span>
-        </div>
-        <p class="font-body text-sm text-on-surface-variant italic">Der Moment, in dem die Farbe ihren eigenen Weg findet. Unkontrollierbar und doch perfekt.</p>
-      </div>
-      <div class="min-w-[340px] md:min-w-[420px] snap-center bg-surface p-6 editorial-shadow">
-        <div class="aspect-square bg-surface-container mb-6 overflow-hidden">
-          <img alt="Galerie" class="w-full h-full object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Tightrope walking.webp"/>
-        </div>
-        <div class="flex justify-between items-center mb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-secondary-container"></div>
-            <span class="font-label text-xs font-semibold text-on-surface">@anne_leinen_art</span>
-          </div>
-          <span class="material-symbols-outlined text-primary">favorite</span>
-        </div>
-        <p class="font-body text-sm text-on-surface-variant italic">Stille im Weiß. Wenn Textur zur einzigen Information im Raum wird.</p>
-      </div>
-      <div class="min-w-[340px] md:min-w-[420px] snap-center bg-surface p-6 editorial-shadow">
-        <div class="aspect-square bg-surface-container mb-6 overflow-hidden">
-          <img alt="Studio" class="w-full h-full object-cover" src="INHALTE/kunstwerke/alle-gemaelde/webp/Infinite Future.webp"/>
-        </div>
-        <div class="flex justify-between items-center mb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-secondary-container"></div>
-            <span class="font-label text-xs font-semibold text-on-surface">@anne_leinen_art</span>
-          </div>
-          <span class="material-symbols-outlined text-primary">favorite</span>
-        </div>
-        <p class="font-body text-sm text-on-surface-variant italic">Zwischen den Schichten. Ein Blick hinter die Kulissen der Galerie der Texturen.</p>
-      </div>
-    </div>
-  </section>
+  <!-- WEITERE WERKE ENTDECKEN (initial hidden, per JS eingeblendet) -->
+  <div id="btn-mehr-container" class="hidden text-center px-8 py-12">
+    <button id="btn-mehr-ansehen"
+            class="font-label text-sm uppercase tracking-[0.3em] text-secondary-fixed border border-secondary-fixed/40 px-12 py-4 hover:bg-secondary-fixed/20 transition-all duration-300">
+      WEITERE WERKE ENTDECKEN
+    </button>
+  </div>
 
 </main>
 
