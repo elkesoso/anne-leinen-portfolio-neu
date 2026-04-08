@@ -66,6 +66,8 @@
     overlay.classList.remove('hidden', 'is-minimal');  // is-minimal nie im Voll-Modal
     overlay.classList.add('flex');
     document.body.style.overflow = 'hidden';
+    // Virtuellen History-Schritt setzen → Browser-Zurück schließt Modal, verlässt Seite nicht
+    history.pushState({ modalOpen: true }, '');
   };
 
   // Öffnet das Modal anhand eines Namens-Fragments (Titel oder Pfad-Substring).
@@ -85,17 +87,32 @@
     }
   };
 
-  AL.closeModal = function () {
+  // Flag: verhindert Doppel-Zurück wenn closeModal() und popstate gleichzeitig feuern
+  var _modalClosing = false;
+
+  // Interne Schließ-Logik – KEIN history.back(), wird von popstate und direkt aufgerufen
+  function _doCloseModal() {
+    _modalClosing = false;
     var overlay = document.getElementById('modal-overlay');
     overlay.classList.add('hidden');
-    overlay.classList.remove('flex', 'is-minimal');  // is-minimal immer entfernen
+    overlay.classList.remove('flex', 'is-minimal');
     document.body.style.overflow = 'auto';
-    // Reset-Guard: Bild leeren damit kein altes Bild aufblitzt
     document.getElementById('modal-img').src = '';
-    // Fokus zurück zum letzten Slider-Element (falls gesetzt)
     if (_lastSliderFocus && typeof _lastSliderFocus.focus === 'function') {
       _lastSliderFocus.focus();
       _lastSliderFocus = null;
+    }
+  }
+
+  // Öffentliche API: schließt über history.back() wenn ein Modal-State existiert,
+  // damit der Browser-Zurück-Button sauber entfernt wird (kein Doppel-Schritt).
+  AL.closeModal = function () {
+    if (_modalClosing) return;  // Bereits ein history.back() im Gange → ignorieren
+    if (history.state && history.state.modalOpen) {
+      _modalClosing = true;
+      history.back();           // → löst popstate aus → _doCloseModal()
+    } else {
+      _doCloseModal();          // Kein Modal-State (z.B. nach Seiten-Reload) → direkt
     }
   };
 
@@ -123,6 +140,19 @@
     // Schließen per Escape (Barrierefreiheit)
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') AL.closeModal();
+    });
+
+    // Browser-Zurück-Button: popstate feuert wenn history.back() ausgelöst wird.
+    // _doCloseModal() direkt aufrufen (NICHT AL.closeModal), um history.back()-Loop zu vermeiden.
+    // Deep-Link-Schutz: Geister-Modal nach F5 nicht möglich, da history.state nach
+    // Reload null ist und das Modal nie auto-geöffnet wird.
+    window.addEventListener('popstate', function () {
+      _modalClosing = false;  // Flag zurücksetzen (back() ist abgeschlossen)
+      var modalOverlay = document.getElementById('modal-overlay');
+      if (modalOverlay && !modalOverlay.classList.contains('hidden')) {
+        _doCloseModal();      // Modal ist offen → schließen, ohne erneut back() zu rufen
+      }
+      // Modal bereits geschlossen → nichts tun, Browser navigiert normal
     });
   }
 
@@ -256,6 +286,7 @@
     overlay.classList.remove('hidden');
     overlay.classList.add('flex', 'is-minimal');  // minimal = kein Textbereich
     document.body.style.overflow = 'hidden';
+    history.pushState({ modalOpen: true }, '');
   };
 
   // ─── SCROLL-SNAP SLIDER (index.html) ─────────────────────────────────────
