@@ -221,7 +221,7 @@
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
                + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')">'
-               + '<div class="overflow-hidden aspect-[3/4]">'
+               + '<div class="overflow-hidden aspect-[3/4] min-h-[200px]">'
                + '<img src="' + item.thumbnailPfad + '"'
                + ' alt="' + escA(item.titel) + '"'
                + ' ' + lazyAttr

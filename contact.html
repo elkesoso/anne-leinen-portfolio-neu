@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="robots" content="noindex, nofollow"/>
 <title>Kontakt | Anne Leinen</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Manrope:wght@200;300;400;500;600;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -20,15 +21,24 @@
 <!-- NAV -->
 <nav class="fixed top-0 w-full z-50 bg-nav-bg/90 backdrop-blur-xl flex justify-between items-center px-8 md:px-16 py-6">
   <a href="index.html" class="block w-28 md:w-36 transition-opacity hover:opacity-80">
-    <img src="assets/logo.png" alt="Anne Leinen Logo" class="w-full h-auto" loading="eager">
+    <img src="assets/logo.png?v=1.2" alt="Anne Leinen Logo" class="w-full h-auto" loading="eager">
   </a>
-  <div class="hidden md:flex gap-10 font-headline text-lg tracking-wide">
-    <a href="index.html"       class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Portfolio</a>
-    <a href="artworks.html"    class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Kunstwerke</a>
-    <a href="exhibitions.html" class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Ausstellungen</a>
-    <a href="contact.html"      class="text-white border-b border-secondary-container pb-1">Kontakt</a>
+  <div class="flex items-center gap-2">
+    <div class="hidden md:flex gap-10 font-headline text-lg tracking-wide">
+      <a href="index.html"       class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Portfolio</a>
+      <a href="artworks.html"    class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Kunstwerke</a>
+      <a href="exhibitions.html" class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Ausstellungen</a>
+      <a href="contact.html"      class="text-white border-b border-secondary-container pb-1">Kontakt</a>
+    </div>
+    <a href="https://instagram.com/artful__anne" target="_blank" rel="noopener" aria-label="Anne Leinen auf Instagram" class="p-3 -mr-3 text-secondary-fixed/70 hover:text-white transition-colors duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4.5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <button id="menu-toggle" class="md:hidden text-secondary-container"><span class="material-symbols-outlined">menu</span></button>
   </div>
-  <button id="menu-toggle" class="md:hidden text-secondary-container"><span class="material-symbols-outlined">menu</span></button>
 </nav>
 
 <!-- MOBILE MENU -->
@@ -143,8 +153,8 @@
   <div class="font-headline italic text-lg text-secondary-fixed">Anne Leinen</div>
   <div class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 text-center">© 2026 Anne Leinen. Alle Rechte vorbehalten.</div>
   <div class="flex gap-8">
-    <a href="#" class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 hover:text-white transition-colors duration-300 underline underline-offset-8">Impressum</a>
-    <a href="#" class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 hover:text-white transition-colors duration-300">Datenschutz</a>
+    <a href="/impressum" class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 hover:text-white transition-colors duration-300 underline underline-offset-8">Impressum</a>
+    <a href="/datenschutz" class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 hover:text-white transition-colors duration-300">Datenschutz</a>
   </div>
 </footer>
 

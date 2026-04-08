@@ -1,165 +1,224 @@
 <!DOCTYPE html>
 <html class="light" lang="de">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Kunstwerke | Anne Leinen</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Manrope:wght@200;300;400;500;600;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="tokens.js"></script>
-<style>
-  body { background-color: #77591f; }
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24; vertical-align: middle; }
-  .editorial-shadow { box-shadow: 0 40px 100px -20px rgba(34,25,26,0.15); }
-  #mobile-menu { display: none; }
-  #mobile-menu.open { display: flex; }
-  /* Scroll-Animation: Bento-Grid */
-  .bento-item {
-    opacity: 0;
-    transform: translateY(30px);
-    will-change: opacity, transform;
-    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
-                transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .bento-item.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  /* Modal: Cursor-Feedback für Click-to-Exit */
-  #modal-overlay { cursor: zoom-out; }
-  #modal-img     { cursor: zoom-out; }
-  #modal-content { cursor: default; }
-</style>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Kunstwerke | Anne Leinen</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Manrope:wght@200;300;400;500;600;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="tokens.js"></script>
+  <style>
+    body {
+      background-color: #77591f;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+
+    .editorial-shadow {
+      box-shadow: 0 40px 100px -20px rgba(34, 25, 26, 0.15);
+    }
+
+    #mobile-menu {
+      display: none;
+    }
+
+    #mobile-menu.open {
+      display: flex;
+    }
+
+    /* Scroll-Animation: Bento-Grid */
+    .bento-item {
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: opacity, transform;
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .bento-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Modal: Cursor-Feedback für Click-to-Exit */
+    #modal-overlay {
+      cursor: zoom-out;
+    }
+
+    #modal-img {
+      cursor: zoom-out;
+    }
+
+    #modal-content {
+      cursor: default;
+    }
+  </style>
 </head>
+
 <body class="bg-nav-bg font-body selection:bg-primary-container selection:text-on-primary-container">
 
-<!-- NAV -->
-<nav class="fixed top-0 w-full z-50 bg-nav-bg/90 backdrop-blur-xl flex justify-between items-center px-8 md:px-16 py-6">
-  <a href="index.html" class="block w-28 md:w-36 transition-opacity hover:opacity-80">
-    <img src="assets/logo.png" alt="Anne Leinen Logo" class="w-full h-auto" loading="eager">
-  </a>
-  <div class="hidden md:flex gap-10 font-headline text-lg tracking-wide">
-    <a href="index.html"       class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Portfolio</a>
-    <a href="artworks.html"    class="text-white border-b border-secondary-container pb-1">Kunstwerke</a>
-    <a href="exhibitions.html" class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Ausstellungen</a>
-    <a href="contact.html"      class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Kontakt</a>
-  </div>
-  <button id="menu-toggle" class="md:hidden text-secondary-container"><span class="material-symbols-outlined">menu</span></button>
-</nav>
-
-<!-- MOBILE MENU -->
-<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full z-40 bg-nav-bg flex-col items-center justify-center gap-10">
-  <button id="menu-close" class="absolute top-6 right-8 text-secondary-container"><span class="material-symbols-outlined text-3xl">close</span></button>
-  <a href="index.html"       onclick="closeMenu()" class="font-headline text-3xl text-secondary-fixed">Portfolio</a>
-  <a href="artworks.html"    onclick="closeMenu()" class="font-headline text-3xl text-white">Kunstwerke</a>
-  <a href="exhibitions.html" onclick="closeMenu()" class="font-headline text-3xl text-secondary-fixed">Ausstellungen</a>
-  <a href="contact.html"      onclick="closeMenu()" class="font-headline text-3xl text-secondary-fixed">Kontakt</a>
-</div>
-
-<main class="pt-32 pb-24">
-
-  <!-- HEADER -->
-  <header class="px-8 md:px-24 mb-20 max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-      <div class="md:col-span-8">
-        <span class="font-label text-xs uppercase tracking-[0.3em] text-secondary-container/60 mb-6 block">Sammlung</span>
-        <h1 class="font-headline text-5xl md:text-8xl text-secondary-fixed leading-tight italic">Die Galerie</h1>
+  <!-- NAV -->
+  <nav
+    class="fixed top-0 w-full z-50 bg-nav-bg/90 backdrop-blur-xl flex justify-between items-center px-8 md:px-16 py-6">
+    <a href="index.html" class="block w-28 md:w-36 transition-opacity hover:opacity-80">
+      <img src="assets/logo.png?v=1.2" alt="Anne Leinen Logo" class="w-full h-auto" loading="eager">
+    </a>
+    <div class="flex items-center gap-2">
+      <div class="hidden md:flex gap-10 font-headline text-lg tracking-wide">
+        <a href="index.html"
+          class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Portfolio</a>
+        <a href="artworks.html" class="text-white border-b border-secondary-container pb-1">Kunstwerke</a>
+        <a href="exhibitions.html"
+          class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Ausstellungen</a>
+        <a href="contact.html"
+          class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Kontakt</a>
       </div>
-      <div class="md:col-span-4 pb-4">
-        <p class="font-body text-lg leading-relaxed text-secondary-container/80 border-l border-secondary-fixed/30 pl-6">Eine haptische Reise durch Schichten von Pigment, Metall und Emotion. Jedes Werk ein Zeugnis der Zeit.</p>
+      <a href="https://instagram.com/artful__anne" target="_blank" rel="noopener" aria-label="Anne Leinen auf Instagram"
+        class="p-3 -mr-3 text-secondary-fixed/70 hover:text-white transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="4.5" />
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+      <button id="menu-toggle" class="md:hidden text-secondary-container"><span
+          class="material-symbols-outlined">menu</span></button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu"
+    class="fixed top-0 left-0 w-full h-full z-40 bg-nav-bg flex-col items-center justify-center gap-10">
+    <button id="menu-close" class="absolute top-6 right-8 text-secondary-container"><span
+        class="material-symbols-outlined text-3xl">close</span></button>
+    <a href="index.html" onclick="closeMenu()" class="font-headline text-3xl text-secondary-fixed">Portfolio</a>
+    <a href="artworks.html" onclick="closeMenu()" class="font-headline text-3xl text-white">Kunstwerke</a>
+    <a href="exhibitions.html" onclick="closeMenu()"
+      class="font-headline text-3xl text-secondary-fixed">Ausstellungen</a>
+    <a href="contact.html" onclick="closeMenu()" class="font-headline text-3xl text-secondary-fixed">Kontakt</a>
+  </div>
+
+  <main class="pt-32 pb-24">
+
+    <!-- HEADER -->
+    <header class="px-8 md:px-24 mb-20 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+        <div class="md:col-span-8">
+          <span
+            class="font-label text-xs uppercase tracking-[0.3em] text-secondary-container/60 mb-6 block">Sammlung</span>
+          <h1 class="font-headline text-5xl md:text-8xl text-secondary-fixed leading-tight italic">Die Galerie</h1>
+        </div>
+        <div class="md:col-span-4 pb-4">
+          <p
+            class="font-body text-lg leading-relaxed text-secondary-container/80 border-l border-secondary-fixed/30 pl-6">
+            Eine haptische Reise durch Schichten von Pigment, Metall und Emotion. Jedes Werk ein Zeugnis der Zeit.</p>
+        </div>
       </div>
+    </header>
+
+    <!-- HIGHLIGHT-SEKTION (Bilder 0–2): Editorial, einspaltig, Overlay-Design -->
+    <section class="px-8 md:px-16 mb-20">
+      <div class="mb-10 flex justify-between items-baseline">
+        <h2 class="font-headline text-2xl text-secondary-fixed">Highlights</h2>
+        <span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs">Auswahl</span>
+      </div>
+      <div id="highlight-grid" class="grid grid-cols-1 gap-12">
+        <!-- von gallery.js befüllt -->
+      </div>
+    </section>
+
+    <!-- TRENNLINIE -->
+    <div class="px-8 md:px-16 mb-14">
+      <div class="border-t border-secondary-fixed/20"></div>
     </div>
-  </header>
 
-  <!-- HIGHLIGHT-SEKTION (Bilder 0–2): Editorial, einspaltig, Overlay-Design -->
-  <section class="px-8 md:px-16 mb-20">
-    <div class="mb-10 flex justify-between items-baseline">
-      <h2 class="font-headline text-2xl text-secondary-fixed">Highlights</h2>
-      <span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs">Auswahl</span>
+    <!-- KATALOG-SEKTION (Index 3–14 initial, 15–26 versteckt): 2/3/4-spaltig -->
+    <section class="px-8 md:px-16 mb-12">
+      <div class="mb-10 flex justify-between items-baseline">
+        <h2 class="font-headline text-2xl text-secondary-fixed">Alle Werke</h2>
+        <span id="catalog-count"
+          class="font-label text-secondary-container/60 tracking-widest uppercase text-xs"></span>
+      </div>
+      <div id="catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 grid-flow-row-dense">
+        <!-- von gallery.js befüllt -->
+      </div>
+    </section>
+
+    <!-- WEITERE WERKE ENTDECKEN (initial hidden, per JS eingeblendet wenn >10 Items) -->
+    <div id="btn-mehr-container" class="hidden text-center px-8 py-12">
+      <button id="btn-mehr-ansehen"
+        class="font-label text-sm uppercase tracking-[0.3em] text-secondary-fixed border border-secondary-fixed/40 px-12 py-4 hover:bg-secondary-fixed/20 transition-all duration-300">
+        WEITERE WERKE ENTDECKEN
+      </button>
     </div>
-    <div id="highlight-grid" class="grid grid-cols-1 gap-12">
-      <!-- von gallery.js befüllt -->
-    </div>
-  </section>
-
-  <!-- TRENNLINIE -->
-  <div class="px-8 md:px-16 mb-14">
-    <div class="border-t border-secondary-fixed/20"></div>
-  </div>
-
-  <!-- KATALOG-SEKTION (Index 3–14 initial, 15–26 versteckt): 2/3/4-spaltig -->
-  <section class="px-8 md:px-16 mb-12">
-    <div class="mb-10 flex justify-between items-baseline">
-      <h2 class="font-headline text-2xl text-secondary-fixed">Alle Werke</h2>
-      <span id="catalog-count" class="font-label text-secondary-container/60 tracking-widest uppercase text-xs"></span>
-    </div>
-    <div id="catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 grid-flow-row-dense">
-      <!-- von gallery.js befüllt -->
-    </div>
-  </section>
-
-  <!-- WEITERE WERKE ENTDECKEN (initial hidden, per JS eingeblendet wenn >10 Items) -->
-  <div id="btn-mehr-container" class="hidden text-center px-8 py-12">
-    <button id="btn-mehr-ansehen"
-            class="font-label text-sm uppercase tracking-[0.3em] text-secondary-fixed border border-secondary-fixed/40 px-12 py-4 hover:bg-secondary-fixed/20 transition-all duration-300">
-      WEITERE WERKE ENTDECKEN
-    </button>
-  </div>
 
 
-</main>
+  </main>
 
-<!-- MODAL LIGHTBOX -->
-<div id="modal-overlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80">
-  <div id="modal-content" class="relative bg-surface max-w-5xl w-full flex flex-col md:flex-row max-h-[90vh] overflow-hidden">
-    <button id="modal-close" class="absolute top-4 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors" aria-label="Schließen">&#10005;</button>
-    <img id="modal-img" src="" alt="" class="w-full md:w-3/5 object-cover max-h-[50vh] md:max-h-[90vh]"/>
-    <div id="modal-text" class="p-8 md:w-2/5 flex flex-col justify-center gap-6">
-      <!-- View-Toggle: nur sichtbar wenn mockupPfad vorhanden -->
-      <div id="modal-view-toggle" class="hidden flex gap-3">
-        <button id="btn-view-work"
-          class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
+  <!-- MODAL LIGHTBOX -->
+  <div id="modal-overlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80">
+    <div id="modal-content"
+      class="relative bg-surface max-w-5xl w-full flex flex-col md:flex-row max-h-[90vh] overflow-hidden">
+      <button id="modal-close"
+        class="absolute top-4 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors"
+        aria-label="Schließen">&#10005;</button>
+      <img id="modal-img" src="" alt="" class="w-full md:w-3/5 object-cover max-h-[50vh] md:max-h-[90vh]" />
+      <div id="modal-text" class="p-8 md:w-2/5 flex flex-col justify-center gap-6">
+        <!-- View-Toggle: nur sichtbar wenn mockupPfad vorhanden -->
+        <div id="modal-view-toggle" class="hidden flex gap-3">
+          <button id="btn-view-work" class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
                  border-primary text-primary bg-transparent
                  transition-colors duration-200
-                 hover:bg-primary hover:text-on-primary"
-          aria-pressed="true">
-          🎨 Werk
-        </button>
-        <button id="btn-view-mockup"
-          class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
+                 hover:bg-primary hover:text-on-primary" aria-pressed="true">
+            🎨 Werk
+          </button>
+          <button id="btn-view-mockup" class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
                  border-on-surface-variant text-on-surface-variant bg-transparent
                  transition-colors duration-200
-                 hover:bg-primary hover:text-on-primary"
-          aria-pressed="false">
-          🏠 Raumansicht
-        </button>
+                 hover:bg-primary hover:text-on-primary" aria-pressed="false">
+            🏠 Raumansicht
+          </button>
+        </div>
+        <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
+        <p id="modal-beschreibung" class="font-body text-on-surface-variant leading-relaxed"></p>
       </div>
-      <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
-      <p id="modal-beschreibung" class="font-body text-on-surface-variant leading-relaxed"></p>
     </div>
   </div>
-</div>
 
-<!-- FOOTER -->
-<footer class="bg-footer-bg flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 border-t border-secondary-fixed/10">
-  <div class="font-headline italic text-lg text-secondary-fixed">Anne Leinen</div>
-  <div class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 text-center">© 2026 Anne Leinen. Alle Rechte vorbehalten.</div>
-  <div class="flex gap-8">
-    <a href="#" class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 hover:text-white transition-colors duration-300 underline underline-offset-8">Impressum</a>
-    <a href="#" class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 hover:text-white transition-colors duration-300">Datenschutz</a>
-  </div>
-</footer>
+  <!-- FOOTER -->
+  <footer
+    class="bg-footer-bg flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 border-t border-secondary-fixed/10">
+    <div class="font-headline italic text-lg text-secondary-fixed">Anne Leinen</div>
+    <div class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 text-center">© 2026 Anne
+      Leinen. Alle Rechte vorbehalten.</div>
+    <div class="flex gap-8">
+      <a href="/impressum"
+        class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 hover:text-white transition-colors duration-300 underline underline-offset-8">Impressum</a>
+      <a href="/datenschutz"
+        class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary-fixed/50 hover:text-white transition-colors duration-300">Datenschutz</a>
+    </div>
+  </footer>
 
-<script src="data.js?v=202604071601"></script>
-<script src="gallery.js?v=202604071601"></script>
-<script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const closeBtn = document.getElementById('menu-close');
-  toggle.addEventListener('click', () => menu.classList.add('open'));
-  closeBtn.addEventListener('click', () => menu.classList.remove('open'));
-  function closeMenu() { menu.classList.remove('open'); }
-</script>
+  <script src="data.js?v=202604071601"></script>
+  <script src="gallery.js?v=202604071601"></script>
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('menu-close');
+    toggle.addEventListener('click', () => menu.classList.add('open'));
+    closeBtn.addEventListener('click', () => menu.classList.remove('open'));
+    function closeMenu() { menu.classList.remove('open'); }
+  </script>
 </body>
+
 </html>
