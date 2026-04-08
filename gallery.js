@@ -169,7 +169,7 @@
 
     // ── Katalog-Sektion: Index 3 bis Ende (kompaktes Grid, Card-Design) ──────
     if (catalogGrid) {
-      var INITIAL_TOTAL   = 10;
+      var INITIAL_TOTAL   = 15; // 3 Highlights + 12 Katalog → teilbar durch 2/3/4 Spalten
       var HIGHLIGHT_COUNT = 3;
       var catalogItems    = AL.galleryData.slice(HIGHLIGHT_COUNT);
       var cHtml = '';
