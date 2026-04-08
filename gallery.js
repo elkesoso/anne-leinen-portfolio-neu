@@ -164,6 +164,10 @@
   function escH(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
   function initGalleryGrid() {
+    // Schutz-Abfrage: Nicht auf Seiten ohne Galerie ausführen (z.B. exhibitions.html).
+    // Verhindert unnötige DOM-Suchen und mögliche Folgefehler auf fremden Seiten.
+    if (!document.getElementById('highlight-grid')) return;
+
     var highlightGrid = document.getElementById('highlight-grid');
     var catalogGrid   = document.getElementById('catalog-grid');
 
