@@ -24,58 +24,64 @@
     var current = data.filter(function (e) { return !e.archiv; });
 
     var html = '';
-    current.forEach(function (ex, i) {
+    current.forEach(function (item, i) {
+      // Debug: Mapping aus data.js sichtbar machen
+      console.log('Rendering Exhibition:', item.titel, '| Path:', item.bildPfad, '| bildName:', item.bildName);
+
       // Abwechselnde Richtung: gerade = Bild links (flex-row), ungerade = Bild rechts (flex-row-reverse)
       var flexDir = i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row';
 
-      // Bildblock – klickbar wenn bildName gesetzt (öffnet Lightbox)
+      // Bildblock – klickbar wenn bildName gesetzt (öffnet Lightbox via openModalByName)
       var imgBlock = '';
-      if (ex.bildPfad) {
-        var clickAttr = ex.bildName
-          ? ' onclick="AnneLeinen.openModalByName(\'' + escQ(ex.bildName) + '\')"'
+      if (item.bildPfad) {
+        var clickAttr = item.bildName
+          ? ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.bildName) + '\')"'
             + ' role="button" tabindex="0"'
-            + ' aria-label="' + escA(ex.titel) + ' – Bild vergrößern"'
+            + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
             + ' style="cursor:zoom-in;"'
           : '';
         imgBlock = '<div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden"' + clickAttr + '>'
           + '<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"'
-          + ' src="'  + escA(ex.bildPfad) + '"'
-          + ' alt="'  + escA(ex.bildAlt)  + '"'
+          + ' src="'  + escA(item.bildPfad) + '"'
+          + ' alt="'  + escA(item.bildAlt)  + '"'
           + ' decoding="async"/>'
           + '</div>';
+      } else {
+        // Kein Bild gesetzt – kein kaputtes img-Tag erzeugen
+        console.warn('Exhibition ohne Bild:', item.titel, '– bildPfad ist leer, kein Bildblock wird gerendert.');
       }
 
       // CTA-Button – nur wenn ctaText vorhanden
       var ctaBlock = '';
-      if (ex.ctaText) {
+      if (item.ctaText) {
         ctaBlock = '<button class="bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label text-sm uppercase tracking-widest px-10 py-4 transition-all self-start flex items-center gap-3">'
-          + escH(ex.ctaText)
-          + ' <span class="material-symbols-outlined text-sm">' + escH(ex.ctaIcon) + '</span>'
+          + escH(item.ctaText)
+          + ' <span class="material-symbols-outlined text-sm">' + escH(item.ctaIcon) + '</span>'
           + '</button>';
       }
 
       // Uhrzeit anhängen wenn vorhanden
-      var datumStr = escH(ex.datum) + (ex.uhrzeit ? ', ' + escH(ex.uhrzeit) : '');
+      var datumStr = escH(item.datum) + (item.uhrzeit ? ', ' + escH(item.uhrzeit) : '');
 
       // Textbreite: 5/12 wenn Bild vorhanden, sonst volle Breite
-      var textWidth = ex.bildPfad ? 'md:w-5/12' : '';
+      var textWidth = item.bildPfad ? 'md:w-5/12' : '';
 
       html += '<article class="flex flex-col ' + flexDir + ' items-center gap-12 md:gap-24 px-8 md:px-24">'
         + imgBlock
         + '<div class="w-full ' + textWidth + ' flex flex-col">'
           // Typ-Badge
           + '<div class="bg-primary-container inline-block px-4 py-1 self-start mb-6">'
-            + '<span class="font-label text-xs font-bold uppercase tracking-widest text-on-primary-container">' + escH(ex.typ) + '</span>'
+            + '<span class="font-label text-xs font-bold uppercase tracking-widest text-on-primary-container">' + escH(item.typ) + '</span>'
           + '</div>'
           // Titel
-          + '<h2 class="font-headline text-4xl md:text-5xl text-secondary-container leading-tight mb-8">' + escH(ex.titel) + '</h2>'
+          + '<h2 class="font-headline text-4xl md:text-5xl text-secondary-container leading-tight mb-8">' + escH(item.titel) + '</h2>'
           // Meta: Ort + Datum
           + '<div class="space-y-6 mb-10">'
             + '<div class="flex items-start gap-4">'
               + '<span class="material-symbols-outlined text-secondary-container mt-1">location_on</span>'
               + '<div>'
                 + '<p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Location</p>'
-                + '<p class="font-headline text-xl text-secondary-container">' + escH(ex.ort) + '</p>'
+                + '<p class="font-headline text-xl text-secondary-container">' + escH(item.ort) + '</p>'
               + '</div>'
             + '</div>'
             + '<div class="flex items-start gap-4">'
@@ -87,7 +93,7 @@
             + '</div>'
           + '</div>'
           // Beschreibung (optional)
-          + (ex.beschreibung ? '<p class="font-body text-secondary-container opacity-80 leading-relaxed mb-10 max-w-md">' + escH(ex.beschreibung) + '</p>' : '')
+          + (item.beschreibung ? '<p class="font-body text-secondary-container opacity-80 leading-relaxed mb-10 max-w-md">' + escH(item.beschreibung) + '</p>' : '')
           // CTA
           + ctaBlock
         + '</div>'
