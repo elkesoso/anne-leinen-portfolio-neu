@@ -1,3 +1,15 @@
+// CSS-Custom-Properties für direkte Nutzung außerhalb von Tailwind (z.B. color-mix, backdrop)
+// Einzige Quelle der Wahrheit: Farbwert hier ändern → gilt automatisch überall
+(function () {
+  var t = document.documentElement.style;
+  t.setProperty('--color-surface',           '#fff8f7');
+  t.setProperty('--color-primary',           '#914756');
+  t.setProperty('--color-secondary-fixed',   '#ffdea7');
+  t.setProperty('--color-secondary-container','#fdd48d');
+  t.setProperty('--color-nav-bg',            '#77591f');
+  t.setProperty('--color-on-surface',        '#22191a');
+}());
+
 tailwind.config = {
   darkMode: "class",
   theme: {
