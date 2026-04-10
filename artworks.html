@@ -69,6 +69,9 @@
       /* Beim Öffnen: sofort sichtbar, kein Delay */
       transition: visibility 0s linear 0s, pointer-events 0s linear 0s;
     }
+    @media (max-width: 767px) {
+      #modal-overlay { background-color: #6B5A52 !important; }
+    }
 
     #modal-img {
       cursor: zoom-out;
