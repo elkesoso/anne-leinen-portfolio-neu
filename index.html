@@ -220,8 +220,8 @@
     </div>
 
     <!-- Formular/Erfolg-Wrapper: CSS-Grid-Stacking – beide Divs überlagern sich, kein display-Toggle -->
-    <div style="display:grid;">
-    <div id="form-container" style="grid-area:1/1;transition:opacity 0.4s ease-in-out;">
+    <div style="display:grid;grid-template-areas:'stack';">
+    <div id="form-container" style="grid-area:stack;transition:opacity 0.5s ease-in-out;">
       <form id="contact-form" class="space-y-8" novalidate autocomplete="off">
 
         <!-- Honeypot: für Bots unsichtbar, echte Nutzer füllen es nicht aus -->
@@ -261,7 +261,7 @@
     </div>
 
     <!-- Erfolgsmeldung: liegt per grid-area im selben Bereich wie form-container -->
-    <div id="form-success" class="py-16 text-center space-y-6" style="grid-area:1/1;opacity:0;pointer-events:none;transition:opacity 0.5s ease-in-out;">
+    <div id="form-success" class="py-16 text-center space-y-6" style="grid-area:stack;opacity:0;pointer-events:none;transition:opacity 0.5s ease-in-out;">
       <p class="font-headline text-3xl md:text-4xl italic text-on-secondary-fixed leading-relaxed">„Vielen Dank für<br>Ihre Nachricht."</p>
       <p class="font-body text-on-secondary-fixed/70 leading-relaxed">Ich melde mich so bald wie möglich bei Ihnen.</p>
       <p class="font-label text-xs uppercase tracking-[0.25em] text-on-secondary-fixed/50 pt-2">— Anne Leinen</p>
