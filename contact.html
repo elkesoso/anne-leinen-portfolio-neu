@@ -74,7 +74,7 @@
       <!-- Überschrift & Beschreibung außerhalb des Grid-Wrappers (verhindert Blitzen beim Fade) -->
       <div id="form-header" class="mb-12" style="transition:opacity 0.5s ease-in-out;">
         <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
-        <p class="font-body text-on-secondary-fixed-variant">Interesse an einem Werk, einer Auftragsarbeit oder Kooperation? Schreiben Sie mir.</p>
+        <p class="font-body text-on-secondary-fixed-variant">Schreiben Sie mir!</p>
       </div>
       <!-- Formular/Erfolg-Wrapper: CSS-Grid-Stacking – beide Divs überlagern sich, kein display-Toggle -->
       <div style="display:grid;grid-template-areas:'stack';">
@@ -108,7 +108,7 @@
           </div>
           <div class="flex flex-col">
             <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Ihre Nachricht</label>
-            <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none min-h-[8rem] leading-relaxed" placeholder="Was bewegt Sie?" rows="5"></textarea>
+            <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none min-h-[8rem] leading-relaxed" placeholder="" rows="5"></textarea>
           </div>
           <div class="pt-4">
             <button id="submit-btn" class="w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:brightness-110 hover:shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Nachricht senden</button>
@@ -130,7 +130,7 @@
     <div class="flex flex-col gap-8">
 
       <!-- Logo reinweiß, direkt über E-Mail -->
-      <img src="assets/logo.png" alt="Artful Anne Logo" style="width: 260px; filter: brightness(0) invert(1);" class="w-auto mb-6">
+      <img src="assets/logo.png" alt="Artful Anne Logo" style="width: 260px; filter: brightness(0) invert(1);" class="w-auto mb-2">
 
       <!-- Info-Blöcke -->
       <div class="space-y-12">
