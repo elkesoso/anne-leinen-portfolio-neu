@@ -112,12 +112,17 @@
   // Interne Schließ-Logik – KEIN history.back(), wird von popstate und direkt aufgerufen
   function _doCloseModal() {
     _modalClosing = false;
-    var overlay = document.getElementById('modal-overlay');
-    overlay.classList.remove('is-open', 'is-minimal');
+    var overlay  = document.getElementById('modal-overlay');
+    var content  = document.getElementById('modal-content');
+    var imgEl    = document.getElementById('modal-img');
+    // Content zuerst ausblenden (0.3s Transition)
+    content.style.opacity = '0';
+    // Overlay erst nach Content-Fade verstecken
+    setTimeout(function () {
+      overlay.classList.remove('is-open', 'is-minimal');
+      imgEl.src = '';
+    }, 320);
     document.body.style.overflow = 'auto';
-    // Reset: content und img für nächste Öffnung vorbereiten
-    document.getElementById('modal-content').style.opacity = '0';
-    document.getElementById('modal-img').src = '';
     if (_lastSliderFocus && typeof _lastSliderFocus.focus === 'function') {
       _lastSliderFocus.focus();
       _lastSliderFocus = null;
