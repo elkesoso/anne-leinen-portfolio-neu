@@ -14,13 +14,26 @@
     if (!item) return;
 
     // Reset-Guard: immer mit Werkansicht starten
-    var img    = document.getElementById('modal-img');
-    var toggle = document.getElementById('modal-view-toggle');
+    var img     = document.getElementById('modal-img');
+    var content = document.getElementById('modal-content');
+    var toggle  = document.getElementById('modal-view-toggle');
     var btnWork   = document.getElementById('btn-view-work');
     var btnMockup = document.getElementById('btn-view-mockup');
 
+    // Inhalt verstecken bis Bild geladen ist (verhindert weißen Kasten-Blitz)
+    content.style.opacity = '0';
+    img.onload = function () {
+      content.style.opacity = '1';
+      img.onload = null;
+    };
+
     img.src = item.pfad;
     img.alt = item.titel;
+
+    // Fallback: Bild bereits im Browser-Cache → onload feuert nicht mehr
+    if (img.complete && img.naturalWidth > 0) {
+      content.style.opacity = '1';
+    }
     document.getElementById('modal-titel').textContent       = item.titel;
     document.getElementById('modal-beschreibung').textContent = item.beschreibung;
 
@@ -35,9 +48,12 @@
       btnMockup.classList.add('border-on-surface-variant', 'text-on-surface-variant');
       btnMockup.setAttribute('aria-pressed', 'false');
 
-      // Switch-Logik: Werk
+      // Switch-Logik: Werk (mit Fade)
       btnWork.onclick = function () {
+        img.style.opacity = '0';
+        img.onload = function () { img.style.opacity = '1'; img.onload = null; };
         img.src = item.pfad;
+        if (img.complete && img.naturalWidth > 0) img.style.opacity = '1';
         btnWork.classList.add('bg-primary', 'text-on-primary');
         btnWork.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
         btnWork.setAttribute('aria-pressed', 'true');
@@ -46,9 +62,12 @@
         btnMockup.setAttribute('aria-pressed', 'false');
       };
 
-      // Switch-Logik: Mockup (lädt erst beim Klick – lazy)
+      // Switch-Logik: Mockup (lädt erst beim Klick – lazy, mit Fade)
       btnMockup.onclick = function () {
+        img.style.opacity = '0';
+        img.onload = function () { img.style.opacity = '1'; img.onload = null; };
         img.src = item.mockupPfad;
+        if (img.complete && img.naturalWidth > 0) img.style.opacity = '1';
         btnMockup.classList.add('bg-primary', 'text-on-primary');
         btnMockup.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
         btnMockup.setAttribute('aria-pressed', 'true');
@@ -96,6 +115,8 @@
     overlay.classList.add('opacity-0', 'invisible', 'pointer-events-none');
     overlay.classList.remove('is-minimal');
     document.body.style.overflow = 'auto';
+    // Reset: content und img für nächste Öffnung vorbereiten
+    document.getElementById('modal-content').style.opacity = '0';
     document.getElementById('modal-img').src = '';
     if (_lastSliderFocus && typeof _lastSliderFocus.focus === 'function') {
       _lastSliderFocus.focus();
@@ -273,9 +294,18 @@
       });
     }
 
-    var img = document.getElementById('modal-img');
+    var img     = document.getElementById('modal-img');
+    var content = document.getElementById('modal-content');
+
+    // Inhalt verstecken bis Bild geladen (kein weißer Kasten-Blitz)
+    content.style.opacity = '0';
+    img.onload = function () { content.style.opacity = '1'; img.onload = null; };
+
     img.src = fullItem ? fullItem.pfad : sliderItem.pfad;
     img.alt = sliderItem.titel;
+
+    if (img.complete && img.naturalWidth > 0) content.style.opacity = '1';
+
     document.getElementById('modal-titel').textContent       = sliderItem.titel;
     document.getElementById('modal-beschreibung').textContent =
       fullItem ? fullItem.beschreibung : '';

@@ -32,8 +32,8 @@
   .is-minimal #modal-close       { color: #fff; background: rgba(0,0,0,0.5); border-radius: 9999px; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; }
   /* Modal: Cursor-Feedback + Übergangsanimation */
   #modal-overlay { cursor: zoom-out; transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out; }
-  #modal-img     { cursor: zoom-out; }
-  #modal-content { cursor: default; }
+  #modal-img     { cursor: zoom-out; text-indent: -9999px; color: transparent; }
+  #modal-content { cursor: default; opacity: 0; transition: opacity 0.3s ease-in-out; }
   /* Galerie-Karten: kein Tap-Highlight, kein Fokus-Rahmen, kein Text-Select */
   .gallery-item { -webkit-tap-highlight-color: transparent !important; user-select: none; touch-action: manipulation; outline: none !important; }
   .gallery-item:focus { outline: none !important; }
@@ -317,8 +317,8 @@
   </div>
 </footer>
 
-<script src="data.js?v=202604101200"></script>
-<script src="gallery.js?v=202604101200"></script>
+<script src="data.js?v=202604101300"></script>
+<script src="gallery.js?v=202604101300"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');

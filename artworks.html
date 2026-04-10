@@ -57,10 +57,14 @@
 
     #modal-img {
       cursor: zoom-out;
+      text-indent: -9999px; /* Alt-Text während Ladevorgang visuell verstecken */
+      color: transparent;
     }
 
     #modal-content {
       cursor: default;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
     }
 
     /* Galerie-Karten: kein Tap-Highlight, kein Fokus-Rahmen, kein Text-Select */
@@ -219,8 +223,8 @@
     </div>
   </footer>
 
-  <script src="data.js?v=202604101200"></script>
-  <script src="gallery.js?v=202604101200"></script>
+  <script src="data.js?v=202604101300"></script>
+  <script src="gallery.js?v=202604101300"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');
