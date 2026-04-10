@@ -14,6 +14,10 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script src="tokens.js"></script>
   <style>
+    html {
+      scrollbar-gutter: stable; /* Scrollbar-Platz immer reservieren – verhindert Layout-Shift beim Modal */
+    }
+
     body {
       background-color: #77591f;
     }
@@ -236,8 +240,8 @@
     </div>
   </footer>
 
-  <script src="data.js?v=202604102000"></script>
-  <script src="gallery.js?v=202604102000"></script>
+  <script src="data.js?v=202604102100"></script>
+  <script src="gallery.js?v=202604102100"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');

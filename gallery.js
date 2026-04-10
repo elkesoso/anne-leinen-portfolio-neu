@@ -84,7 +84,7 @@
     var overlay = document.getElementById('modal-overlay');
     overlay.classList.remove('is-minimal');
     overlay.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflowY = 'hidden';
     // Virtuellen History-Schritt setzen → Browser-Zurück schließt Modal, verlässt Seite nicht
     history.pushState({ modalOpen: true }, '');
   };
@@ -122,7 +122,7 @@
       overlay.classList.remove('is-open', 'is-minimal');
       imgEl.src = '';
     }, 350);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflowY = '';
     if (_lastSliderFocus && typeof _lastSliderFocus.focus === 'function') {
       _lastSliderFocus.focus();
       _lastSliderFocus = null;
@@ -324,7 +324,7 @@
 
     var overlay = document.getElementById('modal-overlay');
     overlay.classList.add('is-open', 'is-minimal');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflowY = 'hidden';
     history.pushState({ modalOpen: true }, '');
   };
 
