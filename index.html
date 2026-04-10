@@ -214,7 +214,7 @@
 <!-- KONTAKTFORMULAR -->
 <section class="px-8 md:px-16 py-16 bg-secondary-fixed" id="contact">
   <div class="max-w-2xl mx-auto">
-    <div class="text-center mb-16">
+    <div id="form-header" class="text-center mb-16" style="transition:opacity 0.5s ease-in-out;">
       <h2 class="font-headline text-4xl text-on-secondary-fixed mb-4">Anfragen &amp; Kontakt</h2>
       <p class="font-body text-on-secondary-fixed/70">Interesse an einem Werk oder einer Auftragsarbeit? Ich freue mich auf Ihre Nachricht.</p>
     </div>
@@ -367,12 +367,15 @@
       // Erfolg: Crossfade via CSS-Grid-Stacking – kein display-Toggle, kein Blitzen
       const container = document.getElementById('form-container');
       const success   = document.getElementById('form-success');
+      const header    = document.getElementById('form-header');
 
       container.style.opacity      = '0';
       container.style.pointerEvents = 'none';
+      header.style.opacity          = '0';
 
       setTimeout(function () {
         container.style.visibility   = 'hidden'; // Layout bleibt erhalten
+        header.style.visibility      = 'hidden';
         success.style.opacity        = '1';
         success.style.pointerEvents  = 'auto';
       }, 400);

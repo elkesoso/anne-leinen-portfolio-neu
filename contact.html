@@ -63,7 +63,7 @@
     <!-- KONTAKTFORMULAR -->
     <div class="bg-secondary-fixed px-12 py-16">
       <!-- Überschrift & Beschreibung außerhalb des Grid-Wrappers (verhindert Blitzen beim Fade) -->
-      <div class="mb-12">
+      <div id="form-header" class="mb-12" style="transition:opacity 0.5s ease-in-out;">
         <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
         <p class="font-body text-on-secondary-fixed-variant">Interesse an einem Werk, einer Auftragsarbeit oder Kooperation? Schreiben Sie mir.</p>
       </div>
@@ -237,12 +237,15 @@
       // Erfolg: Crossfade via CSS-Grid-Stacking – kein display-Toggle, kein Blitzen
       const container = document.getElementById('form-container');
       const success   = document.getElementById('form-success');
+      const header    = document.getElementById('form-header');
 
       container.style.opacity      = '0';
       container.style.pointerEvents = 'none';
+      header.style.opacity          = '0';
 
       setTimeout(function () {
         container.style.visibility   = 'hidden'; // Layout bleibt erhalten
+        header.style.visibility      = 'hidden';
         success.style.opacity        = '1';
         success.style.pointerEvents  = 'auto';
       }, 400);
