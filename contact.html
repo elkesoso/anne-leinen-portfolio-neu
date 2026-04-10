@@ -62,11 +62,14 @@
 
     <!-- KONTAKTFORMULAR -->
     <div class="bg-secondary-fixed px-12 py-16">
+      <!-- Überschrift & Beschreibung außerhalb des Grid-Wrappers (verhindert Blitzen beim Fade) -->
+      <div class="mb-12">
+        <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
+        <p class="font-body text-on-secondary-fixed-variant">Interesse an einem Werk, einer Auftragsarbeit oder Kooperation? Schreiben Sie mir.</p>
+      </div>
       <!-- Formular/Erfolg-Wrapper: CSS-Grid-Stacking – beide Divs überlagern sich, kein display-Toggle -->
       <div style="display:grid;grid-template-areas:'stack';">
       <div id="form-container" style="grid-area:stack;transition:opacity 0.5s ease-in-out;">
-        <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
-        <p class="font-body text-on-secondary-fixed-variant mb-12">Interesse an einem Werk, einer Auftragsarbeit oder Kooperation? Schreiben Sie mir.</p>
         <form id="contact-form" class="space-y-10" novalidate autocomplete="off">
 
           <!-- Honeypot: für Bots unsichtbar, echte Nutzer füllen es nicht aus -->
