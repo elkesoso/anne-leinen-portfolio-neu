@@ -56,11 +56,14 @@
       z-index: 9999 !important;
       visibility: hidden;
       pointer-events: none;
-      /* Kein opacity – Overlay springt sofort auf volle Farbkraft */
+      /* Beim Schließen: 150ms warten bevor visibility:hidden greift → Inhalt fadet erst aus */
+      transition: visibility 0s linear 0.15s, pointer-events 0s linear 0.15s;
     }
     #modal-overlay.is-open {
       visibility: visible;
       pointer-events: auto;
+      /* Beim Öffnen: sofort sichtbar, kein Delay */
+      transition: visibility 0s linear 0s, pointer-events 0s linear 0s;
     }
 
     #modal-img {
@@ -233,8 +236,8 @@
     </div>
   </footer>
 
-  <script src="data.js?v=202604101900"></script>
-  <script src="gallery.js?v=202604101900"></script>
+  <script src="data.js?v=202604102000"></script>
+  <script src="gallery.js?v=202604102000"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');

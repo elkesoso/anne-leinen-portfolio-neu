@@ -31,8 +31,8 @@
   /* Schließen-Button bleibt gut sichtbar (weißer Hintergrund-Kreis) */
   .is-minimal #modal-close       { color: var(--color-on-surface); background: color-mix(in srgb, var(--color-surface) 85%, transparent); border-radius: 9999px; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; }
   /* Modal: Cursor-Feedback + Übergangsanimation */
-  #modal-overlay { cursor: zoom-out; background-color: #8C7B72 !important; z-index: 9999 !important; visibility: hidden; pointer-events: none; }
-  #modal-overlay.is-open { visibility: visible; pointer-events: auto; }
+  #modal-overlay { cursor: zoom-out; background-color: #8C7B72 !important; z-index: 9999 !important; visibility: hidden; pointer-events: none; transition: visibility 0s linear 0.15s, pointer-events 0s linear 0.15s; }
+  #modal-overlay.is-open { visibility: visible; pointer-events: auto; transition: visibility 0s linear 0s, pointer-events 0s linear 0s; }
   #modal-content { cursor: default; opacity: 0; transition: opacity 0.3s ease-in-out; box-shadow: 0 12px 48px rgba(80, 55, 40, 0.35); }
   #modal-img     { cursor: zoom-out; text-indent: -9999px; color: transparent; }
   #modal-content { cursor: default; opacity: 0; transition: opacity 0.3s ease-in-out; box-shadow: 0 8px 40px rgba(100, 75, 60, 0.25); }
@@ -319,8 +319,8 @@
   </div>
 </footer>
 
-<script src="data.js?v=202604101900"></script>
-<script src="gallery.js?v=202604101900"></script>
+<script src="data.js?v=202604102000"></script>
+<script src="gallery.js?v=202604102000"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');

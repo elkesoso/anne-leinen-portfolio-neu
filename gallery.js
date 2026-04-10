@@ -117,11 +117,11 @@
     var imgEl    = document.getElementById('modal-img');
     // Content zuerst ausblenden (0.3s Transition)
     content.style.opacity = '0';
-    // Overlay erst nach Content-Fade verstecken
+    // Overlay erst nach Content-Fade verstecken (300ms Fade + 50ms Puffer)
     setTimeout(function () {
       overlay.classList.remove('is-open', 'is-minimal');
       imgEl.src = '';
-    }, 320);
+    }, 350);
     document.body.style.overflow = 'auto';
     if (_lastSliderFocus && typeof _lastSliderFocus.focus === 'function') {
       _lastSliderFocus.focus();
