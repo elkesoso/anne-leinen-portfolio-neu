@@ -3,7 +3,7 @@
 (function () {
   var t = document.documentElement.style;
   t.setProperty('--color-surface',           '#fff8f7');
-  t.setProperty('--color-modal-overlay',     '#D8C9C0');
+  t.setProperty('--color-modal-overlay',     '#8C7B72');
   t.setProperty('--color-primary',           '#914756');
   t.setProperty('--color-secondary-fixed',   '#ffdea7');
   t.setProperty('--color-secondary-container','#fdd48d');
