@@ -63,8 +63,7 @@
     }
 
     var overlay = document.getElementById('modal-overlay');
-    overlay.classList.remove('hidden', 'is-minimal');  // is-minimal nie im Voll-Modal
-    overlay.classList.add('flex');
+    overlay.classList.remove('opacity-0', 'invisible', 'pointer-events-none', 'is-minimal');
     document.body.style.overflow = 'hidden';
     // Virtuellen History-Schritt setzen → Browser-Zurück schließt Modal, verlässt Seite nicht
     history.pushState({ modalOpen: true }, '');
@@ -94,8 +93,8 @@
   function _doCloseModal() {
     _modalClosing = false;
     var overlay = document.getElementById('modal-overlay');
-    overlay.classList.add('hidden');
-    overlay.classList.remove('flex', 'is-minimal');
+    overlay.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+    overlay.classList.remove('is-minimal');
     document.body.style.overflow = 'auto';
     document.getElementById('modal-img').src = '';
     if (_lastSliderFocus && typeof _lastSliderFocus.focus === 'function') {
@@ -149,7 +148,7 @@
     window.addEventListener('popstate', function () {
       _modalClosing = false;  // Flag zurücksetzen (back() ist abgeschlossen)
       var modalOverlay = document.getElementById('modal-overlay');
-      if (modalOverlay && !modalOverlay.classList.contains('hidden')) {
+      if (modalOverlay && !modalOverlay.classList.contains('invisible')) {
         _doCloseModal();      // Modal ist offen → schließen, ohne erneut back() zu rufen
       }
       // Modal bereits geschlossen → nichts tun, Browser navigiert normal
@@ -180,7 +179,7 @@
         var badge = item.mockupPfad
           ? '<span class="font-label text-xs text-on-surface-variant/70 mt-1 block">🏠 Raumansicht verfügbar</span>'
           : '';
-        hHtml += '<div class="relative overflow-hidden cursor-pointer group aspect-[4/5] md:aspect-auto md:h-[80vh]"'
+        hHtml += '<div class="gallery-item relative overflow-hidden cursor-pointer group aspect-[4/5] md:aspect-auto md:h-[80vh]"'
                + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
@@ -188,7 +187,8 @@
                + '<img src="' + item.pfad + '"'
                + ' alt="' + escA(item.titel) + '"'
                + ' decoding="async"'
-               + ' class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700">'
+               + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
+               + ' class="absolute inset-0 w-full h-full object-cover bg-secondary-fixed/20 group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
                + '<div class="absolute bottom-0 left-0 right-0'
                + ' md:bottom-10 md:left-10 md:right-auto md:max-w-xs'
                + ' bg-white/85 backdrop-blur-sm shadow-xl p-6 md:p-8">'
@@ -216,7 +216,7 @@
         var lazyAttr  = globalIdx >= 5 ? 'loading="lazy" decoding="async"' : 'decoding="async"';
         var hiddenCls = isHidden ? ' hidden' : '';
 
-        cHtml += '<div class="cursor-pointer group' + hiddenCls + '"'
+        cHtml += '<div class="gallery-item cursor-pointer group' + hiddenCls + '"'
                + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
@@ -225,7 +225,8 @@
                + '<img src="' + item.thumbnailPfad + '"'
                + ' alt="' + escA(item.titel) + '"'
                + ' ' + lazyAttr
-               + ' class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">'
+               + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
+               + ' class="w-full h-full object-cover bg-secondary-fixed/20 group-hover:scale-105 transition-all duration-500 ease-in-out">'
                + '</div>'
                + '<div class="pt-3">'
                + '<h4 class="font-headline italic text-secondary-fixed text-sm md:text-base leading-tight">' + escH(item.titel) + '</h4>'
@@ -287,8 +288,8 @@
     _lastSliderFocus = document.activeElement;
 
     var overlay = document.getElementById('modal-overlay');
-    overlay.classList.remove('hidden');
-    overlay.classList.add('flex', 'is-minimal');  // minimal = kein Textbereich
+    overlay.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+    overlay.classList.add('is-minimal');  // minimal = kein Textbereich
     document.body.style.overflow = 'hidden';
     history.pushState({ modalOpen: true }, '');
   };
@@ -311,7 +312,7 @@
     var slidesHtml = '';
     AL.sliderData.forEach(function (item, index) {
       slidesHtml += '<div'
-                  + ' class="al-slide flex-none w-[85vw] md:w-1/4 h-[350px] md:h-[500px] overflow-hidden cursor-pointer"'
+                  + ' class="gallery-item al-slide flex-none w-[85vw] md:w-1/4 h-[350px] md:h-[500px] overflow-hidden cursor-pointer"'
                   + ' style="scroll-snap-align: start;"'
                   + ' role="button"'
                   + ' tabindex="0"'
@@ -323,7 +324,8 @@
                   + ' alt="'     + item.titel + '"'
                   + ' loading="lazy"'
                   + ' decoding="async"'
-                  + ' class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"'
+                  + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
+                  + ' class="w-full h-full object-cover bg-secondary-fixed/20 hover:scale-105 transition-all duration-500 ease-in-out"'
                   + '>'
                   + '</div>';
     });
