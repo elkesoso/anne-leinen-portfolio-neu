@@ -219,8 +219,9 @@
       <p class="font-body text-on-secondary-fixed/70">Interesse an einem Werk oder einer Auftragsarbeit? Ich freue mich auf Ihre Nachricht.</p>
     </div>
 
-    <!-- Formular-Bereich (wird bei Erfolg ausgeblendet) -->
-    <div id="form-container">
+    <!-- Formular/Erfolg-Wrapper: CSS-Grid-Stacking – beide Divs überlagern sich, kein display-Toggle -->
+    <div style="display:grid;">
+    <div id="form-container" style="grid-area:1/1;transition:opacity 0.4s ease-in-out;">
       <form id="contact-form" class="space-y-8" novalidate autocomplete="off">
 
         <!-- Honeypot: für Bots unsichtbar, echte Nutzer füllen es nicht aus -->
@@ -259,12 +260,13 @@
       </form>
     </div>
 
-    <!-- Erfolgsmeldung (initial versteckt) -->
-    <div id="form-success" class="hidden py-16 text-center space-y-6" style="opacity:0;transition:opacity 0.6s;">
+    <!-- Erfolgsmeldung: liegt per grid-area im selben Bereich wie form-container -->
+    <div id="form-success" class="py-16 text-center space-y-6" style="grid-area:1/1;opacity:0;pointer-events:none;transition:opacity 0.5s ease-in-out;">
       <p class="font-headline text-3xl md:text-4xl italic text-on-secondary-fixed leading-relaxed">„Vielen Dank für<br>Ihre Nachricht."</p>
       <p class="font-body text-on-secondary-fixed/70 leading-relaxed">Ich melde mich so bald wie möglich bei Ihnen.</p>
       <p class="font-label text-xs uppercase tracking-[0.25em] text-on-secondary-fixed/50 pt-2">— Anne Leinen</p>
     </div>
+    </div><!-- end grid wrapper -->
 
   </div>
 </section>
@@ -362,19 +364,18 @@
         throw new Error(data.error || 'Unbekannter Fehler.');
       }
 
-      // Erfolg: Formular-Container sanft ausblenden
+      // Erfolg: Crossfade via CSS-Grid-Stacking – kein display-Toggle, kein Blitzen
       const container = document.getElementById('form-container');
-      container.style.transition = 'opacity 0.5s';
-      container.style.opacity = '0';
+      const success   = document.getElementById('form-success');
+
+      container.style.opacity      = '0';
+      container.style.pointerEvents = 'none';
 
       setTimeout(function () {
-        container.style.display = 'none';
-        const success = document.getElementById('form-success');
-        success.classList.remove('hidden');
-        requestAnimationFrame(function () {
-          success.style.opacity = '1';
-        });
-      }, 500);
+        container.style.visibility   = 'hidden'; // Layout bleibt erhalten
+        success.style.opacity        = '1';
+        success.style.pointerEvents  = 'auto';
+      }, 400);
 
     } catch (err) {
       // Fehler: Button zurücksetzen und Meldung anzeigen
