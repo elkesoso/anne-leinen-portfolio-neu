@@ -62,31 +62,49 @@
 
     <!-- KONTAKTFORMULAR -->
     <div class="bg-secondary-fixed px-12 py-16">
-      <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
-      <p class="font-body text-on-secondary-fixed-variant mb-12">Interesse an einem Werk, einer Auftragsarbeit oder Kooperation? Schreiben Sie mir.</p>
-      <form class="space-y-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="flex flex-col">
-            <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Name</label>
-            <input class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text"/>
+      <!-- Formular-Bereich (wird bei Erfolg ausgeblendet) -->
+      <div id="form-container">
+        <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
+        <p class="font-body text-on-secondary-fixed-variant mb-12">Interesse an einem Werk, einer Auftragsarbeit oder Kooperation? Schreiben Sie mir.</p>
+        <form id="contact-form" class="space-y-10" novalidate>
+
+          <!-- Honeypot: für Bots unsichtbar, echte Nutzer füllen es nicht aus -->
+          <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
+            <label for="website">Website leer lassen</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex flex-col">
+              <label for="field-name" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Name</label>
+              <input id="field-name" name="name" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text" required/>
+            </div>
+            <div class="flex flex-col">
+              <label for="field-email" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">E-Mail</label>
+              <input id="field-email" name="email" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="ihre@email.de" type="email" required/>
+            </div>
           </div>
           <div class="flex flex-col">
-            <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">E-Mail</label>
-            <input class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="ihre@email.de" type="email"/>
+            <label for="field-subject" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Betreff</label>
+            <input id="field-subject" name="subject" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="z.B. Auftragsarbeit, Ankauf, Kooperation" type="text"/>
           </div>
-        </div>
-        <div class="flex flex-col">
-          <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Betreff</label>
-          <input class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="z.B. Auftragsarbeit, Ankauf, Kooperation" type="text"/>
-        </div>
-        <div class="flex flex-col">
-          <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Nachricht</label>
-          <textarea class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none" placeholder="Wie kann ich Ihnen helfen?" rows="5"></textarea>
-        </div>
-        <div class="pt-4">
-          <button class="w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:bg-on-secondary-fixed hover:text-secondary-fixed transition-all duration-500" type="submit">Nachricht senden</button>
-        </div>
-      </form>
+          <div class="flex flex-col">
+            <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Nachricht</label>
+            <textarea id="field-message" name="message" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none" placeholder="Wie kann ich Ihnen helfen?" rows="5" required></textarea>
+          </div>
+          <div class="pt-4">
+            <button id="submit-btn" class="w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:bg-on-secondary-fixed hover:text-secondary-fixed transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Nachricht senden</button>
+            <p id="form-error" class="hidden font-body text-sm text-red-300 mt-4 text-center"></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Erfolgsmeldung (initial versteckt) -->
+      <div id="form-success" class="hidden py-16 text-center space-y-6" style="opacity:0;transition:opacity 0.6s;">
+        <p class="font-headline text-3xl md:text-4xl italic text-on-secondary-fixed leading-relaxed">„Vielen Dank für<br>Ihre Nachricht."</p>
+        <p class="font-body text-on-secondary-fixed-variant leading-relaxed">Ich melde mich so bald wie möglich bei Ihnen.</p>
+        <p class="font-label text-xs uppercase tracking-[0.25em] text-on-secondary-fixed/50 pt-2">— Anne Leinen</p>
+      </div>
     </div>
 
     <!-- KONTAKTINFO -->
@@ -165,6 +183,70 @@
   toggle.addEventListener('click', () => menu.classList.add('open'));
   closeBtn.addEventListener('click', () => menu.classList.remove('open'));
   function closeMenu() { menu.classList.remove('open'); }
+</script>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // Honeypot: Bots füllen dieses Feld aus – still ignorieren
+    if (document.getElementById('website').value) return;
+
+    const name    = document.getElementById('field-name').value.trim();
+    const email   = document.getElementById('field-email').value.trim();
+    const subject = document.getElementById('field-subject').value.trim();
+    const message = document.getElementById('field-message').value.trim();
+    const btn     = document.getElementById('submit-btn');
+    const errorEl = document.getElementById('form-error');
+
+    // Client-seitige Validierung
+    if (!name || !email || !message) {
+      errorEl.textContent = 'Bitte füllen Sie Name, E-Mail und Nachricht aus.';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
+    // Button in Lade-Zustand versetzen
+    btn.disabled = true;
+    btn.textContent = 'Wird gesendet…';
+    errorEl.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message, website: '' }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Unbekannter Fehler.');
+      }
+
+      // Erfolg: Formular-Container sanft ausblenden
+      const container = document.getElementById('form-container');
+      container.style.transition = 'opacity 0.5s';
+      container.style.opacity = '0';
+
+      setTimeout(function () {
+        container.style.display = 'none';
+        const success = document.getElementById('form-success');
+        success.classList.remove('hidden');
+        // Nächsten Frame abwarten, damit die CSS-Transition greift
+        requestAnimationFrame(function () {
+          success.style.opacity = '1';
+        });
+      }, 500);
+
+    } catch (err) {
+      // Fehler: Button zurücksetzen und Meldung anzeigen
+      btn.disabled = false;
+      btn.textContent = 'Nachricht senden';
+      errorEl.textContent = err.message || 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+      errorEl.classList.remove('hidden');
+    }
+  });
 </script>
 </body>
 </html>
