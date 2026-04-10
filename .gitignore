@@ -14,3 +14,6 @@
 # Ausnahme: WebP-Dateien im webp-Unterordner immer tracken
 # (gilt für INHALTE/kunstwerke/alle-gemaelde/webp/ und alle ähnlichen Pfade)
 !**/webp/**/*.webp
+
+# Ausnahme: Assets (Logos, Icons etc.) dürfen hochgeladen werden
+!assets/logo.png
