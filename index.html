@@ -12,8 +12,6 @@
 <style>
   html { scrollbar-gutter: stable; }
   body { background-color: #77591f; }
-  /* Logo auf dunklem Header: Linien weiß/silbern via CSS-Filter */
-  nav img { filter: invert(1) brightness(1.1); }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24; vertical-align: middle; }
   /* Scroll-Snap Slider */
   #al-slider-viewport {
@@ -52,19 +50,19 @@
 <body class="bg-nav-bg font-body selection:bg-primary-container selection:text-on-primary-container">
 
 <!-- NAV -->
-<nav class="fixed top-0 w-full z-50 bg-nav-bg/90 backdrop-blur-xl flex justify-between items-center px-8 md:px-16 py-12">
+<nav style="background-color: rgba(255, 248, 247, 0.8);" class="fixed top-0 w-full z-50 backdrop-blur-md flex justify-between items-center px-8 md:px-16 py-4">
   <a href="index.html" class="flex items-center gap-6 transition-opacity hover:opacity-80">
-    <img src="assets/logo.png?v=1.2" alt="Anne Leinen Logo" class="h-24 w-auto" loading="eager">
-    <span class="font-headline font-light text-2xl uppercase tracking-[0.2em] text-white">ARTFUL_ANNE</span>
+    <img src="assets/logo.png?v=1.2" alt="Anne Leinen Logo" class="h-16 w-auto" loading="eager">
+    <span class="font-headline font-light text-lg uppercase tracking-[0.2em] text-on-surface">ARTFUL_ANNE</span>
   </a>
   <div class="flex items-center gap-2">
     <div class="hidden md:flex gap-10 font-headline text-lg tracking-wide">
-      <a href="index.html"       class="text-white border-b border-secondary-container pb-1">Portfolio</a>
-      <a href="artworks.html"    class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Kunstwerke</a>
-      <a href="exhibitions.html" class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Ausstellungen</a>
-      <a href="contact.html"      class="text-secondary-fixed/70 hover:text-white transition-colors duration-300">Kontakt</a>
+      <a href="index.html"       class="text-on-surface border-b border-on-surface/40 pb-1">Portfolio</a>
+      <a href="artworks.html"    class="text-on-surface-variant hover:text-on-surface transition-colors duration-300">Kunstwerke</a>
+      <a href="exhibitions.html" class="text-on-surface-variant hover:text-on-surface transition-colors duration-300">Ausstellungen</a>
+      <a href="contact.html"      class="text-on-surface-variant hover:text-on-surface transition-colors duration-300">Kontakt</a>
     </div>
-    <a href="https://instagram.com/artful__anne" target="_blank" rel="noopener" aria-label="Anne Leinen auf Instagram" class="p-3 -mr-3 text-secondary-fixed/70 hover:text-white transition-colors duration-300">
+    <a href="https://instagram.com/artful__anne" target="_blank" rel="noopener" aria-label="Anne Leinen auf Instagram" class="p-3 -mr-3 text-on-surface-variant hover:text-on-surface transition-colors duration-300">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5"/>
         <circle cx="12" cy="12" r="4.5"/>
