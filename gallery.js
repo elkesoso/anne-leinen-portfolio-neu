@@ -82,7 +82,8 @@
     }
 
     var overlay = document.getElementById('modal-overlay');
-    overlay.classList.remove('opacity-0', 'invisible', 'pointer-events-none', 'is-minimal');
+    overlay.classList.remove('is-minimal');
+    overlay.classList.add('is-open');
     document.body.style.overflow = 'hidden';
     // Virtuellen History-Schritt setzen → Browser-Zurück schließt Modal, verlässt Seite nicht
     history.pushState({ modalOpen: true }, '');
@@ -112,8 +113,7 @@
   function _doCloseModal() {
     _modalClosing = false;
     var overlay = document.getElementById('modal-overlay');
-    overlay.classList.add('opacity-0', 'invisible', 'pointer-events-none');
-    overlay.classList.remove('is-minimal');
+    overlay.classList.remove('is-open', 'is-minimal');
     document.body.style.overflow = 'auto';
     // Reset: content und img für nächste Öffnung vorbereiten
     document.getElementById('modal-content').style.opacity = '0';
@@ -169,7 +169,7 @@
     window.addEventListener('popstate', function () {
       _modalClosing = false;  // Flag zurücksetzen (back() ist abgeschlossen)
       var modalOverlay = document.getElementById('modal-overlay');
-      if (modalOverlay && !modalOverlay.classList.contains('invisible')) {
+      if (modalOverlay && modalOverlay.classList.contains('is-open')) {
         _doCloseModal();      // Modal ist offen → schließen, ohne erneut back() zu rufen
       }
       // Modal bereits geschlossen → nichts tun, Browser navigiert normal
@@ -318,8 +318,7 @@
     _lastSliderFocus = document.activeElement;
 
     var overlay = document.getElementById('modal-overlay');
-    overlay.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
-    overlay.classList.add('is-minimal');  // minimal = kein Textbereich
+    overlay.classList.add('is-open', 'is-minimal');
     document.body.style.overflow = 'hidden';
     history.pushState({ modalOpen: true }, '');
   };
