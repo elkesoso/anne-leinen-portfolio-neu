@@ -66,7 +66,7 @@
       <div id="form-container">
         <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
         <p class="font-body text-on-secondary-fixed-variant mb-12">Interesse an einem Werk, einer Auftragsarbeit oder Kooperation? Schreiben Sie mir.</p>
-        <form id="contact-form" class="space-y-10" novalidate>
+        <form id="contact-form" class="space-y-10" novalidate autocomplete="off">
 
           <!-- Honeypot: für Bots unsichtbar, echte Nutzer füllen es nicht aus -->
           <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
@@ -77,23 +77,28 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="flex flex-col">
               <label for="field-name" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Name</label>
-              <input id="field-name" name="name" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text" required/>
+              <input id="field-name" name="name" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text" required/>
             </div>
             <div class="flex flex-col">
               <label for="field-email" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">E-Mail</label>
-              <input id="field-email" name="email" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="ihre@email.de" type="email" required/>
+              <input id="field-email" name="email" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="ihre@email.de" type="email" required/>
             </div>
           </div>
           <div class="flex flex-col">
-            <label for="field-subject" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Betreff</label>
-            <input id="field-subject" name="subject" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="z.B. Auftragsarbeit, Ankauf, Kooperation" type="text"/>
+            <label for="field-subject" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Anlass der Anfrage</label>
+            <select id="field-subject" name="subject" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 cursor-pointer appearance-none">
+              <option value="Kaufinteresse" class="bg-nav-bg">Kaufinteresse</option>
+              <option value="Auftragsarbeit" class="bg-nav-bg">Auftragsarbeit</option>
+              <option value="Kooperation" class="bg-nav-bg">Kooperation</option>
+              <option value="Sonstiges" class="bg-nav-bg">Sonstiges</option>
+            </select>
           </div>
           <div class="flex flex-col">
-            <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Nachricht</label>
-            <textarea id="field-message" name="message" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none" placeholder="Wie kann ich Ihnen helfen?" rows="5" required></textarea>
+            <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Ihre Gedanken oder Fragen an mich</label>
+            <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none min-h-[8rem] leading-relaxed" placeholder="Was bewegt Sie?" rows="5" required></textarea>
           </div>
           <div class="pt-4">
-            <button id="submit-btn" class="w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:bg-on-secondary-fixed hover:text-secondary-fixed transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Nachricht senden</button>
+            <button id="submit-btn" class="w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:bg-on-secondary-fixed-variant hover:text-secondary-fixed transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Nachricht senden</button>
             <p id="form-error" class="hidden font-body text-sm text-red-300 mt-4 text-center"></p>
           </div>
         </form>
