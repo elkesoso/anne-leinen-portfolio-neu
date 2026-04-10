@@ -52,7 +52,8 @@
     /* Modal: Cursor-Feedback für Click-to-Exit */
     #modal-overlay {
       cursor: zoom-out;
-      background-color: color-mix(in srgb, var(--color-modal-overlay) 98%, transparent);
+      background-color: #D8C9C0 !important;
+      z-index: 9999 !important;
       transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
     }
 
@@ -225,8 +226,8 @@
     </div>
   </footer>
 
-  <script src="data.js?v=202604101500"></script>
-  <script src="gallery.js?v=202604101500"></script>
+  <script src="data.js?v=202604101600"></script>
+  <script src="gallery.js?v=202604101600"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');
