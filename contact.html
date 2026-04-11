@@ -24,7 +24,10 @@
   }
   /* Textarea: mobil kompakter */
   @media (max-width: 767px) {
-    #field-message { min-height: 80px !important; }
+    #field-message { height: 60px !important; min-height: 60px !important; }
+  }
+  @media (min-width: 768px) {
+    #field-message { min-height: 8rem; }
   }
   /* Custom Dropdown */
   #subject-options { background-color: #ffdea7; border: 1px solid rgba(145,71,86,0.25); }
@@ -131,7 +134,7 @@
           </div>
           <div class="flex flex-col">
             <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Ihre Nachricht</label>
-            <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none min-h-[8rem] leading-relaxed" placeholder="" rows="5"></textarea>
+            <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none leading-relaxed" placeholder="" rows="1"></textarea>
           </div>
           <div class="pt-2 md:pt-4">
             <button id="submit-btn" class="w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:brightness-110 hover:shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Nachricht senden</button>
