@@ -21,9 +21,9 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true });
   }
 
-  // Pflichtfelder prüfen
-  if (!name?.trim() || !email?.trim() || !message?.trim()) {
-    return res.status(400).json({ error: 'Bitte füllen Sie alle Pflichtfelder aus.' });
+  // Pflichtfelder prüfen (Nachricht ist optional)
+  if (!name?.trim() || !email?.trim()) {
+    return res.status(400).json({ error: 'Bitte füllen Sie Name und E-Mail aus.' });
   }
 
   // E-Mail-Format prüfen
