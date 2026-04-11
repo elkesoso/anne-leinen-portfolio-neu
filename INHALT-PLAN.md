@@ -1,6 +1,7 @@
 # Inhaltsplan — Anne Leinen Portfolio
-> Erstellt: 29.03.2026
-> Ziel: Alle Inhalte vorbereiten BEVOR Kadence gebaut wird
+> Erstellt: 29.03.2026  
+> Aktualisiert: April 2026  
+> Ziel: Alle Inhalte vorbereiten (gilt auch für die statische HTML-Website)
 
 ---
 

@@ -242,3 +242,51 @@ if (!name?.trim() || !email?.trim()) {
 **Diagnose-Tipp:** Zuerst prüfen ob der Git-Commit wirklich gepusht ist (`git log --oneline`), dann erst Cache als Ursache vermuten.
 
 **Merksatz:** „Änderung nicht sichtbar" ≠ Deploy-Fehler. Immer zuerst Hard Refresh versuchen.
+
+---
+
+## 2026-04-11 — Natives `<select>` lässt sich nicht vollständig stylen
+
+**Symptom:** Das Dropdown-Menü hatte einen hässlichen Browser-Standard-Pfeil, falsche Hintergrundfarbe und Browser-blauer Hover-Effekt auf den Optionen — obwohl `appearance: none` gesetzt war.
+
+**Ursache:** `<option>`-Elemente innerhalb eines nativen `<select>` können in den meisten Browsern (Chrome, Safari, Firefox) **nicht per CSS gestylt werden** — weder Hintergrundfarbe noch Hover-Effekt. Das Betriebssystem rendert das Dropdown nativ und ignoriert CSS weitgehend.
+
+**Lösung:** Native `<select>` durch ein **Custom Dropdown Component** ersetzen:
+- Natives `<select>` bleibt im DOM, aber mit `display:none` (für JS-Wert-Zugriff beim Absenden)
+- Sichtbares UI: `<button>` (Trigger) + `<div>` (Options-Panel) mit `<button>`-Kindern
+- JS synchronisiert den gewählten Wert ins native select
+- CSS steuert Farben und Hover vollständig
+
+```html
+<!-- Unsichtbares native select -->
+<select id="field-subject" style="display:none;">...</select>
+
+<!-- Custom UI -->
+<div class="relative">
+  <button id="subject-trigger">Kaufinteresse <svg>↓</svg></button>
+  <div id="subject-options" class="hidden absolute ...">
+    <button class="subject-option" data-value="Kaufinteresse">Kaufinteresse</button>
+    ...
+  </div>
+</div>
+```
+
+```css
+/* Hover direkt per CSS steuerbar */
+.subject-option:hover { background-color: #e8c17c; }
+```
+
+```js
+// Klick auf Option → native select synchronisieren
+btn.addEventListener('click', function() {
+  select.value = btn.dataset.value;
+  display.textContent = btn.dataset.value;
+  panel.classList.add('hidden');
+});
+// Außerhalb klicken → schließen
+document.addEventListener('click', close);
+```
+
+**Wichtig:** `select:focus`-Regeln im CSS müssen entfernt werden, da das native select jetzt `display:none` ist und kein Fokus mehr erhält.
+
+**Merksatz:** Natives `<select>` = kaum stylebar. Für Custom-Design immer Custom Dropdown Component bauen.

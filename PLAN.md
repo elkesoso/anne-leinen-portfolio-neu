@@ -1,7 +1,13 @@
 # Kadence Implementierungsplan — Anne Leinen Portfolio
 
 > Erstellt: 28.03.2026
-> Status: In Planung
+> Status: ⚠️ ARCHIV — nicht mehr aktiv
+
+---
+
+> **Hinweis (April 2026):** Das Projekt wurde als **statische HTML-Website** (Tailwind CDN, Vercel Serverless Functions) umgesetzt — nicht als WordPress/Kadence-Installation. Dieser Plan dient nur noch als Referenz für das ursprüngliche Design-System und die Farb-Entscheidungen. Der aktive Tech-Stack ist in `README.md` dokumentiert.
+
+---
 
 ---
 
