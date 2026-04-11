@@ -154,13 +154,19 @@
     </div>
 
     <!-- KONTAKTINFO -->
-    <div class="flex flex-col self-start order-1 md:order-2">
+    <div id="contact-right-col" class="flex flex-col self-start order-1 md:order-2">
 
-      <!-- Logo reinweiß, direkt über E-Mail -->
-      <img src="assets/logo.png" alt="Artful Anne Logo" style="width: 260px; filter: brightness(0) invert(1);" class="w-auto mx-auto md:mx-0">
+      <!-- Zitat: per JS auf Unterkante E-Mail-Feld geclippt (nur Desktop) -->
+      <div id="contact-quote" class="border-l-4 border-secondary-fixed pl-8 pt-4 pb-0 mb-8">
+        <p class="font-headline text-2xl italic text-secondary-fixed leading-relaxed">"Erschaffen wir gemeinsam etwas Einzigartiges."</p>
+        <p class="font-label text-xs uppercase tracking-widest text-secondary-container/60 mt-4">Anne Leinen</p>
+      </div>
+
+      <!-- Logo reinweiß -->
+      <img src="assets/logo.png" alt="Artful Anne Logo" style="width: 260px; filter: brightness(0) invert(1);" class="w-auto mx-auto md:mx-0 mb-8">
 
       <!-- Info-Blöcke -->
-      <div class="space-y-8 mb-10">
+      <div class="space-y-8">
         <div class="flex items-start gap-6">
           <span class="material-symbols-outlined text-secondary-container text-3xl mt-1">mail</span>
           <div>
@@ -182,12 +188,6 @@
             <p class="font-headline text-xl text-secondary-fixed">Nach Vereinbarung</p>
           </div>
         </div>
-      </div>
-
-      <!-- Zitat -->
-      <div class="border-l-4 border-secondary-fixed pl-8 py-4 mb-0">
-        <p class="font-headline text-2xl italic text-secondary-fixed leading-relaxed">"Erschaffen wir gemeinsam etwas Einzigartiges."</p>
-        <p class="font-label text-xs uppercase tracking-widest text-secondary-container/60 mt-4">Anne Leinen</p>
       </div>
 
     </div>
@@ -234,6 +234,37 @@
   toggle.addEventListener('click', () => menu.classList.add('open'));
   closeBtn.addEventListener('click', () => menu.classList.remove('open'));
   function closeMenu() { menu.classList.remove('open'); }
+</script>
+<script>
+  (function () {
+    function clipContactQuote() {
+      var quote      = document.getElementById('contact-quote');
+      var emailField = document.getElementById('field-email');
+      var rightCol   = document.getElementById('contact-right-col');
+      if (!quote || !emailField || !rightCol) return;
+
+      /* Nur auf Desktop (≥ 768px) */
+      if (window.innerWidth < 768) {
+        quote.style.height   = '';
+        quote.style.overflow = '';
+        return;
+      }
+
+      /* Positionen relativ zur Seite */
+      var colTop      = rightCol.getBoundingClientRect().top    + window.scrollY;
+      var emailBottom = emailField.getBoundingClientRect().bottom + window.scrollY;
+      var targetH = Math.max(0, emailBottom - colTop);
+
+      /* height (nicht max-height) → setzt exakte Höhe, egal ob Inhalt kürzer oder länger */
+      quote.style.height   = targetH + 'px';
+      quote.style.overflow = 'hidden';
+    }
+
+    /* Warten bis Bilder/Fonts geladen → genaue Höhen */
+    if (document.readyState === 'complete') { clipContactQuote(); }
+    else { window.addEventListener('load', clipContactQuote); }
+    window.addEventListener('resize', clipContactQuote);
+  })();
 </script>
 
 <script>
