@@ -45,6 +45,13 @@
   .gallery-item:focus { outline: none !important; }
   #mobile-menu { display: none; }
   #mobile-menu.open { display: flex; }
+  /* Textarea: mobil kompakt, Desktop großzügig */
+  @media (max-width: 767px) {
+    #field-message { height: 60px !important; min-height: 60px !important; }
+  }
+  @media (min-width: 768px) {
+    #field-message { min-height: 100px; }
+  }
   /* Custom Dropdown */
   #subject-options { background-color: #ffdea7; border: 1px solid rgba(145,71,86,0.25); }
   .subject-option:hover { background-color: #e8c17c; }
@@ -228,9 +235,9 @@
 </section>
 
 <!-- KONTAKTFORMULAR -->
-<section class="px-8 md:px-16 py-16 bg-secondary-fixed" id="contact">
+<section class="px-8 md:px-16 py-8 md:py-16 bg-secondary-fixed" id="contact">
   <div class="max-w-2xl mx-auto">
-    <div id="form-header" class="text-center mb-12" style="transition:opacity 0.5s ease-in-out;">
+    <div id="form-header" class="text-center mb-3 md:mb-12" style="transition:opacity 0.5s ease-in-out;">
       <h2 class="font-headline text-4xl text-on-secondary-fixed mb-4">Anfragen &amp; Kontakt</h2>
       <p class="font-body text-on-secondary-fixed/70">Interesse an einem Werk oder einer Auftragsarbeit? Ich freue mich auf Ihre Nachricht.</p>
     </div>
@@ -238,7 +245,7 @@
     <!-- Formular/Erfolg-Wrapper: CSS-Grid-Stacking – beide Divs überlagern sich, kein display-Toggle -->
     <div style="display:grid;grid-template-areas:'stack';">
     <div id="form-container" style="grid-area:stack;transition:opacity 0.5s ease-in-out;">
-      <form id="contact-form" class="space-y-8" novalidate autocomplete="off">
+      <form id="contact-form" class="space-y-5 md:space-y-8" novalidate autocomplete="off">
 
         <!-- Honeypot: für Bots unsichtbar, echte Nutzer füllen es nicht aus -->
         <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
@@ -246,7 +253,7 @@
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8">
           <div class="flex flex-col">
             <label for="field-name" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Name</label>
             <input id="field-name" name="name" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text" required/>
@@ -283,9 +290,9 @@
         </div>
         <div class="flex flex-col" style="margin-top:0.75rem;">
           <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-1">Ihre Nachricht</label>
-          <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none min-h-[100px] leading-relaxed" placeholder="" rows="3"></textarea>
+          <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none leading-relaxed" placeholder="" rows="1"></textarea>
         </div>
-        <div class="text-center pt-8">
+        <div class="text-center pt-3 md:pt-8">
           <button id="submit-btn" class="bg-primary text-on-primary w-full py-5 font-label uppercase tracking-widest text-xs hover:brightness-110 hover:shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Nachricht senden</button>
           <p id="form-error" class="hidden font-body text-sm text-red-300 mt-4 text-center"></p>
         </div>
