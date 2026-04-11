@@ -72,11 +72,8 @@
 
     <!-- KONTAKTFORMULAR -->
     <div class="bg-secondary-fixed px-12 py-16 order-2 md:order-1">
-      <!-- Überschrift & Beschreibung außerhalb des Grid-Wrappers (verhindert Blitzen beim Fade) -->
-      <div id="form-header" class="mb-12" style="transition:opacity 0.5s ease-in-out;">
-        <h2 class="font-headline text-3xl text-on-secondary-fixed mb-2">Anfrage stellen</h2>
-        <p class="font-body text-on-secondary-fixed-variant">Schreiben Sie mir!</p>
-      </div>
+      <!-- form-header bleibt leer – wird vom Erfolgs-Crossfade per JS referenziert -->
+      <div id="form-header" style="transition:opacity 0.5s ease-in-out;"></div>
       <!-- Formular/Erfolg-Wrapper: CSS-Grid-Stacking – beide Divs überlagern sich, kein display-Toggle -->
       <div style="display:grid;grid-template-areas:'stack';">
       <div id="form-container" style="grid-area:stack;transition:opacity 0.5s ease-in-out;">
