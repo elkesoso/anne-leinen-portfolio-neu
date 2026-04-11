@@ -22,6 +22,10 @@
     outline: none;
     box-shadow: none;
   }
+  /* Textarea: mobil kompakter */
+  @media (max-width: 767px) {
+    #field-message { min-height: 80px !important; }
+  }
   /* Custom Dropdown */
   #subject-options { background-color: #ffdea7; border: 1px solid rgba(145,71,86,0.25); }
   .subject-option:hover { background-color: #e8c17c; }
@@ -68,7 +72,7 @@
 <main class="pt-32 pb-24">
 
   <!-- PAGE HEADER -->
-  <header class="px-8 md:px-24 mb-6 md:mb-16 max-w-7xl mx-auto text-center">
+  <header class="px-8 md:px-24 mb-3 md:mb-16 max-w-7xl mx-auto text-center">
     <h1 class="font-headline text-xl md:text-2xl text-secondary-fixed leading-tight italic mb-3">Anfragen &amp; Kontakt</h1>
     <p class="font-body text-secondary-container/80">Interesse an einem Werk oder einer Auftragsarbeit? Ich freue mich auf Ihre Nachricht.</p>
   </header>
@@ -76,13 +80,13 @@
   <div class="px-8 md:px-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-start">
 
     <!-- KONTAKTFORMULAR -->
-    <div class="bg-secondary-fixed px-12 py-16 order-2 md:order-1">
+    <div class="bg-secondary-fixed px-6 py-8 md:px-12 md:py-16 order-2 md:order-1">
       <!-- form-header bleibt leer – wird vom Erfolgs-Crossfade per JS referenziert -->
       <div id="form-header" style="transition:opacity 0.5s ease-in-out;"></div>
       <!-- Formular/Erfolg-Wrapper: CSS-Grid-Stacking – beide Divs überlagern sich, kein display-Toggle -->
       <div style="display:grid;grid-template-areas:'stack';">
       <div id="form-container" style="grid-area:stack;transition:opacity 0.5s ease-in-out;">
-        <form id="contact-form" class="space-y-10" novalidate autocomplete="off">
+        <form id="contact-form" class="space-y-5 md:space-y-10" novalidate autocomplete="off">
 
           <!-- Honeypot: für Bots unsichtbar, echte Nutzer füllen es nicht aus -->
           <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
@@ -90,7 +94,7 @@
             <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8">
             <div class="flex flex-col">
               <label for="field-name" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Name</label>
               <input id="field-name" name="name" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text" required/>
@@ -129,7 +133,7 @@
             <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Ihre Nachricht</label>
             <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none min-h-[8rem] leading-relaxed" placeholder="" rows="5"></textarea>
           </div>
-          <div class="pt-4">
+          <div class="pt-2 md:pt-4">
             <button id="submit-btn" class="w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:brightness-110 hover:shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">Nachricht senden</button>
             <p id="form-error" class="hidden font-body text-sm text-red-300 mt-4 text-center"></p>
           </div>
