@@ -17,12 +17,17 @@
   #mobile-menu.open { display: flex; }
   /* Fokus-Farbe: Gold statt Browser-Blau */
   #contact-form input:focus,
-  #contact-form select:focus,
   #contact-form textarea:focus {
     border-color: #c9a96e !important;
     outline: none;
     box-shadow: none;
   }
+  /* Custom Dropdown */
+  #subject-options { background-color: #ffdea7; border: 1px solid rgba(145,71,86,0.25); }
+  .subject-option:hover { background-color: #e8c17c; }
+  .subject-option { transition: background-color 0.15s ease; }
+  #subject-trigger svg { transition: transform 0.2s ease; }
+  #subject-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
 </style>
 </head>
 <body class="bg-nav-bg font-body selection:bg-primary-container selection:text-on-primary-container">
@@ -96,13 +101,29 @@
             </div>
           </div>
           <div class="flex flex-col">
-            <label for="field-subject" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Anlass der Anfrage</label>
-            <select id="field-subject" name="subject" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 cursor-pointer appearance-none">
-              <option value="Kaufinteresse" class="bg-nav-bg">Kaufinteresse</option>
-              <option value="Auftragsarbeit" class="bg-nav-bg">Auftragsarbeit</option>
-              <option value="Kooperation" class="bg-nav-bg">Kooperation</option>
-              <option value="Sonstiges" class="bg-nav-bg">Sonstiges</option>
+            <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Anlass der Anfrage</label>
+            <!-- Natives select (versteckt) – wird per JS aktuell gehalten -->
+            <select id="field-subject" name="subject" style="display:none;">
+              <option value="Kaufinteresse">Kaufinteresse</option>
+              <option value="Auftragsarbeit">Auftragsarbeit</option>
+              <option value="Kooperation">Kooperation</option>
+              <option value="Sonstiges">Sonstiges</option>
             </select>
+            <!-- Custom Dropdown UI -->
+            <div class="relative">
+              <button type="button" id="subject-trigger"
+                class="w-full flex justify-between items-center border-b border-on-secondary-fixed/30 text-on-secondary-fixed font-body py-2 bg-transparent text-left focus:outline-none"
+                aria-haspopup="listbox" aria-expanded="false">
+                <span id="subject-display">Kaufinteresse</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div id="subject-options" class="hidden absolute left-0 right-0 top-full z-20">
+                <button type="button" class="subject-option w-full text-left px-4 py-3 font-body text-on-secondary-fixed" data-value="Kaufinteresse">Kaufinteresse</button>
+                <button type="button" class="subject-option w-full text-left px-4 py-3 font-body text-on-secondary-fixed" data-value="Auftragsarbeit">Auftragsarbeit</button>
+                <button type="button" class="subject-option w-full text-left px-4 py-3 font-body text-on-secondary-fixed" data-value="Kooperation">Kooperation</button>
+                <button type="button" class="subject-option w-full text-left px-4 py-3 font-body text-on-secondary-fixed" data-value="Sonstiges">Sonstiges</button>
+              </div>
+            </div>
           </div>
           <div class="flex flex-col">
             <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Ihre Nachricht</label>
@@ -270,6 +291,41 @@
       errorEl.classList.remove('hidden');
     }
   });
+</script>
+
+<script>
+  // Custom Dropdown: Trigger ↔ Options-Panel ↔ hidden select
+  (function () {
+    var trigger = document.getElementById('subject-trigger');
+    var panel   = document.getElementById('subject-options');
+    var display = document.getElementById('subject-display');
+    var select  = document.getElementById('field-subject');
+    if (!trigger) return;
+
+    function close() {
+      panel.classList.add('hidden');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+    function open() {
+      panel.classList.remove('hidden');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      panel.classList.contains('hidden') ? open() : close();
+    });
+
+    panel.querySelectorAll('.subject-option').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        display.textContent = btn.dataset.value;
+        select.value        = btn.dataset.value;
+        close();
+      });
+    });
+
+    document.addEventListener('click', close);
+  })();
 </script>
 </body>
 </html>
