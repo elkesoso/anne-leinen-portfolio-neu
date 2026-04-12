@@ -222,6 +222,10 @@
                + '<h3 class="font-headline text-2xl md:text-3xl text-on-surface italic">' + escH(item.titel) + '</h3>'
                + badge
                + '</div>'
+               + '<div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white rounded px-3 py-1.5 group-hover:bg-primary/80 transition-colors duration-300">'
+               + '<span class="material-symbols-outlined leading-none" style="font-size:13px;font-variation-settings:\'FILL\' 1,\'wght\' 400,\'GRAD\' 0,\'opsz\' 20;">info</span>'
+               + '<span class="font-label text-[10px] uppercase tracking-widest">Details &amp; Story</span>'
+               + '</div>'
                + '</div>';
       });
       highlightGrid.innerHTML = hHtml;
@@ -247,12 +251,16 @@
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
                + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')">'
-               + '<div class="overflow-hidden aspect-[3/4] min-h-[200px]">'
+               + '<div class="relative overflow-hidden aspect-[3/4] min-h-[200px]">'
                + '<img src="' + item.thumbnailPfad + '"'
                + ' alt="' + escA(item.titel) + '"'
                + ' ' + lazyAttr
                + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
-               + ' class="w-full h-full object-cover bg-secondary-fixed/20 group-hover:scale-105 transition-all duration-500 ease-in-out">'
+               + ' class="w-full h-full object-cover bg-secondary-fixed/20 group-hover:scale-105 group-hover:brightness-110 transition-all duration-500 ease-in-out">'
+               + '<div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white rounded px-3 py-1.5 group-hover:bg-primary/80 transition-colors duration-300">'
+               + '<span class="material-symbols-outlined leading-none" style="font-size:13px;font-variation-settings:\'FILL\' 1,\'wght\' 400,\'GRAD\' 0,\'opsz\' 20;">info</span>'
+               + '<span class="font-label text-[10px] uppercase tracking-widest">Details &amp; Story</span>'
+               + '</div>'
                + '</div>'
                + '<div class="pt-3">'
                + '<h4 class="font-headline italic text-secondary-fixed text-sm md:text-base leading-tight">' + escH(item.titel) + '</h4>'
