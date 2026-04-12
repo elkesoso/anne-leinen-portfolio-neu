@@ -303,7 +303,7 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       true
+    archiv:       false
   },
   {
     titel:        "hinschauen Festival 2024",
