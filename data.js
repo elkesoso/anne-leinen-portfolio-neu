@@ -294,16 +294,16 @@ window.AnneLeinen.exhibitionData = [
   {
     titel:        "Not an Advent Art Sale – Finissage",
     typ:          "Finissage",
-    ort:          "Envision Berlin",
+    ort:          "Envision Berlin, Parkstraße 11, 13086 Berlin-Weißensee",
     datum:        "28. November 2025",
     uhrzeit:      "19:00 Uhr",
-    beschreibung: "Ein letzter Blick auf die 'Winter Solstice' Kollektion – eine seltene Gelegenheit, Originalwerke in intimem Rahmen zu erwerben.",
-    bildPfad:     "INHALTE/kunstwerke/alle-gemaelde/webp/Voices Like Storms.webp",
-    bildAlt:      "Voices Like Storms – Ausstellungsansicht",
-    bildName:     "Voices Like Storms",
-    ctaText:      "Katalog anfragen",
-    ctaIcon:      "download",
-    archiv:       false
+    beschreibung: "Herzlich eingeladen zur Finissage von Envision Berlins erstem jährlichen „Not an Advent Sale" – über 70 Werke von Dutzenden Berliner Künstlerinnen und Künstlern, alle für 250 Euro oder weniger. Ein bedeutungsvolles Kunstgeschenk finden und gleichzeitig die lokale Berliner Kunstszene unterstützen. Mehrere Künstler sprechen während der Veranstaltung über ihre Werke.",
+    bildPfad:     "INHALTE/ausstellungen/bilder/envision-berlin-finissage.webp",
+    bildAlt:      "Not an Advent Art Sale – Finissage bei Envision Berlin",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
   },
   {
     titel:        "hinschauen Festival 2024",
