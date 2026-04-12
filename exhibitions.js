@@ -31,24 +31,15 @@
       // Abwechselnde Richtung: gerade = Bild links (flex-row), ungerade = Bild rechts (flex-row-reverse)
       var flexDir = i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row';
 
-      // Bildblock – klickbar wenn bildName gesetzt (öffnet Lightbox via openModalByName)
+      // Bildblock – nicht klickbar (keine Lightbox auf dieser Seite)
       var imgBlock = '';
       if (item.bildPfad) {
-        var clickAttr = item.bildName
-          ? ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.bildName) + '\')"'
-            + ' role="button" tabindex="0"'
-            + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
-            + ' style="cursor:zoom-in;"'
-          : '';
-        imgBlock = '<div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden"' + clickAttr + '>'
+        imgBlock = '<div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden">'
           + '<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"'
           + ' src="'  + escA(item.bildPfad) + '"'
           + ' alt="'  + escA(item.bildAlt)  + '"'
           + ' decoding="async"/>'
           + '</div>';
-      } else {
-        // Kein Bild gesetzt – kein kaputtes img-Tag erzeugen
-        console.warn('Exhibition ohne Bild:', item.titel, '– bildPfad ist leer, kein Bildblock wird gerendert.');
       }
 
       // CTA-Button – nur wenn ctaText vorhanden

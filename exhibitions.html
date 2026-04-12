@@ -15,21 +15,6 @@
   #mobile-menu { display: none; }
   #mobile-menu.open { display: flex; }
   html { scrollbar-gutter: stable; }
-  #modal-overlay {
-    cursor: zoom-out;
-    background-color: #8C7B72 !important;
-    z-index: 9999 !important;
-    visibility: hidden;
-    pointer-events: none;
-    transition: visibility 0s linear 0.15s, pointer-events 0s linear 0.15s;
-  }
-  #modal-overlay.is-open {
-    visibility: visible;
-    pointer-events: auto;
-    transition: visibility 0s linear 0s, pointer-events 0s linear 0s;
-  }
-  #modal-img     { cursor: zoom-out; color: transparent; text-indent: -9999px; }
-  #modal-content { cursor: default; opacity: 0; transition: opacity 0.3s ease-in-out; box-shadow: 0 12px 48px rgba(80,55,40,0.35); }
 </style>
 </head>
 <body class="bg-nav-bg font-body selection:bg-primary-container selection:text-on-primary-container">
@@ -113,37 +98,6 @@
 
 </main>
 
-<!-- MODAL LIGHTBOX (identisch zu artworks.html – gallery.js initModal() verdrahtet es) -->
-<div id="modal-overlay" class="fixed inset-0 flex items-center justify-center p-4">
-  <div id="modal-content" class="relative bg-surface max-w-5xl w-full flex flex-col md:flex-row max-h-[90vh] overflow-hidden">
-    <button id="modal-close" class="absolute top-4 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors" aria-label="Schließen">&#10005;</button>
-    <img id="modal-img" src="" alt="" class="w-full md:w-3/5 object-cover max-h-[50vh] md:max-h-[90vh]"/>
-    <div id="modal-text" class="p-8 md:w-2/5 flex flex-col justify-center gap-6">
-      <!-- View-Toggle: nur sichtbar wenn mockupPfad vorhanden -->
-      <div id="modal-view-toggle" class="hidden flex gap-3">
-        <button id="btn-view-work"
-          class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
-                 border-primary text-primary bg-transparent
-                 transition-colors duration-200
-                 hover:bg-primary hover:text-on-primary"
-          aria-pressed="true">
-          🎨 Werk
-        </button>
-        <button id="btn-view-mockup"
-          class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
-                 border-on-surface-variant text-on-surface-variant bg-transparent
-                 transition-colors duration-200
-                 hover:bg-primary hover:text-on-primary"
-          aria-pressed="false">
-          🏠 Raumansicht
-        </button>
-      </div>
-      <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
-      <p id="modal-beschreibung" class="font-body text-on-surface-variant leading-relaxed"></p>
-    </div>
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer class="bg-footer-bg flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 border-t border-secondary-fixed/10">
   <div class="font-headline italic text-lg text-secondary-fixed">Anne Leinen</div>
@@ -155,7 +109,6 @@
 </footer>
 
 <script src="data.js?v=202604081800"></script>
-<script src="gallery.js?v=202604081800"></script>
 <script src="exhibitions.js?v=202604081800"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
