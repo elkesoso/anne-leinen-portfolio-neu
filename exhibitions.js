@@ -34,8 +34,8 @@
       // Bildblock – nicht klickbar (keine Lightbox auf dieser Seite)
       var imgBlock = '';
       if (item.bildPfad) {
-        imgBlock = '<div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden">'
-          + '<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"'
+        imgBlock = '<div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden" style="cursor:default;">'
+          + '<img class="w-full h-full object-cover"'
           + ' src="'  + escA(item.bildPfad) + '"'
           + ' alt="'  + escA(item.bildAlt)  + '"'
           + ' decoding="async"/>'
