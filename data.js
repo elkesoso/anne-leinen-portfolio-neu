@@ -264,6 +264,20 @@ window.AnneLeinen.galleryData = [
 // archiv: false = aktuelle/kommende Ausstellungen | archiv: true = Vergangenheit
 window.AnneLeinen.exhibitionData = [
   {
+    titel:        "2. Kreativmarkt im Hubertusbad",
+    typ:          "Kreativmarkt",
+    ort:          "Hubertusbad, Berlin-Lichtenberg",
+    datum:        "25. April 2026",
+    uhrzeit:      "11:00 – 17:00 Uhr",
+    beschreibung: "Am 25. April verwandelt sich das historische Hubertusbad in ein buntes Paradies – Anne Leinen ist mit einem eigenen Stand vor Ort. Originalwerke entdecken, ins Gespräch kommen und eine lebendige Berliner Kunstszene erleben.",
+    bildPfad:     "INHALTE/ausstellungen/bilder/kreativmarkt-hubertusbad.webp",
+    bildAlt:      "2. Kreativmarkt im Hubertusbad – Lichtenberg Berlin",
+    bildName:     "Dance of Tides",
+    ctaText:      "Kostenloser Eintritt",
+    ctaIcon:      "arrow_forward",
+    archiv:       false
+  },
+  {
     titel:        "Lange Nacht der Bilder 2025",
     typ:          "Vernissage",
     ort:          "Galerie der oskar",
