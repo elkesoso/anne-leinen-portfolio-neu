@@ -278,20 +278,6 @@ window.AnneLeinen.exhibitionData = [
     archiv:       false
   },
   {
-    titel:        "Lange Nacht der Bilder 2025",
-    typ:          "Vernissage",
-    ort:          "Galerie der oskar",
-    datum:        "05. September 2025",
-    uhrzeit:      "18:00 Uhr",
-    beschreibung: "Ein immersiver Abend zum Erkunden der neuesten Serie taktiler Ölkompositionen. Die 'Lange Nacht der Bilder' feiert die lebendige Kunstszene Berlins.",
-    bildPfad:     "INHALTE/kunstwerke/alle-gemaelde/webp/Dance of Tides.webp",
-    bildAlt:      "Dance of Tides – Ausstellungsansicht",
-    bildName:     "Dance of Tides",
-    ctaText:      "RSVP Event",
-    ctaIcon:      "arrow_forward",
-    archiv:       false
-  },
-  {
     titel:        "Not an Advent Art Sale – Finissage",
     typ:          "Finissage",
     ort:          "Envision Berlin, Parkstraße 11, 13086 Berlin-Weißensee",
@@ -303,6 +289,20 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
+    archiv:       false
+  },
+  {
+    titel:        "Lange Nacht der Bilder 2025",
+    typ:          "Vernissage",
+    ort:          "Galerie der oskar",
+    datum:        "05. September 2025",
+    uhrzeit:      "18:00 Uhr",
+    beschreibung: "Ein immersiver Abend zum Erkunden der neuesten Serie taktiler Ölkompositionen. Die 'Lange Nacht der Bilder' feiert die lebendige Kunstszene Berlins.",
+    bildPfad:     "INHALTE/kunstwerke/alle-gemaelde/webp/Dance of Tides.webp",
+    bildAlt:      "Dance of Tides – Ausstellungsansicht",
+    bildName:     "Dance of Tides",
+    ctaText:      "RSVP Event",
+    ctaIcon:      "arrow_forward",
     archiv:       false
   },
   {

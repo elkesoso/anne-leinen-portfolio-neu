@@ -35,7 +35,7 @@
       var imgBlock = '';
       if (item.bildPfad) {
         imgBlock = '<div class="w-full md:w-7/12 aspect-[4/5] overflow-hidden" style="cursor:default;">'
-          + '<img class="w-full h-full object-cover"'
+          + '<img class="w-full h-full object-contain"'
           + ' src="'  + escA(item.bildPfad) + '"'
           + ' alt="'  + escA(item.bildAlt)  + '"'
           + ' decoding="async"/>'
