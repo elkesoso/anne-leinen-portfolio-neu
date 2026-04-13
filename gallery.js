@@ -224,7 +224,7 @@
                + '</div>'
                + '<div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
                + '<span class="material-symbols-outlined leading-none" style="font-size:18px;font-variation-settings:\'FILL\' 1,\'wght\' 400,\'GRAD\' 0,\'opsz\' 20;">info</span>'
-               + '<span class="text-xs">Details &amp; Story</span>'
+               + '<span class="text-xs">Mehr Infos</span>'
                + '</div>'
                + '</div>';
       });
@@ -259,7 +259,7 @@
                + ' class="w-full h-full object-cover bg-secondary-fixed/20 group-hover:scale-105 group-hover:brightness-110 transition-all duration-500 ease-in-out">'
                + '<div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
                + '<span class="material-symbols-outlined leading-none" style="font-size:18px;font-variation-settings:\'FILL\' 1,\'wght\' 400,\'GRAD\' 0,\'opsz\' 20;">info</span>'
-               + '<span class="text-xs">Details &amp; Story</span>'
+               + '<span class="text-xs">Mehr Infos</span>'
                + '</div>'
                + '</div>'
                + '<div class="pt-3">'
