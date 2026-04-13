@@ -267,7 +267,7 @@ window.AnneLeinen.exhibitionData = [
     titel:        "2. Kreativmarkt im Hubertusbad",
     typ:          "Kreativmarkt",
     ort:          "Hubertusbad, Berlin-Lichtenberg",
-    datum:        "25. April 2025",
+    datum:        "25. April 2026",
     uhrzeit:      "11:00 – 17:00 Uhr",
     beschreibung: "Am 25. April verwandelt sich das historische Hubertusbad in ein buntes Paradies – Anne Leinen ist mit einem eigenen Stand vor Ort. Originalwerke entdecken, ins Gespräch kommen und eine lebendige Berliner Kunstszene erleben.",
     bildPfad:     "INHALTE/ausstellungen/bilder/kreativmarkt-hubertusbad.webp",
