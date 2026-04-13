@@ -42,6 +42,19 @@
   /* Galerie-Karten: kein Tap-Highlight, kein Fokus-Rahmen, kein Text-Select */
   .gallery-item { -webkit-tap-highlight-color: transparent !important; user-select: none; touch-action: manipulation; outline: none !important; }
   .gallery-item:focus { outline: none !important; }
+
+  /* Gold-Placeholder für Bilder während des Ladens */
+  .img-gold-placeholder {
+    background-color: rgba(163, 141, 91, 0.1);
+    background-image: linear-gradient(90deg, transparent 0%, rgba(163,141,91,0.18) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: gold-shimmer 1.8s ease-in-out infinite;
+  }
+  @keyframes gold-shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+  }
+
   #mobile-menu { display: none; }
   #mobile-menu.open { display: flex; }
   /* Textarea: mobil kompakt, Desktop großzügig */
@@ -66,7 +79,7 @@
 <!-- NAV -->
 <nav style="background-color: rgba(255, 248, 247, 0.9);" class="fixed top-0 w-full z-50 backdrop-blur-lg flex justify-between items-center px-8 md:px-16 py-2">
   <a href="index.html" class="flex items-center gap-4 transition-opacity hover:opacity-80">
-    <img src="assets/logo.png" alt="Artful Anne Logo" class="h-12 w-auto" loading="eager">
+    <img src="assets/logo.png" alt="Artful Anne Logo" class="h-12 w-auto" loading="eager" width="1948" height="1960">
     <span class="font-headline font-light text-base uppercase tracking-[0.2em] text-on-surface">ARTFUL_ANNE</span>
   </a>
   <div class="flex items-center">
@@ -130,7 +143,7 @@
       </div>
     </div>
     <div class="order-1 md:order-2 overflow-hidden aspect-[3/4] max-w-[220px] md:max-w-xs mx-auto">
-      <img alt="Anne Leinen" class="w-full h-full object-cover" src="INHALTE/startseite/02_ueber-mich/UeberMich.webp" loading="lazy"/>
+      <img alt="Anne Leinen" class="w-full h-full object-cover" src="INHALTE/startseite/02_ueber-mich/UeberMich.webp" loading="lazy" width="621" height="757"/>
     </div>
   </div>
 </section>
@@ -140,7 +153,7 @@
   <h2 class="font-headline text-center text-secondary-fixed text-4xl mb-20 italic">Stimmen der Sammler</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
     <div class="text-center p-8 bg-secondary-fixed-dim/5">
-      <img src="INHALTE/startseite/05_stimmen/oliver.webp" alt="Oliver" class="w-16 h-16 rounded-full object-cover object-top mx-auto mb-4" loading="lazy"/>
+      <img src="INHALTE/startseite/05_stimmen/oliver.webp" alt="Oliver" class="w-16 h-16 rounded-full object-cover object-top mx-auto mb-4" loading="lazy" width="580" height="700"/>
       <div class="font-body text-secondary-container text-base italic mb-6 text-left space-y-3">
         <p>Die Werke von Anne Leinen sind weit mehr als bloße Gemälde – sie sind lebendige Erzählungen auf Leinwand.</p>
         <p>Mit einer beeindruckenden Mischung aus Farbintensität, Gefühl und Dynamik schafft es diese außergewöhnliche Künstlerin, Motive zu erschaffen, die nicht nur betrachtet, sondern erlebt werden wollen.</p>
@@ -231,6 +244,7 @@
       <img alt="Vibrant Energy – Kunstwerk im Raum"
            class="w-full h-auto cursor-pointer hover:scale-105 transition-transform duration-500"
            loading="lazy"
+           width="1851" height="2000"
            src="INHALTE/startseite/04_kunst-im-raum/Vibrant Energy G.webp"/>
     </div>
   </div>
@@ -356,7 +370,7 @@
 </footer>
 
 <script src="data.js?v=202604102100"></script>
-<script src="gallery.js?v=202604131015"></script>
+<script src="gallery.js?v=202604121600"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');

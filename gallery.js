@@ -205,7 +205,7 @@
         var badge = item.mockupPfad
           ? '<span class="font-label text-xs text-on-surface-variant/70 mt-1 block">🏠 Raumansicht verfügbar</span>'
           : '';
-        hHtml += '<div class="gallery-item relative overflow-hidden cursor-pointer group aspect-[4/5] md:aspect-auto md:h-[80vh]"'
+        hHtml += '<div class="gallery-item relative overflow-hidden cursor-pointer group aspect-[4/5] md:aspect-auto md:h-[80vh] img-gold-placeholder"'
                + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
@@ -214,7 +214,7 @@
                + ' alt="' + escA(item.titel) + '"'
                + ' decoding="async"'
                + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
-               + ' class="absolute inset-0 w-full h-full object-cover bg-secondary-fixed/20 group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
+               + ' class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
                + '<div class="absolute bottom-0 left-0 right-0'
                + ' md:bottom-10 md:left-10 md:right-auto md:max-w-xs'
                + ' bg-white/85 backdrop-blur-sm shadow-xl p-6 md:p-8">'
@@ -250,12 +250,12 @@
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
                + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')">'
-               + '<div class="relative overflow-hidden aspect-[3/4] min-h-[200px]">'
+               + '<div class="relative overflow-hidden aspect-[3/4] min-h-[200px] img-gold-placeholder">'
                + '<img src="' + item.thumbnailPfad + '"'
                + ' alt="' + escA(item.titel) + '"'
                + ' ' + lazyAttr
                + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
-               + ' class="w-full h-full object-cover bg-secondary-fixed/20 group-hover:scale-105 group-hover:brightness-110 transition-all duration-500 ease-in-out">'
+               + ' class="w-full h-full object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-500 ease-in-out">'
                + '<div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
                + '<span class="text-xs">Mehr Infos</span>'
                + '</div>'
@@ -352,7 +352,7 @@
     var slidesHtml = '';
     AL.sliderData.forEach(function (item, index) {
       slidesHtml += '<div'
-                  + ' class="gallery-item al-slide flex-none w-[85vw] md:w-1/4 h-[350px] md:h-[500px] overflow-hidden cursor-pointer"'
+                  + ' class="gallery-item al-slide flex-none w-[85vw] md:w-1/4 h-[350px] md:h-[500px] overflow-hidden cursor-pointer img-gold-placeholder"'
                   + ' style="scroll-snap-align: start;"'
                   + ' role="button"'
                   + ' tabindex="0"'
@@ -365,7 +365,7 @@
                   + ' loading="lazy"'
                   + ' decoding="async"'
                   + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
-                  + ' class="w-full h-full object-cover bg-secondary-fixed/20 hover:scale-105 transition-all duration-500 ease-in-out"'
+                  + ' class="w-full h-full object-cover hover:scale-105 transition-all duration-500 ease-in-out"'
                   + '>'
                   + '</div>';
     });
