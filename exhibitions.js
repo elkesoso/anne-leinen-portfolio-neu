@@ -119,8 +119,10 @@
     var container = document.getElementById('archive-list');
     if (!container) return;
     var data = AL.exhibitionData || [];
-    // Alle Einträge – archiv:false = oben als Bild-Blöcke, hier als kompakte Monatsübersicht
-    var archive = data.slice();
+    // Nur Einträge aus 2025 für die Monatsübersicht
+    var archive = data.filter(function (e) {
+      return /2025/.test(e.datum);
+    });
 
     // Nach Monat gruppieren
     var byMonth = {};
