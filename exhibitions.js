@@ -119,7 +119,8 @@
     var container = document.getElementById('archive-list');
     if (!container) return;
     var data = AL.exhibitionData || [];
-    var archive = data.filter(function (e) { return e.archiv; });
+    // Alle Einträge – archiv:false = oben als Bild-Blöcke, hier als kompakte Monatsübersicht
+    var archive = data.slice();
 
     // Nach Monat gruppieren
     var byMonth = {};

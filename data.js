@@ -275,7 +275,7 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "Dance of Tides",
     ctaText:      "Kostenloser Eintritt",
     ctaIcon:      "arrow_forward",
-    archiv:       true
+    archiv:       false
   },
   {
     titel:        "Not an Advent Art Sale – Finissage",
@@ -289,7 +289,7 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       true
+    archiv:       false
   },
   {
     titel:        "Lange Nacht der Bilder 2025",
@@ -303,6 +303,6 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       true
+    archiv:       false
   }
 ];
