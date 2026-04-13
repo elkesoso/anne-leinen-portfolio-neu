@@ -2,7 +2,8 @@
 <html class="light" lang="de">
 <head>
 <meta charset="utf-8"/>
-  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="preload" href="assets/fonts/material-symbols-outlined.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/fonts.css?v=1.5">
 
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta name="robots" content="noindex, nofollow"/>
@@ -43,7 +44,7 @@
 <!-- NAV -->
 <nav style="background-color: rgba(255, 248, 247, 0.9);" class="fixed top-0 w-full z-50 backdrop-blur-lg flex justify-between items-center px-8 md:px-16 py-2">
   <a href="index.html" class="flex items-center gap-4 transition-opacity hover:opacity-80">
-    <img src="assets/logo.png" alt="Artful Anne Logo" class="h-12 w-auto" loading="eager" width="1948" height="1960">
+    <img src="assets/logo.png" alt="Artful Anne Logo" class="h-12 w-auto" loading="eager" width="200" height="201">
     <span class="font-headline font-light text-base uppercase tracking-[0.2em] text-on-surface">ARTFUL_ANNE</span>
   </a>
   <div class="flex items-center">
@@ -160,7 +161,7 @@
       <div class="flex flex-col h-full">
 
         <div class="flex-none mb-12">
-          <img src="assets/logo.png" alt="Artful Anne Logo" style="width: 180px; filter: brightness(0) invert(1);" class="mb-10 mx-auto md:mx-0" width="1948" height="1960">
+          <img src="assets/logo.png" alt="Artful Anne Logo" style="width: 180px; filter: brightness(0) invert(1);" class="mb-10 mx-auto md:mx-0" width="200" height="201">
 
           <div class="space-y-8">
             <div class="flex items-start gap-6">
@@ -222,6 +223,38 @@
       </div>
     </div>
   </div>
+
+  <!-- FAQ -->
+  <section class="px-8 md:px-24 max-w-7xl mx-auto mt-12 md:mt-20">
+    <h2 class="font-headline text-2xl text-secondary-fixed mb-8">Häufige Fragen</h2>
+    <div class="border-t border-secondary-fixed/20">
+
+      <details class="group border-b border-secondary-fixed/20">
+        <summary class="flex justify-between items-center py-5 cursor-pointer" style="list-style:none;">
+          <span class="font-headline text-lg text-secondary-fixed">Versenden Sie Originalwerke sicher?</span>
+          <span class="ml-6 shrink-0 font-light text-2xl leading-none transition-transform duration-200 group-open:rotate-45" style="color:#a38d5b;">+</span>
+        </summary>
+        <p class="font-body text-secondary-container/80 leading-relaxed pb-5 max-w-2xl">Ja, der Versand erfolgt in spezialisierter Kunstverpackung und ist voll versichert.</p>
+      </details>
+
+      <details class="group border-b border-secondary-fixed/20">
+        <summary class="flex justify-between items-center py-5 cursor-pointer" style="list-style:none;">
+          <span class="font-headline text-lg text-secondary-fixed">Sind individuelle Auftragsarbeiten möglich?</span>
+          <span class="ml-6 shrink-0 font-light text-2xl leading-none transition-transform duration-200 group-open:rotate-45" style="color:#a38d5b;">+</span>
+        </summary>
+        <p class="font-body text-secondary-container/80 leading-relaxed pb-5 max-w-2xl">Ja, ich nehme begrenzte Aufträge für individuelle Werke an. Kontaktieren Sie mich gerne für Details.</p>
+      </details>
+
+      <details class="group border-b border-secondary-fixed/20">
+        <summary class="flex justify-between items-center py-5 cursor-pointer" style="list-style:none;">
+          <span class="font-headline text-lg text-secondary-fixed">Kann ich die Werke vor Ort besichtigen?</span>
+          <span class="ml-6 shrink-0 font-light text-2xl leading-none transition-transform duration-200 group-open:rotate-45" style="color:#a38d5b;">+</span>
+        </summary>
+        <p class="font-body text-secondary-container/80 leading-relaxed pb-5 max-w-2xl">Besichtigungen sind nach vorheriger Terminvereinbarung in meinem Atelier möglich.</p>
+      </details>
+
+    </div>
+  </section>
 
 </main>
 

@@ -44,21 +44,25 @@
     if (item.mockupPfad) {
       toggle.classList.remove('hidden');
 
+      // Hilfsfunktionen: Button-Zustand sauber setzen (alle konfliktierenden Klassen entfernen)
+      function activateBtn(btn) {
+        btn.classList.add('bg-primary', 'text-on-primary');
+        btn.classList.remove('bg-transparent', 'border-primary', 'text-primary', 'border-on-surface-variant', 'text-on-surface-variant');
+        btn.setAttribute('aria-pressed', 'true');
+      }
+      function deactivateBtn(btn) {
+        btn.classList.remove('bg-primary', 'text-on-primary', 'border-primary', 'text-primary');
+        btn.classList.add('bg-transparent', 'border-on-surface-variant', 'text-on-surface-variant');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+
       // Aktiven Button je nach startView setzen
       if (showMockup) {
-        btnMockup.classList.add('bg-primary', 'text-on-primary');
-        btnMockup.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
-        btnMockup.setAttribute('aria-pressed', 'true');
-        btnWork.classList.remove('bg-primary', 'text-on-primary');
-        btnWork.classList.add('border-on-surface-variant', 'text-on-surface-variant');
-        btnWork.setAttribute('aria-pressed', 'false');
+        activateBtn(btnMockup);
+        deactivateBtn(btnWork);
       } else {
-        btnWork.classList.add('bg-primary', 'text-on-primary');
-        btnWork.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
-        btnWork.setAttribute('aria-pressed', 'true');
-        btnMockup.classList.remove('bg-primary', 'text-on-primary');
-        btnMockup.classList.add('border-on-surface-variant', 'text-on-surface-variant');
-        btnMockup.setAttribute('aria-pressed', 'false');
+        activateBtn(btnWork);
+        deactivateBtn(btnMockup);
       }
 
       // Switch-Logik: Werk (mit Fade)
@@ -67,12 +71,8 @@
         img.onload = function () { img.style.opacity = '1'; img.onload = null; };
         img.src = item.pfad;
         if (img.complete && img.naturalWidth > 0) img.style.opacity = '1';
-        btnWork.classList.add('bg-primary', 'text-on-primary');
-        btnWork.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
-        btnWork.setAttribute('aria-pressed', 'true');
-        btnMockup.classList.remove('bg-primary', 'text-on-primary');
-        btnMockup.classList.add('border-on-surface-variant', 'text-on-surface-variant');
-        btnMockup.setAttribute('aria-pressed', 'false');
+        activateBtn(btnWork);
+        deactivateBtn(btnMockup);
       };
 
       // Switch-Logik: Mockup (mit Fade)
@@ -81,12 +81,8 @@
         img.onload = function () { img.style.opacity = '1'; img.onload = null; };
         img.src = item.mockupPfad;
         if (img.complete && img.naturalWidth > 0) img.style.opacity = '1';
-        btnMockup.classList.add('bg-primary', 'text-on-primary');
-        btnMockup.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
-        btnMockup.setAttribute('aria-pressed', 'true');
-        btnWork.classList.remove('bg-primary', 'text-on-primary');
-        btnWork.classList.add('border-on-surface-variant', 'text-on-surface-variant');
-        btnWork.setAttribute('aria-pressed', 'false');
+        activateBtn(btnMockup);
+        deactivateBtn(btnWork);
       };
     } else {
       toggle.classList.add('hidden');
