@@ -235,17 +235,20 @@
         <p class="font-label text-secondary-container/60 uppercase tracking-widest text-xs">Abgebildet: Aurelia II in einem Loft in Berlin</p>
       </div>
     </div>
-    <div class="relative z-10 order-1 lg:order-2 overflow-hidden shadow-2xl max-w-sm mx-auto cursor-pointer"
-         onclick="console.log('Klick auf Featured-Bild erkannt!'); AnneLeinen.openModalByName('Vibrant Energy')"
+    <div class="relative z-10 order-1 lg:order-2 overflow-hidden shadow-2xl max-w-sm mx-auto cursor-pointer group"
+         onclick="AnneLeinen.openModalByName('Vibrant Energy', 'mockup')"
          role="button"
          tabindex="0"
          aria-label="Vibrant Energy – Bild vergrößern"
-         onkeydown="if(event.key==='Enter'||event.key===' ')AnneLeinen.openModalByName('Vibrant Energy')">
+         onkeydown="if(event.key==='Enter'||event.key===' ')AnneLeinen.openModalByName('Vibrant Energy', 'mockup')">
       <img alt="Vibrant Energy – Kunstwerk im Raum"
-           class="w-full h-auto cursor-pointer hover:scale-105 transition-transform duration-500"
+           class="w-full h-auto hover:scale-105 transition-transform duration-500"
            loading="lazy"
            width="1851" height="2000"
            src="INHALTE/startseite/04_kunst-im-raum/Vibrant Energy G.webp"/>
+      <div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">
+        <span class="text-xs">Mehr Infos</span>
+      </div>
     </div>
   </div>
 </section>
@@ -370,7 +373,7 @@
 </footer>
 
 <script src="data.js?v=202604102100"></script>
-<script src="gallery.js?v=202604121600"></script>
+<script src="gallery.js?v=202604131200"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');

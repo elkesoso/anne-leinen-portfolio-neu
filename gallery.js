@@ -9,16 +9,19 @@
 
   // ─── MODAL ───────────────────────────────────────────────────────────────
 
-  AL.openModal = function (index) {
+  // startView: 'work' (Standard) oder 'mockup' – legt fest, welches Bild zuerst gezeigt wird
+  AL.openModal = function (index, startView) {
     var item = AL.galleryData[index];
     if (!item) return;
 
-    // Reset-Guard: immer mit Werkansicht starten
     var img     = document.getElementById('modal-img');
     var content = document.getElementById('modal-content');
     var toggle  = document.getElementById('modal-view-toggle');
     var btnWork   = document.getElementById('btn-view-work');
     var btnMockup = document.getElementById('btn-view-mockup');
+
+    // Startbild: Mockup wenn gewünscht und vorhanden, sonst Werk
+    var showMockup = startView === 'mockup' && !!item.mockupPfad;
 
     // Inhalt verstecken bis Bild geladen ist (verhindert weißen Kasten-Blitz)
     content.style.opacity = '0';
@@ -27,7 +30,7 @@
       img.onload = null;
     };
 
-    img.src = item.pfad;
+    img.src = showMockup ? item.mockupPfad : item.pfad;
     img.alt = item.titel;
 
     // Fallback: Bild bereits im Browser-Cache → onload feuert nicht mehr
@@ -40,13 +43,23 @@
     // View-Toggle nur zeigen wenn mockupPfad vorhanden und nicht leer
     if (item.mockupPfad) {
       toggle.classList.remove('hidden');
-      // Werk-Button als aktiv markieren
-      btnWork.classList.add('bg-primary', 'text-on-primary');
-      btnWork.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
-      btnWork.setAttribute('aria-pressed', 'true');
-      btnMockup.classList.remove('bg-primary', 'text-on-primary');
-      btnMockup.classList.add('border-on-surface-variant', 'text-on-surface-variant');
-      btnMockup.setAttribute('aria-pressed', 'false');
+
+      // Aktiven Button je nach startView setzen
+      if (showMockup) {
+        btnMockup.classList.add('bg-primary', 'text-on-primary');
+        btnMockup.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
+        btnMockup.setAttribute('aria-pressed', 'true');
+        btnWork.classList.remove('bg-primary', 'text-on-primary');
+        btnWork.classList.add('border-on-surface-variant', 'text-on-surface-variant');
+        btnWork.setAttribute('aria-pressed', 'false');
+      } else {
+        btnWork.classList.add('bg-primary', 'text-on-primary');
+        btnWork.classList.remove('border-on-surface-variant', 'text-on-surface-variant');
+        btnWork.setAttribute('aria-pressed', 'true');
+        btnMockup.classList.remove('bg-primary', 'text-on-primary');
+        btnMockup.classList.add('border-on-surface-variant', 'text-on-surface-variant');
+        btnMockup.setAttribute('aria-pressed', 'false');
+      }
 
       // Switch-Logik: Werk (mit Fade)
       btnWork.onclick = function () {
@@ -62,7 +75,7 @@
         btnMockup.setAttribute('aria-pressed', 'false');
       };
 
-      // Switch-Logik: Mockup (lädt erst beim Klick – lazy, mit Fade)
+      // Switch-Logik: Mockup (mit Fade)
       btnMockup.onclick = function () {
         img.style.opacity = '0';
         img.onload = function () { img.style.opacity = '1'; img.onload = null; };
@@ -91,7 +104,8 @@
 
   // Öffnet das Modal anhand eines Namens-Fragments (Titel oder Pfad-Substring).
   // Robuster als Index-basierter Aufruf – funktioniert auch nach Umsortierung.
-  AL.openModalByName = function (name) {
+  // startView: 'work' (Standard) oder 'mockup'
+  AL.openModalByName = function (name, startView) {
     var found = -1;
     AL.galleryData.forEach(function (item, i) {
       if (found !== -1) return;
@@ -100,7 +114,7 @@
       }
     });
     if (found !== -1) {
-      AL.openModal(found);
+      AL.openModal(found, startView);
     } else {
       console.warn('openModalByName: kein Eintrag gefunden für "' + name + '"');
     }
