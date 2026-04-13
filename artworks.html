@@ -92,6 +92,18 @@
       outline: none !important;
     }
     .gallery-item:focus { outline: none !important; }
+
+    /* Gold-Placeholder für Bilder während des Ladens */
+    .img-gold-placeholder {
+      background-color: rgba(163, 141, 91, 0.1);
+      background-image: linear-gradient(90deg, transparent 0%, rgba(163,141,91,0.18) 50%, transparent 100%);
+      background-size: 200% 100%;
+      animation: gold-shimmer 1.8s ease-in-out infinite;
+    }
+    @keyframes gold-shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -104,7 +116,7 @@
     style="background-color: rgba(255, 248, 247, 0.9);"
     class="fixed top-0 w-full z-50 backdrop-blur-lg flex justify-between items-center px-8 md:px-16 py-2">
     <a href="index.html" class="flex items-center gap-4 transition-opacity hover:opacity-80">
-      <img src="assets/logo.png" alt="Artful Anne Logo" class="h-12 w-auto" loading="eager">
+      <img src="assets/logo.png" alt="Artful Anne Logo" class="h-12 w-auto" loading="eager" width="1948" height="1960">
       <span class="font-headline font-light text-base uppercase tracking-[0.2em] text-on-surface">ARTFUL_ANNE</span>
     </a>
     <div class="flex items-center">
@@ -246,7 +258,7 @@
   </footer>
 
   <script src="data.js?v=202604102100"></script>
-  <script src="gallery.js?v=202604131015"></script>
+  <script src="gallery.js?v=202604121600"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');
