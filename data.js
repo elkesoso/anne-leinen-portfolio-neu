@@ -292,6 +292,20 @@ window.AnneLeinen.exhibitionData = [
     archiv:       false
   },
   {
+    titel:        "KOMPASS-Haus",
+    typ:          "Ausstellung",
+    ort:          "KOMPASS-Haus, Berlin",
+    datum:        "Mai 2025",
+    uhrzeit:      "Mai – Juli 2025",
+    beschreibung: "",
+    bildPfad:     "",
+    bildAlt:      "",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
+  },
+  {
     titel:        "Kunst im Einheizhaus",
     typ:          "Ausstellung",
     ort:          "Einheizhaus, Berlin",
