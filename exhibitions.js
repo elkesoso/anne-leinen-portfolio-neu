@@ -94,46 +94,62 @@
     container.innerHTML = html;
   }
 
-  // ─── ARCHIV ───────────────────────────────────────────────────────────────
-  // Rendert einmalig – nach erstem Klick auf den Archiv-Link.
-  // Sortiert nach Jahr (absteigend), innerhalb des Jahres chronologisch.
+  // ─── AUSSTELLUNGEN 2025 (Monats-Archiv) ──────────────────────────────────
+  // Rendert alle archiv:true Einträge, gruppiert nach Monat, aufsteigend sortiert.
 
-  var _archiveRendered = false;
+  var MONATE_DE = {
+    'Januar': 1, 'Februar': 2, 'März': 3, 'April': 4,
+    'Mai': 5, 'Juni': 6, 'Juli': 7, 'August': 8,
+    'September': 9, 'Oktober': 10, 'November': 11, 'Dezember': 12
+  };
+
+  function parseDatum(datumsStr) {
+    var parts = (datumsStr || '').split(' ');
+    var year = 0, monthNum = 0, monthName = '';
+    parts.forEach(function (p) {
+      var y = parseInt(p, 10);
+      if (y > 2000) year = y;
+      if (MONATE_DE[p]) { monthName = p; monthNum = MONATE_DE[p]; }
+    });
+    var sortKey = year + '-' + (monthNum < 10 ? '0' : '') + monthNum;
+    return { sortKey: sortKey, label: monthName + ' ' + year };
+  }
 
   function renderArchive() {
-    if (_archiveRendered) return;
-    _archiveRendered = true;
-
     var container = document.getElementById('archive-list');
     if (!container) return;
     var data = AL.exhibitionData || [];
     var archive = data.filter(function (e) { return e.archiv; });
 
-    // Jahr aus Datumsstring extrahieren (z.B. "14. Juli 2024" → "2024")
-    var byYear = {};
+    // Nach Monat gruppieren
+    var byMonth = {};
+    var monthKeys = [];
     archive.forEach(function (ex) {
-      var match = ex.datum.match(/\d{4}/);
-      var year  = match ? match[0] : 'Sonstige';
-      if (!byYear[year]) byYear[year] = [];
-      byYear[year].push(ex);
+      var info = parseDatum(ex.datum);
+      if (!byMonth[info.sortKey]) {
+        byMonth[info.sortKey] = { label: info.label, items: [] };
+        monthKeys.push(info.sortKey);
+      }
+      byMonth[info.sortKey].items.push(ex);
     });
 
-    // Jahre absteigend sortieren (neueste zuerst)
-    var years = Object.keys(byYear).sort(function (a, b) { return Number(b) - Number(a); });
+    // Chronologisch aufsteigend (April → September → November)
+    monthKeys.sort();
 
     var html = '';
-    years.forEach(function (year) {
+    monthKeys.forEach(function (key) {
+      var group = byMonth[key];
+      // Monats-Header mit goldenem Akzentbalken
       html += '<div class="mb-10">'
-        + '<h4 class="font-headline text-xl text-secondary-container mb-4 border-b border-secondary-container/20 pb-2">'
-          + year
-        + '</h4>'
-        + '<ul class="space-y-4">';
+        + '<div class="flex items-center gap-3 mb-5">'
+          + '<div style="width:2px;height:1.25rem;background-color:rgba(163,141,91,0.75);flex-shrink:0;"></div>'
+          + '<span class="font-label text-xs uppercase tracking-[0.25em]" style="color:rgba(163,141,91,0.9);">' + escH(group.label) + '</span>'
+        + '</div>'
+        + '<ul class="space-y-4 pl-5">';
 
-      byYear[year].forEach(function (ex) {
+      group.items.forEach(function (ex) {
         html += '<li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6">'
-          + '<span class="font-label text-xs uppercase tracking-widest text-secondary-container/50 w-36 shrink-0">'
-            + escH(ex.typ)
-          + '</span>'
+          + '<span class="font-label text-xs uppercase tracking-widest text-secondary-container/50 w-36 shrink-0">' + escH(ex.typ) + '</span>'
           + '<span class="font-headline text-lg text-secondary-container">' + escH(ex.titel) + '</span>'
           + '<span class="font-body text-secondary-container/60 text-sm sm:ml-auto shrink-0">' + escH(ex.ort) + '</span>'
         + '</li>';
@@ -149,25 +165,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     renderExhibitions();
-
-    // Archiv-Link: Toggle zwischen Ein- und Ausblenden
-    var archiveLink    = document.getElementById('archive-link');
-    var archiveSection = document.getElementById('archive-section');
-
-    if (archiveLink && archiveSection) {
-      archiveLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (archiveSection.classList.contains('hidden')) {
-          archiveSection.classList.remove('hidden');
-          renderArchive();  // nur beim ersten Öffnen rendern
-          archiveLink.textContent = 'Archiv ausblenden';
-        } else {
-          archiveSection.classList.add('hidden');
-          // Originaltext wiederherstellen
-          archiveLink.innerHTML = 'Archiv 2018&#8202;—&#8202;2024 ansehen';
-        }
-      });
-    }
+    renderArchive();  // direkt rendern – kein Toggle mehr
   });
 
 }());

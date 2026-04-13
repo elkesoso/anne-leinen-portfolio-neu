@@ -267,7 +267,7 @@ window.AnneLeinen.exhibitionData = [
     titel:        "2. Kreativmarkt im Hubertusbad",
     typ:          "Kreativmarkt",
     ort:          "Hubertusbad, Berlin-Lichtenberg",
-    datum:        "25. April 2026",
+    datum:        "25. April 2025",
     uhrzeit:      "11:00 – 17:00 Uhr",
     beschreibung: "Am 25. April verwandelt sich das historische Hubertusbad in ein buntes Paradies – Anne Leinen ist mit einem eigenen Stand vor Ort. Originalwerke entdecken, ins Gespräch kommen und eine lebendige Berliner Kunstszene erleben.",
     bildPfad:     "INHALTE/ausstellungen/bilder/kreativmarkt-hubertusbad.webp",
@@ -275,7 +275,7 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "Dance of Tides",
     ctaText:      "Kostenloser Eintritt",
     ctaIcon:      "arrow_forward",
-    archiv:       false
+    archiv:       true
   },
   {
     titel:        "Not an Advent Art Sale – Finissage",
@@ -289,7 +289,7 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       false
+    archiv:       true
   },
   {
     titel:        "Lange Nacht der Bilder 2025",
@@ -300,62 +300,6 @@ window.AnneLeinen.exhibitionData = [
     beschreibung: "Im Rahmen der Langen Nacht der Bilder 2025 präsentiert das Oskar-Freiwilligen-Team Interpretationen Lichtenberger Künstlerinnen und Künstler zum Thema 'Urbanes Leben / Urbanes Lebensgefühl'. Die Ausstellung war bis zum 31. Oktober 2025 zu sehen – Di/Mi/Do 10–16 Uhr sowie nach telefonischer Vereinbarung.",
     bildPfad:     "INHALTE/ausstellungen/bilder/lange-nacht-der-bilder.webp",
     bildAlt:      "Lange Nacht der Bilder 2025 – Save the Date Plakat",
-    bildName:     "",
-    ctaText:      "",
-    ctaIcon:      "",
-    archiv:       false
-  },
-  {
-    titel:        "hinschauen Festival 2024",
-    typ:          "Gruppenausstellung",
-    ort:          "Kunstmeile Berlin",
-    datum:        "14. Juli 2024",
-    uhrzeit:      "11:00 Uhr",
-    beschreibung: "",
-    bildPfad:     "",
-    bildAlt:      "",
-    bildName:     "",
-    ctaText:      "",
-    ctaIcon:      "",
-    archiv:       true
-  },
-  {
-    titel:        "KunstKrebs Charity Ausstellung",
-    typ:          "Gruppenausstellung",
-    ort:          "Berlin",
-    datum:        "12. Oktober 2023",
-    uhrzeit:      "18:00 Uhr",
-    beschreibung: "",
-    bildPfad:     "",
-    bildAlt:      "",
-    bildName:     "",
-    ctaText:      "",
-    ctaIcon:      "",
-    archiv:       true
-  },
-  {
-    titel:        "Epizentrum – Einzelausstellung",
-    typ:          "Einzelausstellung",
-    ort:          "Galerie der oskar, Berlin",
-    datum:        "März 2022",
-    uhrzeit:      "",
-    beschreibung: "",
-    bildPfad:     "",
-    bildAlt:      "",
-    bildName:     "",
-    ctaText:      "",
-    ctaIcon:      "",
-    archiv:       true
-  },
-  {
-    titel:        "Frühe Studien",
-    typ:          "Gruppenausstellung",
-    ort:          "Atelierhaus Berlin",
-    datum:        "September 2018",
-    uhrzeit:      "",
-    beschreibung: "",
-    bildPfad:     "",
-    bildAlt:      "",
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
