@@ -306,6 +306,20 @@ window.AnneLeinen.exhibitionData = [
     archiv:       true
   },
   {
+    titel:        "Künstler gegen Krebs – Kunstwerk-Versteigerung",
+    typ:          "Charity-Auktion",
+    ort:          "Rathaussaal Malchin",
+    datum:        "27. Juni 2025",
+    uhrzeit:      "",
+    beschreibung: "",
+    bildPfad:     "",
+    bildAlt:      "",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
+  },
+  {
     titel:        "Hinschauen Kultur Festival",
     typ:          "Festival",
     ort:          "Eugeniu-Botanari-Platz, Berlin",
