@@ -119,9 +119,9 @@
     var container = document.getElementById('archive-list');
     if (!container) return;
     var data = AL.exhibitionData || [];
-    // Nur Einträge aus 2025 für die Monatsübersicht
+    // Nur archiv:true Einträge aus 2025 (archiv:false = oben als Bild-Blöcke, gehören nicht hierher)
     var archive = data.filter(function (e) {
-      return /2025/.test(e.datum);
+      return e.archiv && /2025/.test(e.datum);
     });
 
     // Nach Monat gruppieren
@@ -136,8 +136,8 @@
       byMonth[info.sortKey].items.push(ex);
     });
 
-    // Chronologisch aufsteigend (April → September → November)
-    monthKeys.sort();
+    // Absteigend (neueste zuerst: Oktober → August → Juni → Mai)
+    monthKeys.sort().reverse();
 
     var html = '';
     monthKeys.forEach(function (key) {
