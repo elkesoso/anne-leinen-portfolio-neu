@@ -58,6 +58,8 @@
   #subject-trigger svg { transition: transform 0.2s ease; }
   #subject-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
 </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body class="bg-nav-bg font-body selection:bg-primary-container selection:text-on-primary-container">
 
@@ -128,7 +130,7 @@
       </div>
     </div>
     <div class="order-1 md:order-2 overflow-hidden aspect-[3/4] max-w-[220px] md:max-w-xs mx-auto">
-      <img alt="Anne Leinen" class="w-full h-full object-cover" src="INHALTE/startseite/02_ueber-mich/UeberMich.webp"/>
+      <img alt="Anne Leinen" class="w-full h-full object-cover" src="INHALTE/startseite/02_ueber-mich/UeberMich.webp" loading="lazy"/>
     </div>
   </div>
 </section>
@@ -138,7 +140,7 @@
   <h2 class="font-headline text-center text-secondary-fixed text-4xl mb-20 italic">Stimmen der Sammler</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
     <div class="text-center p-8 bg-secondary-fixed-dim/5">
-      <img src="INHALTE/startseite/05_stimmen/oliver.webp" alt="Oliver" class="w-16 h-16 rounded-full object-cover object-top mx-auto mb-4"/>
+      <img src="INHALTE/startseite/05_stimmen/oliver.webp" alt="Oliver" class="w-16 h-16 rounded-full object-cover object-top mx-auto mb-4" loading="lazy"/>
       <div class="font-body text-secondary-container text-base italic mb-6 text-left space-y-3">
         <p>Die Werke von Anne Leinen sind weit mehr als bloße Gemälde – sie sind lebendige Erzählungen auf Leinwand.</p>
         <p>Mit einer beeindruckenden Mischung aus Farbintensität, Gefühl und Dynamik schafft es diese außergewöhnliche Künstlerin, Motive zu erschaffen, die nicht nur betrachtet, sondern erlebt werden wollen.</p>
@@ -228,6 +230,7 @@
          onkeydown="if(event.key==='Enter'||event.key===' ')AnneLeinen.openModalByName('Vibrant Energy')">
       <img alt="Vibrant Energy – Kunstwerk im Raum"
            class="w-full h-auto cursor-pointer hover:scale-105 transition-transform duration-500"
+           loading="lazy"
            src="INHALTE/startseite/04_kunst-im-raum/Vibrant Energy G.webp"/>
     </div>
   </div>
