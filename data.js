@@ -292,6 +292,20 @@ window.AnneLeinen.exhibitionData = [
     archiv:       false
   },
   {
+    titel:        "Kunst im Einheizhaus",
+    typ:          "Ausstellung",
+    ort:          "Einheizhaus, Berlin",
+    datum:        "3. Oktober 2025",
+    uhrzeit:      "3.–5. Oktober 2025",
+    beschreibung: "",
+    bildPfad:     "",
+    bildAlt:      "",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
+  },
+  {
     titel:        "Lange Nacht der Bilder 2025",
     typ:          "Gruppenausstellung",
     ort:          "Galerie der oskar | Freiwilligenagentur Lichtenberg, Weitlingstraße 89, 10317 Berlin",
