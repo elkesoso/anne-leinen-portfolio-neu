@@ -306,6 +306,20 @@ window.AnneLeinen.exhibitionData = [
     archiv:       true
   },
   {
+    titel:        "Hinschauen Kultur Festival",
+    typ:          "Festival",
+    ort:          "Eugeniu-Botanari-Platz, Berlin",
+    datum:        "28. August 2025",
+    uhrzeit:      "28.–31. August 2025",
+    beschreibung: "",
+    bildPfad:     "",
+    bildAlt:      "",
+    bildName:     "",
+    ctaText:      "",
+    ctaIcon:      "",
+    archiv:       true
+  },
+  {
     titel:        "Kunst im Einheizhaus",
     typ:          "Ausstellung",
     ort:          "Einheizhaus, Berlin",
