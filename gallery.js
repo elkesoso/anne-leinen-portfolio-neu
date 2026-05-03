@@ -302,10 +302,13 @@
   // ─── SLIDER-MODAL (index.html) ───────────────────────────────────────────
 
   var _lastSliderFocus = null; // Fokus-Merker für closeModal
+  var _currentSliderIndex = -1;
 
-  AL.openSliderModal = function (index) {
+  function renderSliderModal(index) {
     var sliderItem = AL.sliderData[index];
-    if (!sliderItem) return;
+    if (!sliderItem) return false;
+
+    _currentSliderIndex = index;
 
     // Vollständige Infos aus galleryData per Titel-Lookup (für Beschreibung)
     var fullItem = null;
@@ -335,6 +338,12 @@
     var toggle = document.getElementById('modal-view-toggle');
     if (toggle) toggle.classList.add('hidden');
 
+    return true;
+  }
+
+  AL.openSliderModal = function (index) {
+    if (!renderSliderModal(index)) return;
+
     // Fokus-Merker setzen (für Rückgabe beim Schließen)
     _lastSliderFocus = document.activeElement;
 
@@ -342,6 +351,13 @@
     overlay.classList.add('is-open', 'is-minimal');
     document.body.style.overflowY = 'hidden';
     history.pushState({ modalOpen: true }, '');
+  };
+
+  AL.navigateSliderModal = function (direction) {
+    if (!AL.sliderData || !AL.sliderData.length || _currentSliderIndex < 0) return;
+    var total = AL.sliderData.length;
+    var nextIndex = (_currentSliderIndex + direction + total) % total;
+    renderSliderModal(nextIndex);
   };
 
   // ─── SCROLL-SNAP SLIDER (index.html) ─────────────────────────────────────
@@ -386,6 +402,30 @@
     var nextBtn = document.getElementById('slider-next');
     if (prevBtn) prevBtn.addEventListener('click', function () { AL.scrollSlider(-1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { AL.scrollSlider(1); });
+
+    var modalPrevBtn = document.getElementById('modal-slider-prev');
+    var modalNextBtn = document.getElementById('modal-slider-next');
+    if (modalPrevBtn) modalPrevBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      AL.navigateSliderModal(-1);
+    });
+    if (modalNextBtn) modalNextBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      AL.navigateSliderModal(1);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      var overlay = document.getElementById('modal-overlay');
+      if (!overlay || !overlay.classList.contains('is-open') || !overlay.classList.contains('is-minimal')) return;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        AL.navigateSliderModal(-1);
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        AL.navigateSliderModal(1);
+      }
+    });
   }
 
   // ─── SCROLL-ANIMATIONEN (Bento-Grid, Fallback) ───────────────────────────
