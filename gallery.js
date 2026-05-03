@@ -93,6 +93,7 @@
     var overlay = document.getElementById('modal-overlay');
     overlay.classList.remove('is-minimal');
     overlay.classList.add('is-open');
+    document.documentElement.classList.add('modal-open');
     document.body.style.overflowY = 'hidden';
     // Virtuellen History-Schritt setzen → Browser-Zurück schließt Modal, verlässt Seite nicht
     history.pushState({ modalOpen: true }, '');
@@ -130,6 +131,7 @@
     // Overlay erst nach Content-Fade verstecken (300ms Fade + 50ms Puffer)
     setTimeout(function () {
       overlay.classList.remove('is-open', 'is-minimal');
+      document.documentElement.classList.remove('modal-open');
       imgEl.src = '';
     }, 350);
     document.body.style.overflowY = '';
@@ -349,6 +351,7 @@
 
     var overlay = document.getElementById('modal-overlay');
     overlay.classList.add('is-open', 'is-minimal');
+    document.documentElement.classList.add('modal-open');
     document.body.style.overflowY = 'hidden';
     history.pushState({ modalOpen: true }, '');
   };
