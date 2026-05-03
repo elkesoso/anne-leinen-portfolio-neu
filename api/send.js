@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, email, subject, message, website } = req.body ?? {};
+  const { name, email, phone, subject, message, website } = req.body ?? {};
 
   // Honeypot: Bots füllen dieses Feld aus – wir lehnen still ab
   if (website) {
@@ -55,6 +55,11 @@ export default async function handler(req, res) {
           <td style="padding: 8px 16px 8px 0; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888; white-space: nowrap; vertical-align: top;">E-Mail</td>
           <td style="padding: 8px 0; color: #1a1a1a;"><a href="mailto:${escHtml(email)}" style="color: #77591f;">${escHtml(email)}</a></td>
         </tr>
+        ${phone?.trim() ? `
+        <tr>
+          <td style="padding: 8px 16px 8px 0; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888; white-space: nowrap; vertical-align: top;">Telefon</td>
+          <td style="padding: 8px 0; color: #1a1a1a;">${escHtml(phone)}</td>
+        </tr>` : ''}
         ${subject?.trim() ? `
         <tr>
           <td style="padding: 8px 16px 8px 0; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888; white-space: nowrap; vertical-align: top;">Betreff</td>
