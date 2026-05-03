@@ -235,7 +235,7 @@
                + badge
                + '</div>'
                + '<div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
-               + '<span class="text-xs">Mehr Infos</span>'
+               + '<span class="text-xs">Groß ansehen</span>'
                + '</div>'
                + '</div>';
       });
@@ -269,7 +269,7 @@
                + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
                + ' class="w-full h-full object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-500 ease-in-out">'
                + '<div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
-               + '<span class="text-xs">Mehr Infos</span>'
+               + '<span class="text-xs">Groß ansehen</span>'
                + '</div>'
                + '</div>'
                + '<div class="pt-3">'

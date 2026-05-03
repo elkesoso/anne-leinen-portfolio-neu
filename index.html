@@ -73,12 +73,8 @@
   @media (min-width: 768px) {
     #field-message { min-height: 100px; }
   }
-  /* Custom Dropdown */
-  #subject-options { background-color: #ffdea7; border: 1px solid rgba(145,71,86,0.25); }
-  .subject-option:hover { background-color: #e8c17c; }
-  .subject-option { transition: background-color 0.15s ease; }
-  #subject-trigger svg { transition: transform 0.2s ease; }
-  #subject-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .subject-radio input:checked + span { background-color: var(--color-primary); color: #ffffff; border-color: var(--color-primary); }
+  .subject-radio input:focus-visible + span { outline: 2px solid #271900; outline-offset: 2px; }
 </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -254,7 +250,7 @@
            width="1851" height="2000"
            src="INHALTE/startseite/04_kunst-im-raum/Vibrant Energy G.webp"/>
       <div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">
-        <span class="text-xs">Mehr Infos</span>
+        <span class="text-xs">Groß ansehen</span>
       </div>
     </div>
   </div>
@@ -290,28 +286,25 @@
           </div>
         </div>
         <div class="flex flex-col">
-          <label class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Anlass der Anfrage</label>
-          <!-- Natives select (versteckt) – wird per JS aktuell gehalten -->
-          <select id="field-subject" name="subject" style="display:none;">
-            <option value="Kaufinteresse">Kaufinteresse</option>
-            <option value="Auftragsarbeit">Auftragsarbeit</option>
-            <option value="Kooperation">Kooperation</option>
-            <option value="Sonstiges">Sonstiges</option>
-          </select>
-          <!-- Custom Dropdown UI -->
-          <div class="relative">
-            <button type="button" id="subject-trigger"
-              class="w-full flex justify-between items-center border-b border-on-secondary-fixed/30 text-on-secondary-fixed font-body py-2 bg-transparent text-left focus:outline-none"
-              aria-haspopup="listbox" aria-expanded="false">
-              <span id="subject-display">Kaufinteresse</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div id="subject-options" class="hidden absolute left-0 right-0 top-full z-20">
-              <button type="button" class="subject-option w-full text-left px-4 py-3 font-body text-on-secondary-fixed" data-value="Kaufinteresse">Kaufinteresse</button>
-              <button type="button" class="subject-option w-full text-left px-4 py-3 font-body text-on-secondary-fixed" data-value="Auftragsarbeit">Auftragsarbeit</button>
-              <button type="button" class="subject-option w-full text-left px-4 py-3 font-body text-on-secondary-fixed" data-value="Kooperation">Kooperation</button>
-              <button type="button" class="subject-option w-full text-left px-4 py-3 font-body text-on-secondary-fixed" data-value="Sonstiges">Sonstiges</button>
-            </div>
+          <span class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-3">Anlass der Anfrage</span>
+          <input id="field-subject" name="subject" type="hidden" value="Kaufinteresse">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup" aria-label="Anlass der Anfrage">
+            <label class="subject-radio cursor-pointer">
+              <input class="sr-only" type="radio" name="subject-choice" value="Kaufinteresse" checked>
+              <span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">Kaufinteresse</span>
+            </label>
+            <label class="subject-radio cursor-pointer">
+              <input class="sr-only" type="radio" name="subject-choice" value="Auftragsarbeit">
+              <span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">Auftragsarbeit</span>
+            </label>
+            <label class="subject-radio cursor-pointer">
+              <input class="sr-only" type="radio" name="subject-choice" value="Allgemeine Frage zu meiner Kunst">
+              <span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">Allgemeine Frage</span>
+            </label>
+            <label class="subject-radio cursor-pointer">
+              <input class="sr-only" type="radio" name="subject-choice" value="Zusammenarbeit oder Ideen austauschen">
+              <span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">Zusammenarbeit</span>
+            </label>
           </div>
         </div>
         <div class="flex flex-col" style="margin-top:0.75rem;">
@@ -362,7 +355,7 @@
                  transition-colors duration-200
                  hover:bg-primary hover:text-on-primary"
           aria-pressed="true">
-          🎨 Werk
+          Originalbild
         </button>
         <button id="btn-view-mockup"
           class="flex-1 py-2 px-3 font-label text-xs uppercase tracking-widest border
@@ -370,7 +363,7 @@
                  transition-colors duration-200
                  hover:bg-primary hover:text-on-primary"
           aria-pressed="false">
-          🏠 Raumansicht
+          Raumansicht
         </button>
       </div>
       <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
@@ -466,37 +459,16 @@
 </script>
 
 <script>
-  // Custom Dropdown: Trigger ↔ Options-Panel ↔ hidden select
+  // Sichtbare Anfrage-Auswahl → hidden field für den Versand synchron halten
   (function () {
-    var trigger  = document.getElementById('subject-trigger');
-    var panel    = document.getElementById('subject-options');
-    var display  = document.getElementById('subject-display');
-    var select   = document.getElementById('field-subject');
-    if (!trigger) return;
-
-    function close() {
-      panel.classList.add('hidden');
-      trigger.setAttribute('aria-expanded', 'false');
-    }
-    function open() {
-      panel.classList.remove('hidden');
-      trigger.setAttribute('aria-expanded', 'true');
-    }
-
-    trigger.addEventListener('click', function (e) {
-      e.stopPropagation();
-      panel.classList.contains('hidden') ? open() : close();
-    });
-
-    panel.querySelectorAll('.subject-option').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        display.textContent = btn.dataset.value;
-        select.value        = btn.dataset.value;
-        close();
+    var field = document.getElementById('field-subject');
+    var choices = document.querySelectorAll('input[name="subject-choice"]');
+    if (!field || !choices.length) return;
+    choices.forEach(function (choice) {
+      choice.addEventListener('change', function () {
+        if (choice.checked) field.value = choice.value;
       });
     });
-
-    document.addEventListener('click', close);
   })();
 </script>
 </body>
