@@ -109,10 +109,6 @@
               <label for="field-email" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">E-Mail <span class="normal-case tracking-normal opacity-70">(Pflichtfeld)</span></label>
               <input id="field-email" name="email" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="ihre@email.de" type="email" required/>
             </div>
-            <div class="flex flex-col md:col-start-2">
-              <label for="field-phone" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Telefonnummer <span class="normal-case tracking-normal opacity-70">(optional)</span></label>
-              <input id="field-phone" name="phone" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="+49 ..." type="tel"/>
-            </div>
           </div>
           <div class="flex flex-col">
             <span class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-3">Anlass der Anfrage</span>
@@ -299,7 +295,6 @@
 
     const name    = document.getElementById('field-name').value.trim();
     const email   = document.getElementById('field-email').value.trim();
-    const phone   = document.getElementById('field-phone').value.trim();
     const subject = document.getElementById('field-subject').value.trim();
     const message = document.getElementById('field-message').value.trim();
     const btn     = document.getElementById('submit-btn');
@@ -321,7 +316,7 @@
       const res = await fetch('/api/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, subject, message, website: '' }),
+        body: JSON.stringify({ name, email, subject, message, website: '' }),
       });
 
       const data = await res.json();
