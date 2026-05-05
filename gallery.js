@@ -320,7 +320,7 @@
         var label = 'Highlight';
         var highlightSrc = item.mockupPfad || item.pfad;
         var badge = item.meta
-          ? '<span class="font-label text-[10px] md:text-xs leading-snug text-on-surface-variant/70 mt-1 block">' + escH(item.meta) + '</span>'
+          ? '<span class="font-label text-[10px] md:text-xs leading-snug uppercase tracking-[1px] md:tracking-normal text-on-surface-variant/70 mt-2 md:mt-1 block">' + escH(item.meta) + '</span>'
           : '';
         hHtml += '<div class="gallery-item relative overflow-visible md:overflow-hidden cursor-pointer group md:aspect-[3/2] bg-surface md:bg-transparent"'
                + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
@@ -334,7 +334,7 @@
                + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
                + ' class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
                + '</div>'
-               + '<div class="relative mt-3 flex items-start justify-between gap-4 px-1'
+               + '<div class="relative mt-6 px-8'
                + ' md:absolute md:mt-0 md:block md:px-0'
                + ' md:bottom-10 md:left-10 md:max-w-xs'
                + ' md:bg-white/85 md:backdrop-blur-sm md:shadow-xl md:p-8">'
@@ -343,7 +343,9 @@
                + '<h3 class="font-headline text-xl md:text-3xl leading-tight text-on-surface italic">' + escH(item.titel) + '</h3>'
                + badge
                + '</div>'
-               + '<span class="shrink-0 pt-1 font-label text-[10px] tracking-[0.18em] uppercase text-primary md:hidden">Mehr erfahren</span>'
+               + '<div class="mt-5 flex justify-end md:hidden">'
+               + '<span class="font-label text-[10px] tracking-[0.16em] uppercase text-primary bg-secondary-fixed/10 px-6 py-3 rounded-[20px]">Mehr erfahren</span>'
+               + '</div>'
                + '</div>'
                + '<div class="absolute top-4 right-4 hidden md:flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
                + '<span class="text-xs">Mehr erfahren</span>'
