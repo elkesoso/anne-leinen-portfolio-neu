@@ -11,7 +11,6 @@
 
   var _currentGalleryIndex = -1;
   var _currentModalScope = 'all';
-  var HIGHLIGHT_SCROLL_CLOSE_THRESHOLD = 80;
 
   function renderDescriptionHtml(description) {
     var text = String(description || '').trim();
@@ -204,22 +203,6 @@
     return true;
   }
 
-  function getScrollBoundary(textEl) {
-    var maxScrollTop = Math.max(0, textEl.scrollHeight - textEl.clientHeight);
-    return {
-      top: textEl.scrollTop <= 1,
-      bottom: textEl.scrollTop >= maxScrollTop - 1
-    };
-  }
-
-  function shouldUseHighlightScrollClose(overlay) {
-    return overlay
-      && overlay.classList.contains('is-open')
-      && !overlay.classList.contains('is-minimal')
-      && _currentModalScope === 'highlight'
-      && !_modalClosing;
-  }
-
   // Das Modal zeigt immer das Originalbild mit dem passenden Werktext.
   AL.openModal = function (index, startView, scope) {
     _currentModalScope = scope || 'all';
@@ -313,9 +296,6 @@
     var modalNextBtn = document.getElementById('modal-slider-next');
     var desktopPrevBtn = document.getElementById('modal-desktop-prev');
     var desktopNextBtn = document.getElementById('modal-desktop-next');
-    var modalText = document.getElementById('modal-text');
-    var scrollCloseAccumulated = 0;
-    var lastTouchY = null;
     if (!overlay) return;
 
     // Schließen per ╳-Button
@@ -331,54 +311,6 @@
       // Nur stoppen wenn NICHT das Bild selbst geklickt wurde
       if (e.target !== imgEl) e.stopPropagation();
     });
-
-    function resetScrollCloseIntent() {
-      scrollCloseAccumulated = 0;
-    }
-
-    function trackScrollClose(deltaY) {
-      if (!modalText || !shouldUseHighlightScrollClose(overlay) || deltaY === 0) {
-        resetScrollCloseIntent();
-        return;
-      }
-
-      var boundary = getScrollBoundary(modalText);
-      var wantsPastTop = deltaY < 0 && boundary.top;
-      var wantsPastBottom = deltaY > 0 && boundary.bottom;
-
-      if (!wantsPastTop && !wantsPastBottom) {
-        resetScrollCloseIntent();
-        return;
-      }
-
-      scrollCloseAccumulated += Math.abs(deltaY);
-      if (scrollCloseAccumulated >= HIGHLIGHT_SCROLL_CLOSE_THRESHOLD) {
-        resetScrollCloseIntent();
-        AL.closeModal();
-      }
-    }
-
-    if (modalText) {
-      modalText.addEventListener('wheel', function (e) {
-        if (!shouldUseHighlightScrollClose(overlay)) return;
-        trackScrollClose(e.deltaY);
-      }, { passive: true });
-
-      modalText.addEventListener('touchstart', function (e) {
-        lastTouchY = e.touches && e.touches.length ? e.touches[0].clientY : null;
-        resetScrollCloseIntent();
-      }, { passive: true });
-
-      modalText.addEventListener('touchmove', function (e) {
-        if (!shouldUseHighlightScrollClose(overlay) || lastTouchY === null) return;
-        var currentY = e.touches && e.touches.length ? e.touches[0].clientY : lastTouchY;
-        var deltaY = lastTouchY - currentY;
-        lastTouchY = currentY;
-        trackScrollClose(deltaY);
-      }, { passive: true });
-
-      modalText.addEventListener('scroll', resetScrollCloseIntent, { passive: true });
-    }
 
     // Schließen per Escape (Barrierefreiheit)
     document.addEventListener('keydown', function (e) {
