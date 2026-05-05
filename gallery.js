@@ -228,6 +228,8 @@
     var imgEl    = document.getElementById('modal-img');
     var modalPrevBtn = document.getElementById('modal-slider-prev');
     var modalNextBtn = document.getElementById('modal-slider-next');
+    var titlePrevBtn = document.getElementById('modal-title-prev');
+    var titleNextBtn = document.getElementById('modal-title-next');
     if (!overlay) return;
 
     // Schließen per ╳-Button
@@ -281,6 +283,14 @@
       } else {
         AL.navigateArtworkModal(1);
       }
+    });
+    if (titlePrevBtn) titlePrevBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      AL.navigateArtworkModal(-1);
+    });
+    if (titleNextBtn) titleNextBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      AL.navigateArtworkModal(1);
     });
 
     // Browser-Zurück-Button: popstate feuert wenn history.back() ausgelöst wird.

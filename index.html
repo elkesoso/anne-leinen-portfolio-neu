@@ -44,9 +44,24 @@
   @media (max-width: 767px) {
     #modal-overlay { background-color: #6B5A52 !important; }
     html.modal-open { background-color: #6B5A52; }
-    #modal-content { height: auto !important; max-height: 90vh; }
-    #modal-img { height: 40vh !important; }
-    #modal-text { padding: 1.5rem 1.5rem 1.75rem !important; gap: 0.85rem !important; }
+    #modal-overlay { padding: 0 !important; }
+    #modal-content { width: 95vw !important; max-width: 95vw !important; height: auto !important; max-height: 90vh; }
+    #modal-img { width: 100% !important; height: 42vh !important; display: block; }
+    #modal-text { padding: 30px !important; gap: 0.85rem !important; }
+    .modal-title-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .modal-title-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      flex: 0 0 auto;
+      font-family: var(--font-label);
+      font-size: 1.35rem;
+      line-height: 1;
+      color: rgba(39, 25, 0, 0.62);
+    }
+    .modal-title-text { min-width: 0; flex: 1 1 auto; }
     #modal-titel { font-size: 1.35rem !important; line-height: 1.2 !important; }
     #modal-beschreibung { font-size: 0.875rem !important; line-height: 1.62 !important; }
     #modal-beschreibung .modal-description-copy { overflow: hidden; transition: max-height 0.36s ease; }
@@ -69,9 +84,8 @@
       text-transform: uppercase;
       color: var(--color-primary);
     }
-    #modal-overlay:not(.is-minimal) .modal-slider-nav {
-      top: 25vh !important;
-      transform: translateY(-50%) !important;
+    #modal-overlay:not(.is-minimal) > .modal-slider-nav {
+      display: none !important;
     }
   }
   #modal-content { cursor: default; opacity: 0; transition: opacity 0.3s ease-in-out; box-shadow: 0 12px 48px rgba(80, 55, 40, 0.35); }
@@ -396,7 +410,11 @@
           Raumansicht
         </button>
       </div>
-      <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
+      <div class="modal-title-row">
+        <button id="modal-title-prev" type="button" class="modal-title-nav md:hidden" aria-label="Vorheriges Kunstwerk">&lt;</button>
+        <h2 id="modal-titel" class="modal-title-text font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
+        <button id="modal-title-next" type="button" class="modal-title-nav md:hidden" aria-label="Nächstes Kunstwerk">&gt;</button>
+      </div>
       <div id="modal-beschreibung" class="font-body text-sm md:text-[15px] text-on-surface-variant leading-[1.72] space-y-4"></div>
     </div>
   </div>
@@ -413,7 +431,7 @@
 </footer>
 
 <script src="data.js?v=1.8"></script>
-<script src="gallery.js?v=3.3"></script>
+<script src="gallery.js?v=3.4"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
