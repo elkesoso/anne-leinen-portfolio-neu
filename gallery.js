@@ -317,7 +317,6 @@
       var HIGHLIGHT_COUNT = 3;
       var hHtml = '';
       AL.galleryData.slice(0, HIGHLIGHT_COUNT).forEach(function (item, i) {
-        var label = 'Highlight';
         var highlightSrc = item.mockupPfad || item.pfad;
         var badge = item.meta
           ? '<span class="font-label text-xs md:text-xs leading-snug uppercase tracking-[1.5px] md:tracking-normal text-on-surface-variant/70 mt-2 md:mt-1 block text-left">' + escH(item.meta) + '</span>'
@@ -335,20 +334,16 @@
                + ' class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
                + '</div>'
                + '<div class="relative flex items-end justify-between gap-2 pt-6 px-[10%] pb-8 bg-surface'
-               + ' md:absolute md:mt-0 md:block md:px-0'
+               + ' md:absolute md:mt-0 md:block md:px-10 md:py-8'
                + ' md:bottom-10 md:left-10 md:max-w-xs'
-               + ' md:bg-white/85 md:backdrop-blur-sm md:shadow-xl md:p-8">'
+               + ' md:bg-white/85 md:backdrop-blur-sm md:shadow-xl">'
                + '<div class="min-w-0 flex-1">'
-               + '<span class="hidden md:block font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-2">' + label + '</span>'
                + '<h3 class="font-headline text-xl md:text-3xl leading-tight text-on-surface italic text-left">' + escH(item.titel) + '</h3>'
                + badge
                + '</div>'
-               + '<div class="shrink-0 flex justify-end md:hidden">'
-               + '<span class="w-fit font-label text-[11px] tracking-normal uppercase text-primary bg-secondary-fixed/10 px-3 py-2.5 rounded-[20px] whitespace-nowrap">Mehr erfahren</span>'
+               + '<div class="shrink-0 flex justify-end md:justify-start md:mt-5">'
+               + '<span class="w-fit font-label text-[11px] tracking-normal uppercase text-primary bg-secondary-fixed/10 px-3 md:px-5 py-2.5 rounded-[20px] whitespace-nowrap">Mehr erfahren</span>'
                + '</div>'
-               + '</div>'
-               + '<div class="absolute top-4 right-4 hidden md:flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
-               + '<span class="text-xs">Mehr erfahren</span>'
                + '</div>'
                + '</div>';
       });
