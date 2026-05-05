@@ -45,6 +45,70 @@
     return bodyHtml;
   }
 
+  function stripDescriptionDetails(description) {
+    var text = String(description || '').trim();
+    var detailsIndex = text.indexOf('Mixed Media:');
+    return detailsIndex !== -1 ? text.slice(0, detailsIndex).trim() : text;
+  }
+
+  function truncateAtWord(text, maxLength) {
+    text = String(text || '').trim();
+    if (text.length <= maxLength) return text;
+
+    var truncated = text.slice(0, maxLength);
+    var lastSpace = truncated.lastIndexOf(' ');
+    if (lastSpace > 260) {
+      truncated = truncated.slice(0, lastSpace);
+    }
+    return truncated.replace(/[,.!?;:]+$/, '') + '...';
+  }
+
+  function setMobileDescription(container, description) {
+    var fullHtml = renderDescriptionHtml(description);
+    var fullText = stripDescriptionDetails(description);
+    var isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+
+    container.classList.remove('is-collapsed', 'is-expanded');
+    if (!isMobile || fullText.length <= 360) {
+      container.innerHTML = fullHtml;
+      return;
+    }
+
+    var shortHtml = renderDescriptionHtml(truncateAtWord(fullText, 350));
+    container.classList.add('is-collapsed');
+    container.innerHTML = '<div class="modal-description-copy">' + shortHtml + '</div>'
+                        + '<button type="button" class="modal-description-toggle">Mehr lesen</button>';
+
+    var copy = container.querySelector('.modal-description-copy');
+    var button = container.querySelector('.modal-description-toggle');
+    if (!copy || !button) return;
+
+    button.addEventListener('click', function () {
+      if (container.classList.contains('is-expanded')) {
+        copy.style.maxHeight = copy.offsetHeight + 'px';
+        window.requestAnimationFrame(function () {
+          copy.innerHTML = shortHtml;
+          container.classList.remove('is-expanded');
+          container.classList.add('is-collapsed');
+          button.textContent = 'Mehr lesen';
+          copy.style.maxHeight = '';
+        });
+        return;
+      }
+
+      var startHeight = copy.offsetHeight;
+      copy.style.maxHeight = startHeight + 'px';
+      copy.innerHTML = fullHtml;
+      container.classList.remove('is-collapsed');
+      container.classList.add('is-expanded');
+      button.textContent = 'Weniger anzeigen';
+
+      window.requestAnimationFrame(function () {
+        copy.style.maxHeight = copy.scrollHeight + 'px';
+      });
+    });
+  }
+
   function renderArtworkModal(index) {
     var item = AL.galleryData[index];
     if (!item) return false;
@@ -74,7 +138,7 @@
     }
 
     document.getElementById('modal-titel').textContent = item.titel;
-    document.getElementById('modal-beschreibung').innerHTML = renderDescriptionHtml(item.beschreibung);
+    setMobileDescription(document.getElementById('modal-beschreibung'), item.beschreibung);
 
     if (toggle) toggle.classList.add('hidden');
     if (btnWork) btnWork.onclick = null;
@@ -275,7 +339,7 @@
                + '<h3 class="font-headline text-[1.05rem] sm:text-xl md:text-3xl leading-tight text-on-surface italic">' + escH(item.titel) + '</h3>'
                + badge
                + '</div>'
-               + '<div class="absolute top-4 right-4 hidden md:flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
+               + '<div class="absolute top-3 right-3 md:top-4 md:right-4 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-2.5 md:px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
                + '<span class="text-xs">Mehr erfahren</span>'
                + '</div>'
                + '</div>';
