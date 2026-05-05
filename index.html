@@ -46,13 +46,14 @@
     html.modal-open { background-color: #6B5A52; }
     #modal-overlay { padding: 0 !important; }
     #modal-content { width: 95vw !important; max-width: 95vw !important; height: auto !important; max-height: 90vh; }
-    #modal-img { width: 100% !important; height: 42vh !important; display: block; }
+    .modal-image-wrap { width: 100% !important; height: 42vh !important; }
+    #modal-img { width: 100% !important; height: 100% !important; display: block; }
     #modal-text { padding: 30px !important; gap: 0.85rem !important; }
-    #modal-overlay:not(.is-minimal) .modal-slider-nav {
+    #modal-overlay:not(.is-minimal) .modal-image-wrap .modal-slider-nav {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      top: 21vh !important;
+      top: 50% !important;
       width: 2.1rem !important;
       height: 2.1rem !important;
       background-color: rgba(255, 248, 247, 0.42) !important;
@@ -377,18 +378,20 @@
 <!-- MODAL LIGHTBOX -->
 <div id="modal-overlay" class="fixed inset-0 flex items-center justify-center p-4">
   <div id="modal-content" class="relative bg-transparent max-w-5xl w-full flex flex-col md:flex-row h-[90vh] md:h-[82vh] overflow-hidden">
-    <button id="modal-slider-prev" class="modal-slider-nav absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-12 md:h-12 items-center justify-center text-on-surface rounded-full backdrop-blur-sm hover:bg-primary hover:text-on-primary transition-colors" style="background-color: rgba(255, 248, 247, 0.85);" aria-label="Vorheriges Kunstwerk">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-      </svg>
-    </button>
-    <button id="modal-slider-next" class="modal-slider-nav absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-12 md:h-12 items-center justify-center text-on-surface rounded-full backdrop-blur-sm hover:bg-primary hover:text-on-primary transition-colors" style="background-color: rgba(255, 248, 247, 0.85);" aria-label="Nächstes Kunstwerk">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-      </svg>
-    </button>
     <button id="modal-close" class="absolute top-3 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors" aria-label="Schließen">&#10005;</button>
-    <img id="modal-img" src="" alt="" class="w-full md:w-3/5 h-[42vh] md:h-full object-cover"/>
+    <div class="modal-image-wrap relative w-full md:w-3/5 h-[42vh] md:h-full">
+      <button id="modal-slider-prev" class="modal-slider-nav absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-12 md:h-12 items-center justify-center text-on-surface rounded-full backdrop-blur-sm hover:bg-primary hover:text-on-primary transition-colors" style="background-color: rgba(255, 248, 247, 0.85);" aria-label="Vorheriges Kunstwerk">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button id="modal-slider-next" class="modal-slider-nav absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-12 md:h-12 items-center justify-center text-on-surface rounded-full backdrop-blur-sm hover:bg-primary hover:text-on-primary transition-colors" style="background-color: rgba(255, 248, 247, 0.85);" aria-label="Nächstes Kunstwerk">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <img id="modal-img" src="" alt="" class="w-full h-full object-cover"/>
+    </div>
     <div id="modal-text" class="bg-surface p-8 pt-14 md:p-10 md:pt-14 md:w-2/5 h-full flex flex-col justify-start gap-5 overflow-y-auto">
       <!-- View-Toggle: nur sichtbar wenn mockupPfad vorhanden -->
       <div id="modal-view-toggle" class="hidden flex gap-3">
