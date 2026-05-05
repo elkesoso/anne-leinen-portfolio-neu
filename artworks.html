@@ -114,28 +114,21 @@
         padding: 30px !important;
         gap: 0.85rem !important;
       }
-      .modal-title-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-      .modal-title-nav {
+      #modal-overlay:not(.is-minimal) .modal-slider-nav {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 1.75rem;
-        height: 1.75rem;
-        flex: 0 0 auto;
-        font-family: var(--font-label);
-        font-size: 1.35rem;
-        line-height: 1;
-        color: rgba(39, 25, 0, 0.62);
+        top: 21vh !important;
+        width: 2.1rem !important;
+        height: 2.1rem !important;
+        background-color: rgba(255, 248, 247, 0.42) !important;
+        color: rgba(255, 255, 255, 0.92);
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(6px);
       }
-      .modal-title-text {
-        min-width: 0;
-        flex: 1 1 auto;
-      }
+      #modal-overlay:not(.is-minimal) #modal-slider-prev { left: 0.5rem !important; }
+      #modal-overlay:not(.is-minimal) #modal-slider-next { right: 0.5rem !important; }
       #modal-titel {
         font-size: 1.35rem !important;
         line-height: 1.2 !important;
@@ -163,15 +156,13 @@
         pointer-events: none;
       }
       .modal-description-toggle {
-        margin-top: 0.25rem;
+        display: block;
+        margin: 0.25rem 0 0 auto;
         font-family: var(--font-label);
         font-size: 0.68rem;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--color-primary);
-      }
-      #modal-overlay:not(.is-minimal) > .modal-slider-nav {
-        display: none !important;
       }
     }
 
@@ -327,18 +318,18 @@
 
   <!-- MODAL LIGHTBOX -->
   <div id="modal-overlay" class="fixed inset-0 flex items-center justify-center p-4">
-    <button id="modal-slider-prev" class="modal-slider-nav absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-12 md:h-12 items-center justify-center text-on-surface rounded-full backdrop-blur-sm hover:bg-primary hover:text-on-primary transition-colors" style="background-color: rgba(255, 248, 247, 0.85);" aria-label="Vorheriges Kunstwerk">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-      </svg>
-    </button>
-    <button id="modal-slider-next" class="modal-slider-nav absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-12 md:h-12 items-center justify-center text-on-surface rounded-full backdrop-blur-sm hover:bg-primary hover:text-on-primary transition-colors" style="background-color: rgba(255, 248, 247, 0.85);" aria-label="Nächstes Kunstwerk">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-      </svg>
-    </button>
     <div id="modal-content"
       class="relative bg-transparent max-w-5xl w-full flex flex-col md:flex-row h-[90vh] md:h-[82vh] overflow-hidden">
+      <button id="modal-slider-prev" class="modal-slider-nav absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-12 md:h-12 items-center justify-center text-on-surface rounded-full backdrop-blur-sm hover:bg-primary hover:text-on-primary transition-colors" style="background-color: rgba(255, 248, 247, 0.85);" aria-label="Vorheriges Kunstwerk">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button id="modal-slider-next" class="modal-slider-nav absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-12 md:h-12 items-center justify-center text-on-surface rounded-full backdrop-blur-sm hover:bg-primary hover:text-on-primary transition-colors" style="background-color: rgba(255, 248, 247, 0.85);" aria-label="Nächstes Kunstwerk">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
       <button id="modal-close"
         class="absolute top-3 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors"
         aria-label="Schließen">&#10005;</button>
@@ -359,11 +350,7 @@
             Raumansicht
           </button>
         </div>
-        <div class="modal-title-row">
-          <button id="modal-title-prev" type="button" class="modal-title-nav md:hidden" aria-label="Vorheriges Kunstwerk">&lt;</button>
-          <h2 id="modal-titel" class="modal-title-text font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
-          <button id="modal-title-next" type="button" class="modal-title-nav md:hidden" aria-label="Nächstes Kunstwerk">&gt;</button>
-        </div>
+        <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
         <div id="modal-beschreibung" class="font-body text-sm md:text-[15px] text-on-surface-variant leading-[1.72] space-y-4"></div>
       </div>
     </div>
@@ -384,7 +371,7 @@
   </footer>
 
   <script src="data.js?v=1.8"></script>
-  <script src="gallery.js?v=3.4"></script>
+  <script src="gallery.js?v=3.5"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');
