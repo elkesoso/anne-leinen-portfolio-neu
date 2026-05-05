@@ -106,8 +106,13 @@
         max-height: 90vh;
       }
       .modal-image-wrap {
-        width: 100% !important;
-        height: 42vh !important;
+        width: min(100%, calc(52vh * 0.8)) !important;
+        aspect-ratio: 4 / 5;
+        height: auto !important;
+        max-height: 52vh;
+        flex: 0 0 auto;
+        margin-left: auto;
+        margin-right: auto;
       }
       #modal-img {
         width: 100% !important;
@@ -184,8 +189,45 @@
       box-shadow: 0 12px 48px rgba(80, 55, 40, 0.35);
     }
 
+    #modal-overlay:not(.is-minimal) #modal-content {
+      width: min(95vw, 66rem);
+    }
+
+    #modal-overlay:not(.is-minimal) .modal-image-wrap {
+      aspect-ratio: 4 / 5;
+      flex: 0 0 auto;
+      background-color: #2f2724;
+    }
+
+    #modal-overlay:not(.is-minimal) #modal-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    @media (min-width: 768px) {
+      #modal-overlay:not(.is-minimal) #modal-content {
+        height: min(82vh, 46rem);
+      }
+
+      #modal-overlay:not(.is-minimal) .modal-image-wrap {
+        width: auto !important;
+        height: 100% !important;
+      }
+
+      #modal-overlay:not(.is-minimal) #modal-text {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+    }
+
     .modal-slider-nav {
       display: none;
+    }
+    .modal-nav-disabled {
+      pointer-events: none;
+      visibility: hidden;
     }
     #modal-overlay.is-open .modal-slider-nav {
       display: flex;
@@ -232,6 +274,29 @@
       outline: none !important;
     }
     .gallery-item:focus { outline: none !important; }
+
+    .mood-filter-btn {
+      border: 1px solid rgba(255, 222, 167, 0.24);
+      color: rgba(253, 212, 141, 0.68);
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .mood-filter-btn:hover,
+    .mood-filter-btn.is-active {
+      background-color: rgba(255, 222, 167, 0.12);
+      border-color: rgba(255, 222, 167, 0.48);
+      color: var(--color-secondary-fixed);
+    }
+
+    #mood-description,
+    #catalog-grid {
+      transition: opacity 0.28s ease;
+    }
+
+    #mood-description.is-fading,
+    #catalog-grid.is-fading {
+      opacity: 0;
+    }
 
     /* Gold-Placeholder für Bilder während des Ladens */
     .img-gold-placeholder {
@@ -315,7 +380,7 @@
     </header>
 
     <!-- HIGHLIGHT-SEKTION (Bilder 0–2): Editorial, einspaltig, Overlay-Design -->
-    <section class="px-8 md:px-16 mb-20">
+    <section id="highlights" class="px-8 md:px-16 mb-20">
       <div class="mb-10 flex justify-between items-baseline">
         <h2 class="font-headline text-2xl text-secondary-fixed">Highlights</h2>
         <span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs">Auswahl</span>
@@ -330,26 +395,25 @@
       <div class="border-t border-secondary-fixed/20"></div>
     </div>
 
-    <!-- KATALOG-SEKTION (Index 3–14 initial, 15–26 versteckt): 2/3/4-spaltig -->
-    <section class="px-8 md:px-16 mb-12">
+    <!-- ALLE WERKE-SEKTION: eigener Katalog mit Stimmungsfilter, getrennt von den Highlights -->
+    <section id="all-works" class="px-8 md:px-16 mb-12">
       <div class="mb-10 flex justify-between items-baseline">
         <h2 class="font-headline text-2xl text-secondary-fixed">Alle Werke</h2>
         <span id="catalog-count"
           class="font-label text-secondary-container/60 tracking-widest uppercase text-xs"></span>
       </div>
+      <div id="mood-filter-bar" class="mb-8 flex flex-wrap gap-3 font-label text-[10px] uppercase tracking-[0.22em]" aria-label="Werke nach Stimmung filtern">
+        <button type="button" class="mood-filter-btn is-active px-5 py-3" data-mood-filter="all" aria-pressed="true">Alle</button>
+        <button type="button" class="mood-filter-btn px-5 py-3" data-mood-filter="dynamik" aria-pressed="false">Dynamik</button>
+        <button type="button" class="mood-filter-btn px-5 py-3" data-mood-filter="stille" aria-pressed="false">Stille</button>
+        <button type="button" class="mood-filter-btn px-5 py-3" data-mood-filter="weite" aria-pressed="false">Weite</button>
+        <button type="button" class="mood-filter-btn px-5 py-3" data-mood-filter="materie" aria-pressed="false">Materie</button>
+      </div>
+      <p id="mood-description" class="hidden max-w-3xl mb-10 font-headline text-xl md:text-2xl italic leading-relaxed text-secondary-fixed"></p>
       <div id="catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 grid-flow-row-dense">
         <!-- von gallery.js befüllt -->
       </div>
     </section>
-
-    <!-- WEITERE WERKE ENTDECKEN (initial hidden, per JS eingeblendet wenn >10 Items) -->
-    <div id="btn-mehr-container" class="hidden text-center px-8 py-12">
-      <button id="btn-mehr-ansehen"
-        class="font-label text-sm uppercase tracking-[0.3em] text-secondary-fixed border border-secondary-fixed/40 px-12 py-4 hover:bg-secondary-fixed/20 transition-all duration-300">
-        WEITERE WERKE ENTDECKEN
-      </button>
-    </div>
-
 
   </main>
 
@@ -419,8 +483,8 @@
     </div>
   </footer>
 
-  <script src="data.js?v=1.8"></script>
-  <script src="gallery.js?v=3.9"></script>
+  <script src="data.js?v=1.9"></script>
+  <script src="gallery.js?v=4.2"></script>
   <script>
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');

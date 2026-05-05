@@ -10,6 +10,7 @@
   // ─── MODAL ───────────────────────────────────────────────────────────────
 
   var _currentGalleryIndex = -1;
+  var _currentModalScope = 'all';
 
   function renderDescriptionHtml(description) {
     var text = String(description || '').trim();
@@ -109,11 +110,65 @@
     });
   }
 
-  function renderArtworkModal(index) {
+  function getModalScopeIndices(scope) {
+    var total = AL.galleryData ? AL.galleryData.length : 0;
+    if (scope === 'highlight') return [0, 1, 2].filter(function (index) { return index < total; });
+    if (scope === 'catalog') {
+      var catalogGrid = document.getElementById('catalog-grid');
+      if (catalogGrid) {
+        var visibleCatalogItems = catalogGrid.querySelectorAll('[data-catalog-item="true"]:not(.hidden)');
+        var visibleIndices = Array.prototype.map.call(visibleCatalogItems, function (item) {
+          return parseInt(item.getAttribute('data-gallery-index'), 10);
+        }).filter(function (index) {
+          return !isNaN(index) && index >= 0 && index < total;
+        });
+        if (visibleIndices.length) return visibleIndices;
+      }
+
+      var catalogIndices = [];
+      for (var i = 3; i < total; i++) catalogIndices.push(i);
+      return catalogIndices;
+    }
+
+    var allIndices = [];
+    for (var j = 0; j < total; j++) allIndices.push(j);
+    return allIndices;
+  }
+
+  function updateArtworkNavigationState() {
+    var scopeIndices = getModalScopeIndices(_currentModalScope);
+    var currentPosition = scopeIndices.indexOf(_currentGalleryIndex);
+    var isBoundedScope = _currentModalScope === 'highlight' || _currentModalScope === 'catalog';
+    var atStart = isBoundedScope && currentPosition <= 0;
+    var atEnd = isBoundedScope && currentPosition >= scopeIndices.length - 1;
+    var prevButtons = [
+      document.getElementById('modal-slider-prev'),
+      document.getElementById('modal-desktop-prev')
+    ];
+    var nextButtons = [
+      document.getElementById('modal-slider-next'),
+      document.getElementById('modal-desktop-next')
+    ];
+
+    function setDisabled(buttons, disabled) {
+      buttons.forEach(function (button) {
+        if (!button) return;
+        button.disabled = disabled;
+        button.setAttribute('aria-hidden', disabled ? 'true' : 'false');
+        button.classList.toggle('modal-nav-disabled', disabled);
+      });
+    }
+
+    setDisabled(prevButtons, atStart);
+    setDisabled(nextButtons, atEnd);
+  }
+
+  function renderArtworkModal(index, scope) {
     var item = AL.galleryData[index];
     if (!item) return false;
 
     _currentGalleryIndex = index;
+    if (scope) _currentModalScope = scope;
 
     var img     = document.getElementById('modal-img');
     var content = document.getElementById('modal-content');
@@ -121,8 +176,8 @@
     var btnWork   = document.getElementById('btn-view-work');
     var btnMockup = document.getElementById('btn-view-mockup');
 
-    img.classList.remove('object-cover', 'bg-white', 'bg-surface');
-    img.classList.add('object-contain');
+    img.classList.remove('object-contain', 'bg-white', 'bg-surface');
+    img.classList.add('object-cover', 'object-center');
 
     content.style.opacity = '0';
     img.onload = function () {
@@ -143,13 +198,15 @@
     if (toggle) toggle.classList.add('hidden');
     if (btnWork) btnWork.onclick = null;
     if (btnMockup) btnMockup.onclick = null;
+    updateArtworkNavigationState();
 
     return true;
   }
 
   // Das Modal zeigt immer das Originalbild mit dem passenden Werktext.
-  AL.openModal = function (index, startView) {
-    if (!renderArtworkModal(index)) return;
+  AL.openModal = function (index, startView, scope) {
+    _currentModalScope = scope || 'all';
+    if (!renderArtworkModal(index, _currentModalScope)) return;
 
     var overlay = document.getElementById('modal-overlay');
     overlay.classList.remove('is-minimal');
@@ -163,7 +220,7 @@
   // Öffnet das Modal anhand eines Namens-Fragments (Titel oder Pfad-Substring).
   // Robuster als Index-basierter Aufruf – funktioniert auch nach Umsortierung.
   // startView: 'work' (Standard) oder 'mockup'
-  AL.openModalByName = function (name, startView) {
+  AL.openModalByName = function (name, startView, scope) {
     var found = -1;
     AL.galleryData.forEach(function (item, i) {
       if (found !== -1) return;
@@ -172,7 +229,7 @@
       }
     });
     if (found !== -1) {
-      AL.openModal(found, startView);
+      AL.openModal(found, startView, scope);
     } else {
       console.warn('openModalByName: kein Eintrag gefunden für "' + name + '"');
     }
@@ -180,9 +237,18 @@
 
   AL.navigateArtworkModal = function (direction) {
     if (!AL.galleryData || !AL.galleryData.length || _currentGalleryIndex < 0) return;
-    var total = AL.galleryData.length;
-    var nextIndex = (_currentGalleryIndex + direction + total) % total;
-    renderArtworkModal(nextIndex);
+    var scopeIndices = getModalScopeIndices(_currentModalScope);
+    if (!scopeIndices.length) return;
+
+    var currentPosition = scopeIndices.indexOf(_currentGalleryIndex);
+    if (currentPosition === -1) currentPosition = 0;
+    if (_currentModalScope === 'highlight' || _currentModalScope === 'catalog') {
+      if (direction < 0 && currentPosition === 0) return;
+      if (direction > 0 && currentPosition === scopeIndices.length - 1) return;
+    }
+
+    var nextPosition = (currentPosition + direction + scopeIndices.length) % scopeIndices.length;
+    renderArtworkModal(scopeIndices[nextPosition], _currentModalScope);
   };
 
   // Flag: verhindert Doppel-Zurück wenn closeModal() und popstate gleichzeitig feuern
@@ -314,6 +380,110 @@
   function escA(s) { return String(s).replace(/"/g, '&quot;'); }
   function escH(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
+  var MOOD_BY_TITLE = {
+    'fire dance': 'dynamik',
+    'self-confidence in color': 'dynamik',
+    'spring fever': 'dynamik',
+    'infinite future': 'dynamik',
+    'life energy': 'dynamik',
+    'utopia of rhythm': 'dynamik',
+    'dance of tides': 'stille',
+    'embedded': 'stille',
+    'synapse deep blue remstage': 'stille',
+    'tightrope walking': 'stille',
+    'visibility': 'stille',
+    'solyra – deep yet light': 'stille',
+    'aurora bloom': 'weite',
+    'awakening in pastel': 'weite',
+    'feminine galaxy': 'weite',
+    'her current': 'weite',
+    'her momentum': 'weite',
+    'violet tale': 'weite',
+    'voices in color': 'weite',
+    'whispers of the sea': 'materie',
+    'crystalline breath': 'materie',
+    'rainbow home': 'materie',
+    'metamorphosis': 'materie',
+    'epizentrum': 'materie'
+  };
+
+  var MOOD_DESCRIPTIONS = {
+    dynamik: 'Energie in Farbe und Form. Diese Werke fangen den Moment der Bewegung ein.',
+    stille: 'Ein Rückzug in die Tiefe. Getragen von kühlen Blau- und Erdtönen.',
+    weite: 'Sphärische Welten ohne Grenzen. Raum für Träume und Visionen.',
+    materie: 'Die Haptik des Seins. Werke, die die raue Schönheit von Strukturen zelebrieren.'
+  };
+
+  function normalizeTitle(title) {
+    return String(title || '').trim().replace(/\s+/g, ' ').toLowerCase();
+  }
+
+  function getArtworkMood(item) {
+    return MOOD_BY_TITLE[normalizeTitle(item && item.titel)] || '';
+  }
+
+  function initMoodFilters(catalogGrid, countEl) {
+    var filterBar = document.getElementById('mood-filter-bar');
+    var moodDescription = document.getElementById('mood-description');
+    if (!filterBar || !moodDescription || !catalogGrid) return;
+
+    var filterButtons = Array.prototype.slice.call(filterBar.querySelectorAll('[data-mood-filter]'));
+
+    function updateCount() {
+      if (!countEl) return;
+      var visibleItems = catalogGrid.querySelectorAll('[data-catalog-item]:not(.hidden)').length;
+      countEl.textContent = visibleItems + ' Werke';
+    }
+
+    function setActiveButton(activeMood) {
+      filterButtons.forEach(function (button) {
+        var isActive = button.getAttribute('data-mood-filter') === activeMood;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    }
+
+    function applyMoodFilter(activeMood) {
+      setActiveButton(activeMood);
+      catalogGrid.classList.add('is-fading');
+      moodDescription.classList.add('is-fading');
+
+      setTimeout(function () {
+        var items = catalogGrid.querySelectorAll('[data-catalog-item]');
+        items.forEach(function (item) {
+          if (activeMood === 'all') {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.toggle('hidden', item.getAttribute('data-mood') !== activeMood);
+          }
+        });
+
+        if (activeMood === 'all') {
+          moodDescription.textContent = '';
+          moodDescription.classList.add('hidden');
+        } else {
+          moodDescription.textContent = MOOD_DESCRIPTIONS[activeMood] || '';
+          moodDescription.classList.remove('hidden');
+        }
+
+        updateCount();
+
+        window.requestAnimationFrame(function () {
+          catalogGrid.classList.remove('is-fading');
+          moodDescription.classList.remove('is-fading');
+        });
+      }, 180);
+    }
+
+    filterButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        applyMoodFilter(button.getAttribute('data-mood-filter') || 'all');
+      });
+    });
+
+    updateCount();
+  }
+
   function initGalleryGrid() {
     // Schutz-Abfrage: Nicht auf Seiten ohne Galerie ausführen (z.B. exhibitions.html).
     // Verhindert unnötige DOM-Suchen und mögliche Folgefehler auf fremden Seiten.
@@ -332,10 +502,10 @@
           ? '<span class="font-label text-xs md:text-[11px] leading-snug uppercase tracking-[1.5px] md:tracking-[2px] text-on-surface-variant/70 mt-2 md:mt-3 block text-left">' + escH(item.meta) + '</span>'
           : '';
         hHtml += '<div class="gallery-item relative overflow-visible cursor-pointer group md:aspect-[3/2] bg-surface md:bg-transparent"'
-               + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
+               + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\', null, \'highlight\')"'
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
-               + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')">'
+               + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\', null, \'highlight\')">'
                + '<div class="relative aspect-[3/2] overflow-hidden img-gold-placeholder md:absolute md:inset-0">'
                + '<img src="' + highlightSrc + '"'
                + ' alt="' + escA(item.titel) + '"'
@@ -360,33 +530,32 @@
     }
 
     // ── Katalog-Sektion: Index 3 bis Ende (kompaktes Grid, Card-Design) ──────
-    // INITIAL_TOTAL = 15: 3 Highlights + 12 Katalog
-    // 12 ist durch 2 (Mobile), 3 (Tablet) und 4 (Desktop) teilbar → keine Lücken
     if (catalogGrid) {
-      var INITIAL_TOTAL   = 15;
       var HIGHLIGHT_COUNT = 3;
       var catalogItems    = AL.galleryData.slice(HIGHLIGHT_COUNT);
       var cHtml = '';
 
       catalogItems.forEach(function (item, i) {
         var globalIdx = i + HIGHLIGHT_COUNT;
-        var isHidden  = globalIdx >= INITIAL_TOTAL;
         var lazyAttr  = globalIdx >= 5 ? 'loading="lazy" decoding="async"' : 'decoding="async"';
-        var hiddenCls = isHidden ? ' hidden' : '';
+        var mood      = getArtworkMood(item);
 
-        cHtml += '<div class="gallery-item cursor-pointer group' + hiddenCls + '"'
-               + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
+        cHtml += '<div class="gallery-item cursor-pointer group"'
+               + ' data-catalog-item="true"'
+               + ' data-gallery-index="' + globalIdx + '"'
+               + ' data-mood="' + escA(mood) + '"'
+               + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\', null, \'catalog\')"'
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
-               + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')">'
+               + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\', null, \'catalog\')">'
                + '<div class="relative overflow-hidden aspect-[3/4] min-h-[200px] img-gold-placeholder">'
                + '<img src="' + item.thumbnailPfad + '"'
                + ' alt="' + escA(item.titel) + '"'
                + ' ' + lazyAttr
                + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
                + ' class="w-full h-full object-cover group-hover:scale-105 group-hover:brightness-110 transition-all duration-500 ease-in-out">'
-               + '<div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
-               + '<span class="text-xs">Groß ansehen</span>'
+               + '<div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-[#6f5a4f]/88 backdrop-blur-md text-surface rounded-[20px] px-4 py-2 border border-secondary-fixed/25 group-hover:bg-[#5b473d] transition-colors duration-300">'
+               + '<span class="font-label text-[11px] uppercase tracking-normal whitespace-nowrap">Mehr erfahren</span>'
                + '</div>'
                + '</div>'
                + '<div class="pt-3">'
@@ -397,24 +566,8 @@
 
       catalogGrid.innerHTML = cHtml;
 
-      // Werkanzahl anzeigen
       var countEl = document.getElementById('catalog-count');
-      if (countEl) countEl.textContent = catalogItems.length + ' Werke';
-
-      // "Mehr ansehen"-Button: nur einblenden wenn versteckte Elemente vorhanden
-      var hiddenItems  = catalogGrid.querySelectorAll('.hidden');
-      var btnContainer = document.getElementById('btn-mehr-container');
-      var btnMehr      = document.getElementById('btn-mehr-ansehen');
-
-      if (hiddenItems.length > 0 && btnContainer) {
-        btnContainer.classList.remove('hidden');
-        if (btnMehr) {
-          btnMehr.addEventListener('click', function () {
-            hiddenItems.forEach(function (el) { el.classList.remove('hidden'); });
-            btnContainer.classList.add('hidden');
-          });
-        }
-      }
+      initMoodFilters(catalogGrid, countEl);
     }
   }
 
@@ -439,6 +592,9 @@
 
     var img     = document.getElementById('modal-img');
     var content = document.getElementById('modal-content');
+
+    img.classList.remove('object-contain', 'bg-white', 'bg-surface');
+    img.classList.add('object-cover', 'object-center');
 
     // Inhalt verstecken bis Bild geladen (kein weißer Kasten-Blitz)
     content.style.opacity = '0';

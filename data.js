@@ -151,7 +151,7 @@ window.AnneLeinen.galleryData = [
   },
   {
     titel:         "Infinite Future",
-    beschreibung:  "Text folgt...",
+    beschreibung:  "Mein Gemälde verkörpert Bewegung als unendliche Möglichkeit — ein Zusammenspiel von Farbe, Linie und Raum.\n\nAcryl, Pastellkreide und Sprühtechniken verschmelzen in dynamischen Schichten und erzeugen eine visuelle Tiefe, die stetigen Wandel und offene Wege evoziert.\n\nDie sanften Farbverläufe, kontrastiert durch kräftige Akzente, symbolisieren den ewigen Fluss von Gedanken, Visionen und Entwicklungen — und laden den Betrachter ein, in ihre eigene Vorstellung einer grenzenlosen Zukunft einzutauchen.\n\nMixed Media: Acryl, Pastellkreide und Spray | Leinwand 80 × 60 cm | November 2024",
     pfad:          "INHALTE/kunstwerke/alle-gemaelde/webp/Infinite Future.webp",
     thumbnailPfad: "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Infinite Future.webp",
     mockupPfad:    "",
