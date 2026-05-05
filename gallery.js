@@ -256,7 +256,7 @@
         var label = 'Highlight';
         var highlightSrc = item.mockupPfad || item.pfad;
         var badge = item.meta
-          ? '<span class="font-label text-xs text-on-surface-variant/70 mt-1 block">' + escH(item.meta) + '</span>'
+          ? '<span class="font-label text-[10px] md:text-xs leading-snug text-on-surface-variant/70 mt-1 block">' + escH(item.meta) + '</span>'
           : '';
         hHtml += '<div class="gallery-item relative overflow-hidden cursor-pointer group aspect-[3/2] img-gold-placeholder"'
                + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
@@ -270,12 +270,12 @@
                + ' class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
                + '<div class="absolute bottom-0 left-0 right-0'
                + ' md:bottom-10 md:left-10 md:right-auto md:max-w-xs'
-               + ' bg-white/85 backdrop-blur-sm shadow-xl p-6 md:p-8">'
-               + '<span class="font-label text-[10px] tracking-[0.3em] uppercase text-primary mb-2 block">' + label + '</span>'
-               + '<h3 class="font-headline text-2xl md:text-3xl text-on-surface italic">' + escH(item.titel) + '</h3>'
+               + ' bg-white/85 backdrop-blur-sm shadow-xl p-4 sm:p-5 md:p-8">'
+               + '<span class="font-label text-[8px] md:text-[10px] tracking-[0.22em] md:tracking-[0.3em] uppercase text-primary mb-1 md:mb-2 block">' + label + '</span>'
+               + '<h3 class="font-headline text-[1.05rem] sm:text-xl md:text-3xl leading-tight text-on-surface italic">' + escH(item.titel) + '</h3>'
                + badge
                + '</div>'
-               + '<div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
+               + '<div class="absolute top-4 right-4 hidden md:flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
                + '<span class="text-xs">Mehr erfahren</span>'
                + '</div>'
                + '</div>';
