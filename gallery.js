@@ -319,9 +319,9 @@
       AL.galleryData.slice(0, HIGHLIGHT_COUNT).forEach(function (item, i) {
         var highlightSrc = item.mockupPfad || item.pfad;
         var badge = item.meta
-          ? '<span class="font-label text-xs md:text-xs leading-snug uppercase tracking-[1.5px] md:tracking-normal text-on-surface-variant/70 mt-2 md:mt-1 block text-left">' + escH(item.meta) + '</span>'
+          ? '<span class="font-label text-xs md:text-[11px] leading-snug uppercase tracking-[1.5px] md:tracking-[2px] text-on-surface-variant/70 mt-2 md:mt-3 block text-left">' + escH(item.meta) + '</span>'
           : '';
-        hHtml += '<div class="gallery-item relative overflow-visible md:overflow-hidden cursor-pointer group md:aspect-[3/2] bg-surface md:bg-transparent"'
+        hHtml += '<div class="gallery-item relative overflow-visible cursor-pointer group md:aspect-[3/2] bg-surface md:bg-transparent"'
                + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
@@ -334,15 +334,14 @@
                + ' class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
                + '</div>'
                + '<div class="relative flex items-end justify-between gap-2 pt-6 px-[10%] pb-8 bg-surface'
-               + ' md:absolute md:mt-0 md:block md:px-10 md:py-8'
-               + ' md:bottom-10 md:left-10 md:max-w-xs'
-               + ' md:bg-white/85 md:backdrop-blur-sm md:shadow-xl">'
+               + ' md:absolute md:block md:left-0 md:bottom-0 md:w-[30%] md:min-w-[240px] md:max-w-[340px] md:translate-y-1/2'
+               + ' md:bg-white/88 md:backdrop-blur-sm md:shadow-[0_18px_45px_rgba(34,25,26,0.18)] md:p-6">'
                + '<div class="min-w-0 flex-1">'
-               + '<h3 class="font-headline text-xl md:text-3xl leading-tight text-on-surface italic text-left">' + escH(item.titel) + '</h3>'
+               + '<h3 class="font-headline text-xl md:text-[20px] leading-tight text-on-surface italic text-left">' + escH(item.titel) + '</h3>'
                + badge
                + '</div>'
-               + '<div class="shrink-0 flex justify-end md:justify-start md:mt-5">'
-               + '<span class="w-fit font-label text-[11px] tracking-normal uppercase text-primary bg-secondary-fixed/10 px-3 md:px-5 py-2.5 rounded-[20px] whitespace-nowrap">Mehr erfahren</span>'
+               + '<div class="mt-5 flex justify-end md:justify-start">'
+               + '<span class="w-fit font-label text-[11px] tracking-normal uppercase text-primary bg-secondary-fixed/15 border border-secondary-fixed/30 px-4 py-2 rounded-[20px] whitespace-nowrap transition-colors duration-300 group-hover:bg-secondary-fixed/25">Mehr erfahren</span>'
                + '</div>'
                + '</div>'
                + '</div>';
