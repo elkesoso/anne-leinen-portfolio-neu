@@ -35,28 +35,31 @@ window.AnneLeinen.sliderData = [
 // Vollständige Daten für das Bento-Grid.
 window.AnneLeinen.galleryData = [
   {
-    titel:         "Metamorphosis",
-    beschreibung:  "Eine kraftvolle Transformation in Schichten aus Pigment und Metall. Das Werk lädt ein, den eigenen Wandel zu spüren.",
-    pfad:          "INHALTE/kunstwerke/alle-gemaelde/webp/Metamorphosis.webp",
+    titel: "Metamorphosis",
+    beschreibung: "Dieses Werk entstand unter Einbezug eines recycelten Materials: ein kleines Angelnetz, das ganz allein auf dem Asphalt lag, wurde von mir aufgesammelt und in das Werk eingebettet. Es trägt die Spuren seines früheren Lebens. Spürst du seine Geschichte? Die Farben – Blau, Gold, Braun, Schwarz und Grau – wurden bewusst gewählt, um Kontraste und Harmonien zu erzeugen, während kantige Strukturen Spannung und Energie schaffen. Die einzige fast kreisförmige Form im Bild symbolisiert Wiederverwertung und Transformation: Aus Altem entsteht Neues. Das kleine Angelnetz verweist subtil auf Nachhaltigkeit und die unsichtbare Verbindung zwischen Mensch und Umwelt. Jede Linie, jede Fläche erinnert daran, dass wir als Künstlerinnen und Künstler die Möglichkeit haben, aus gefundenen Materialien neue Geschichten und Werte zu erschaffen. Mixed Media: Acryl, Strukturpaste und Tusche | Leinwand 40x50 cm | August 2025",
+    pfad: "INHALTE/kunstwerke/alle-gemaelde/webp/Metamorphosis.webp",
     thumbnailPfad: "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Metamorphosis.webp",
-    mockupPfad:    "",
-    layoutClass:   "col-span-2 row-span-2 md:col-span-2 md:row-span-2"
+    mockupPfad: "INHALTE/kunstwerke/mockups/metamorphosis.webp",
+    meta: "Mixed Media | 40x50 cm",
+    layoutClass: "col-span-2 row-span-2 md:col-span-2 md:row-span-2"
   },
   {
-    titel:         "Vibrant Energy",
-    beschreibung:  "Lebendige Energie in Goldtönen – ein Werk, das den Raum zum Leuchten bringt.",
-    pfad:          "INHALTE/kunstwerke/alle-gemaelde/webp/Vibrant Energy.webp",
+    titel: "Vibrant Energy",
+    beschreibung: "Farben, die tanzen – Violett, Pink, Türkis und Gold wirbeln frei über die Leinwand und verweben sich zu einer farbenfrohen, harmonischen Komposition. Ein Bild voller Bewegung und Leichtigkeit, das die Lebensenergie spürbar macht – unbeschwert, frei, lebendig. Die Mischung aus Acrylfarben, Recycling-Materialien, Epoxidharzpulver und handgemachten Strukturpasten gibt dem Werk Tiefe und Charakter. Jeder Blick entdeckt neue Details, wie einzelne Tanzschritte in einem großen, fließenden Rhythmus. Mein Gemälde ist ein Fest der Farben – eine Einladung, die Freude am Leben, am Ausdruck und an der eigenen Freiheit zu feiern. Mixed Media: Acryl, Recycling-Materialien, Epoxidharzpulver & selbstgemachte Strukturpasten | Leinwand 80x60 cm | September 2025",
+    pfad: "INHALTE/kunstwerke/alle-gemaelde/webp/Vibrant Energy.webp",
     thumbnailPfad: "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Vibrant Energy.webp",
-    mockupPfad:    "INHALTE/startseite/04_kunst-im-raum/Vibrant Energy G.webp",
-    layoutClass:   "col-span-1 row-span-2"
+    mockupPfad: "INHALTE/kunstwerke/mockups/Vibrant Energy.webp",
+    meta: "Mixed Media | 80x60 cm",
+    layoutClass: "col-span-1 row-span-2"
   },
   {
-    titel:         "Epizentrum",
-    beschreibung:  "Im Zentrum liegt die Stille. Dieses Werk erkundet die Spannung zwischen Bewegung und Beständigkeit.",
-    pfad:          "INHALTE/kunstwerke/alle-gemaelde/webp/Epizentrum.webp",
+    titel: "Epizentrum",
+    beschreibung: "Rot wie glühende Lava, Orange wie brennende Hitze, Braun wie verbrannte Erde. Schwarz und Grün verdichten sich im Kern – dort, wo das Beben beginnt. Mit verschiedenen Strukturen habe ich das Spannungsfeld zwischen Energie und Kraft geschaffen. Im Zentrum pulsiert das Epizentrum – Sinnbild für die Reaktion der Erde auf den Klimawandel. Die aufgebrochene 3D Oberfläche steht für Druck, Erschütterung und die innere Wucht. Mein Werk thematisiert die Klimakrise als Naturgewalt. „Epizentrum“ ist Teil meiner Serie über Umweltzerstörung, Klimawandel und die fragile Verbindung zwischen Mensch und Erde. Mixed Media: Acryl, selbstgemachte Strukturpasten, Epoxidharz & Recycling-Materialien | Leinwand 70x50 | September 2025",
+    pfad: "INHALTE/kunstwerke/alle-gemaelde/webp/Epizentrum.webp",
     thumbnailPfad: "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Epizentrum.webp",
-    mockupPfad:    "",
-    layoutClass:   "col-span-1 row-span-1"
+    mockupPfad: "INHALTE/kunstwerke/mockups/Epizentrum.webp",
+    meta: "Mixed Media | 70x50 cm",
+    layoutClass: "col-span-1 row-span-1"
   },
   {
     titel:         "Dance of Tides",

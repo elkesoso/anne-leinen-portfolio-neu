@@ -31,10 +31,10 @@
   html { scroll-behavior: smooth; }
   /* Minimale Lightbox für den Slider (Klasse .is-minimal auf #modal-overlay) */
   .is-minimal #modal-text        { display: none; }
-  .is-minimal #modal-content     { background: transparent; max-width: 90vw; justify-content: center; }
+  .is-minimal #modal-content     { background: transparent; max-width: 90vw; height: auto; justify-content: center; }
   .is-minimal #modal-img         { max-width: 90vw; max-height: 90vh; width: auto; height: auto; object-fit: contain; }
   .modal-slider-nav              { display: none; }
-  .is-minimal .modal-slider-nav  { display: flex; }
+  #modal-overlay.is-open .modal-slider-nav { display: flex; }
   /* Schließen-Button bleibt gut sichtbar (weißer Hintergrund-Kreis) */
   .is-minimal #modal-close       { color: var(--color-on-surface); background: color-mix(in srgb, var(--color-surface) 85%, transparent); border-radius: 9999px; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; }
   /* Modal: Cursor-Feedback + Übergangsanimation */
@@ -240,11 +240,11 @@
       </div>
     </div>
     <div class="relative z-10 order-1 lg:order-2 overflow-hidden shadow-2xl max-w-sm mx-auto cursor-pointer group"
-         onclick="AnneLeinen.openModalByName('Vibrant Energy', 'mockup')"
+         onclick="AnneLeinen.openModalByName('Vibrant Energy')"
          role="button"
          tabindex="0"
          aria-label="Vibrant Energy – Bild vergrößern"
-         onkeydown="if(event.key==='Enter'||event.key===' ')AnneLeinen.openModalByName('Vibrant Energy', 'mockup')">
+         onkeydown="if(event.key==='Enter'||event.key===' ')AnneLeinen.openModalByName('Vibrant Energy')">
       <img alt="Vibrant Energy – Kunstwerk im Raum"
            class="w-full h-auto hover:scale-105 transition-transform duration-500"
            loading="lazy"
@@ -344,10 +344,10 @@
       <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
     </svg>
   </button>
-  <div id="modal-content" class="relative bg-surface max-w-5xl w-full flex flex-col md:flex-row max-h-[90vh] overflow-hidden">
-    <button id="modal-close" class="absolute top-4 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors" aria-label="Schließen">&#10005;</button>
-    <img id="modal-img" src="" alt="" class="w-full md:w-3/5 object-cover max-h-[50vh] md:max-h-[90vh]"/>
-    <div id="modal-text" class="p-8 md:w-2/5 flex flex-col justify-center gap-6">
+  <div id="modal-content" class="relative bg-transparent max-w-5xl w-full flex flex-col md:flex-row h-[90vh] md:h-[82vh] overflow-hidden">
+    <button id="modal-close" class="absolute top-3 right-4 z-10 text-on-surface text-3xl leading-none hover:text-primary transition-colors" aria-label="Schließen">&#10005;</button>
+    <img id="modal-img" src="" alt="" class="w-full md:w-3/5 h-[42vh] md:h-full object-cover"/>
+    <div id="modal-text" class="bg-surface p-8 pt-14 md:p-10 md:pt-14 md:w-2/5 h-full flex flex-col justify-start gap-5 overflow-y-auto">
       <!-- View-Toggle: nur sichtbar wenn mockupPfad vorhanden -->
       <div id="modal-view-toggle" class="hidden flex gap-3">
         <button id="btn-view-work"
@@ -368,7 +368,7 @@
         </button>
       </div>
       <h2 id="modal-titel" class="font-headline text-2xl md:text-3xl text-on-surface italic"></h2>
-      <p id="modal-beschreibung" class="font-body text-on-surface-variant leading-relaxed"></p>
+      <div id="modal-beschreibung" class="font-body text-sm md:text-[15px] text-on-surface-variant leading-[1.72] space-y-4"></div>
     </div>
   </div>
 </div>
@@ -383,8 +383,8 @@
   </div>
 </footer>
 
-<script src="data.js?v=1.5"></script>
-<script src="gallery.js?v=1.7"></script>
+<script src="data.js?v=1.8"></script>
+<script src="gallery.js?v=2.6"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');

@@ -9,10 +9,47 @@
 
   // ─── MODAL ───────────────────────────────────────────────────────────────
 
-  // startView: 'work' (Standard) oder 'mockup' – legt fest, welches Bild zuerst gezeigt wird
-  AL.openModal = function (index, startView) {
+  var _currentGalleryIndex = -1;
+
+  function renderDescriptionHtml(description) {
+    var text = String(description || '').trim();
+    if (!text) return '';
+
+    var details = '';
+    var detailsIndex = text.indexOf('Mixed Media:');
+    if (detailsIndex !== -1) {
+      details = text.slice(detailsIndex).trim();
+      text = text.slice(0, detailsIndex).trim();
+    }
+
+    var sentences = text.match(/[^.!?]+[.!?]+(?:["“”„])?/g) || (text ? [text] : []);
+    var bodyHtml = '';
+    for (var i = 0; i < sentences.length; i += 2) {
+      var paragraph = sentences.slice(i, i + 2).join(' ').trim();
+      if (paragraph) {
+        bodyHtml += '<p>' + escH(paragraph) + '</p>';
+      }
+    }
+
+    if (details) {
+      var parts = details.split('|').map(function (part) { return part.trim(); }).filter(Boolean);
+      var detailsHtml = parts.map(function (part) {
+        return '<span class="block">' + escH(part) + '</span>';
+      }).join('');
+      bodyHtml += '<div class="border border-secondary-fixed/20 bg-secondary-fixed/5 px-4 py-3">'
+               + '<span class="font-label text-[10px] uppercase tracking-[0.28em] text-primary block mb-2">Werkdaten</span>'
+               + '<div class="font-body text-[13px] leading-relaxed text-on-surface-variant">' + detailsHtml + '</div>'
+               + '</div>';
+    }
+
+    return bodyHtml;
+  }
+
+  function renderArtworkModal(index) {
     var item = AL.galleryData[index];
-    if (!item) return;
+    if (!item) return false;
+
+    _currentGalleryIndex = index;
 
     var img     = document.getElementById('modal-img');
     var content = document.getElementById('modal-content');
@@ -20,75 +57,35 @@
     var btnWork   = document.getElementById('btn-view-work');
     var btnMockup = document.getElementById('btn-view-mockup');
 
-    // Startbild: Mockup wenn gewünscht und vorhanden, sonst Werk
-    var showMockup = startView === 'mockup' && !!item.mockupPfad;
+    img.classList.remove('object-cover', 'bg-white', 'bg-surface');
+    img.classList.add('object-contain');
 
-    // Inhalt verstecken bis Bild geladen ist (verhindert weißen Kasten-Blitz)
     content.style.opacity = '0';
     img.onload = function () {
       content.style.opacity = '1';
       img.onload = null;
     };
 
-    img.src = showMockup ? item.mockupPfad : item.pfad;
+    img.src = item.pfad;
     img.alt = item.titel;
 
-    // Fallback: Bild bereits im Browser-Cache → onload feuert nicht mehr
     if (img.complete && img.naturalWidth > 0) {
       content.style.opacity = '1';
     }
-    document.getElementById('modal-titel').textContent       = item.titel;
-    document.getElementById('modal-beschreibung').textContent = item.beschreibung;
 
-    // View-Toggle nur zeigen wenn mockupPfad vorhanden und nicht leer
-    if (item.mockupPfad) {
-      toggle.classList.remove('hidden');
+    document.getElementById('modal-titel').textContent = item.titel;
+    document.getElementById('modal-beschreibung').innerHTML = renderDescriptionHtml(item.beschreibung);
 
-      // Hilfsfunktionen: Button-Zustand sauber setzen (alle konfliktierenden Klassen entfernen)
-      function activateBtn(btn) {
-        btn.classList.add('bg-primary', 'text-on-primary');
-        btn.classList.remove('bg-transparent', 'border-primary', 'text-primary', 'border-on-surface-variant', 'text-on-surface-variant');
-        btn.setAttribute('aria-pressed', 'true');
-      }
-      function deactivateBtn(btn) {
-        btn.classList.remove('bg-primary', 'text-on-primary', 'border-primary', 'text-primary');
-        btn.classList.add('bg-transparent', 'border-on-surface-variant', 'text-on-surface-variant');
-        btn.setAttribute('aria-pressed', 'false');
-      }
+    if (toggle) toggle.classList.add('hidden');
+    if (btnWork) btnWork.onclick = null;
+    if (btnMockup) btnMockup.onclick = null;
 
-      // Aktiven Button je nach startView setzen
-      if (showMockup) {
-        activateBtn(btnMockup);
-        deactivateBtn(btnWork);
-      } else {
-        activateBtn(btnWork);
-        deactivateBtn(btnMockup);
-      }
+    return true;
+  }
 
-      // Switch-Logik: Werk (mit Fade)
-      btnWork.onclick = function () {
-        img.style.opacity = '0';
-        img.onload = function () { img.style.opacity = '1'; img.onload = null; };
-        img.src = item.pfad;
-        if (img.complete && img.naturalWidth > 0) img.style.opacity = '1';
-        activateBtn(btnWork);
-        deactivateBtn(btnMockup);
-      };
-
-      // Switch-Logik: Mockup (mit Fade)
-      btnMockup.onclick = function () {
-        img.style.opacity = '0';
-        img.onload = function () { img.style.opacity = '1'; img.onload = null; };
-        img.src = item.mockupPfad;
-        if (img.complete && img.naturalWidth > 0) img.style.opacity = '1';
-        activateBtn(btnMockup);
-        deactivateBtn(btnWork);
-      };
-    } else {
-      toggle.classList.add('hidden');
-      btnWork.onclick = null;
-      btnMockup.onclick = null;
-    }
+  // Das Modal zeigt immer das Originalbild mit dem passenden Werktext.
+  AL.openModal = function (index, startView) {
+    if (!renderArtworkModal(index)) return;
 
     var overlay = document.getElementById('modal-overlay');
     overlay.classList.remove('is-minimal');
@@ -115,6 +112,13 @@
     } else {
       console.warn('openModalByName: kein Eintrag gefunden für "' + name + '"');
     }
+  };
+
+  AL.navigateArtworkModal = function (direction) {
+    if (!AL.galleryData || !AL.galleryData.length || _currentGalleryIndex < 0) return;
+    var total = AL.galleryData.length;
+    var nextIndex = (_currentGalleryIndex + direction + total) % total;
+    renderArtworkModal(nextIndex);
   };
 
   // Flag: verhindert Doppel-Zurück wenn closeModal() und popstate gleichzeitig feuern
@@ -158,6 +162,8 @@
     var content = document.getElementById('modal-content');
     var closeBtn = document.getElementById('modal-close');
     var imgEl    = document.getElementById('modal-img');
+    var modalPrevBtn = document.getElementById('modal-slider-prev');
+    var modalNextBtn = document.getElementById('modal-slider-next');
     if (!overlay) return;
 
     // Schließen per ╳-Button
@@ -177,6 +183,40 @@
     // Schließen per Escape (Barrierefreiheit)
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') AL.closeModal();
+      if (!overlay.classList.contains('is-open')) return;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (overlay.classList.contains('is-minimal')) {
+          AL.navigateSliderModal(-1);
+        } else {
+          AL.navigateArtworkModal(-1);
+        }
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (overlay.classList.contains('is-minimal')) {
+          AL.navigateSliderModal(1);
+        } else {
+          AL.navigateArtworkModal(1);
+        }
+      }
+    });
+
+    if (modalPrevBtn) modalPrevBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (overlay.classList.contains('is-minimal')) {
+        AL.navigateSliderModal(-1);
+      } else {
+        AL.navigateArtworkModal(-1);
+      }
+    });
+    if (modalNextBtn) modalNextBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (overlay.classList.contains('is-minimal')) {
+        AL.navigateSliderModal(1);
+      } else {
+        AL.navigateArtworkModal(1);
+      }
     });
 
     // Browser-Zurück-Button: popstate feuert wenn history.back() ausgelöst wird.
@@ -213,20 +253,21 @@
       var HIGHLIGHT_COUNT = 3;
       var hHtml = '';
       AL.galleryData.slice(0, HIGHLIGHT_COUNT).forEach(function (item, i) {
-        var label = i === 0 ? 'Highlight' : 'Kollektion';
-        var badge = item.mockupPfad
-          ? '<span class="font-label text-xs text-on-surface-variant/70 mt-1 block">🏠 Raumansicht verfügbar</span>'
+        var label = 'Highlight';
+        var highlightSrc = item.mockupPfad || item.pfad;
+        var badge = item.meta
+          ? '<span class="font-label text-xs text-on-surface-variant/70 mt-1 block">' + escH(item.meta) + '</span>'
           : '';
-        hHtml += '<div class="gallery-item relative overflow-hidden cursor-pointer group aspect-[4/5] md:aspect-auto md:h-[80vh] img-gold-placeholder"'
+        hHtml += '<div class="gallery-item relative overflow-hidden cursor-pointer group aspect-[3/2] img-gold-placeholder"'
                + ' onclick="AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')"'
                + ' role="button" tabindex="0"'
                + ' aria-label="' + escA(item.titel) + ' – Bild vergrößern"'
                + ' onkeydown="if(event.key===\'Enter\'||event.key===\' \')AnneLeinen.openModalByName(\'' + escQ(item.titel) + '\')">'
-               + '<img src="' + item.pfad + '"'
+               + '<img src="' + highlightSrc + '"'
                + ' alt="' + escA(item.titel) + '"'
                + ' decoding="async"'
                + ' style="will-change:transform,opacity;backface-visibility:hidden;"'
-               + ' class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
+               + ' class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.02] transition-all duration-500 ease-in-out">'
                + '<div class="absolute bottom-0 left-0 right-0'
                + ' md:bottom-10 md:left-10 md:right-auto md:max-w-xs'
                + ' bg-white/85 backdrop-blur-sm shadow-xl p-6 md:p-8">'
@@ -235,7 +276,7 @@
                + badge
                + '</div>'
                + '<div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
-               + '<span class="text-xs">Groß ansehen</span>'
+               + '<span class="text-xs">Mehr erfahren</span>'
                + '</div>'
                + '</div>';
       });
@@ -406,29 +447,6 @@
     if (prevBtn) prevBtn.addEventListener('click', function () { AL.scrollSlider(-1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { AL.scrollSlider(1); });
 
-    var modalPrevBtn = document.getElementById('modal-slider-prev');
-    var modalNextBtn = document.getElementById('modal-slider-next');
-    if (modalPrevBtn) modalPrevBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      AL.navigateSliderModal(-1);
-    });
-    if (modalNextBtn) modalNextBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      AL.navigateSliderModal(1);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      var overlay = document.getElementById('modal-overlay');
-      if (!overlay || !overlay.classList.contains('is-open') || !overlay.classList.contains('is-minimal')) return;
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        AL.navigateSliderModal(-1);
-      }
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        AL.navigateSliderModal(1);
-      }
-    });
   }
 
   // ─── SCROLL-ANIMATIONEN (Bento-Grid, Fallback) ───────────────────────────
