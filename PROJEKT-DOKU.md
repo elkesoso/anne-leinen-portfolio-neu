@@ -12,6 +12,7 @@ Die Website ist eine statische HTML/CSS/JavaScript-Seite ohne Build-Prozess.
 - GitHub-Repo: `elkesoso/anne-leinen-portfolio-neu`
 - Hauptbranch: `main`
 - Lokales Projekt: `/Users/elkekastl/Downloads/anne-leinen-portfolio`
+- CMS-Refactor-Kopie: `/Users/elkekastl/Downloads/anne-leinen-portfolio-cms-refactor`
 - Design-System: `tokens.js`
 - Bild- und Inhaltsdaten: `data.js`
 - Galerie/Modal/Slider-Logik: `gallery.js`
@@ -38,10 +39,12 @@ Die Website ist eine statische HTML/CSS/JavaScript-Seite ohne Build-Prozess.
 `index.html` nutzt:
 
 - `tokens.js`
-- `data.js?v=1.9`
-- `gallery.js?v=4.2`
+- `data.js`
+- `gallery.js`
 
 Die Startseite enthaelt unter anderem den Slider. Der Slider greift auf `window.AnneLeinen.sliderData` in `data.js` zu.
+
+Hinweis zum CMS-Refactor: In der Refactor-Kopie wird der Startseiten-Slider nicht mehr ueber eine separate `sliderData`-Pflegeliste gespeist, sondern ueber `pageData.home.sections.featured-artworks.artworkIds` mit Werken aus `galleryData`.
 
 ### Kunstwerke-Seite
 
@@ -136,12 +139,25 @@ Aktuelle Regeln:
 - Overlay bleibt sofort blickdicht
 - Nur `#modal-content` fadet per Opacity
 - Bildbereich im normalen Kunstwerk-Modal ist auf 4:5 fixiert
+- Desktop-Pfeile liegen ausserhalb des Bildrahmens und werden auf Startseite und Kunstwerke-Seite gleich positioniert.
+- Im Startseiten-Slider-Modal (`is-minimal`) nutzen die aeusseren Desktop-Pfeile die Slider-Navigation; im normalen Kunstwerk-Modal nutzen sie die Kunstwerk-Navigation.
+- Auf Mobile bleiben die inneren Bild-Pfeile sichtbar, die aeusseren Desktop-Pfeile bleiben ausgeblendet.
+
+Letzte Modal-Aenderung am 06.05.2026:
+
+- `main`: Commit `1033282` (`Align homepage modal arrows`)
+- `cms-refactor`: Commit `77050c5` (`Align homepage modal arrows`)
+- CMS-Testkopie `cms-refactor-plan`: Commit `77050c5`
+
+Geprueft wurden `node -c gallery.js`, `git diff --check` und ein lokaler Browser-Test fuer Startseite und Kunstwerke-Seite.
 
 ## Branches
 
 Aktueller Stand:
 
 - `main`: oeffentliche Version, synchron mit GitHub
+- `cms-refactor`: Refactor-Branch im Live-Repo `elkesoso/anne-leinen-portfolio-neu`
+- `cms-refactor-plan`: Arbeitsbranch in der CMS-Testkopie `elkesoso/anne-leinen-portfolio-cms-test`
 - `local-scroll-close-test`: lokaler Testbranch mit Scroll-to-close-Experiment fuer Highlight-Modals
 - `fix/desktop-modal-overlay-arrows`: alter Fix-Branch, nicht aktueller Arbeitsstand
 - `fix/modal-image-navigation-wrapper`: alter Fix-Branch, nicht aktueller Arbeitsstand
@@ -151,6 +167,8 @@ Aktueller Stand:
 Wichtig:
 
 - `main` ist die oeffentliche saubere Version.
+- `cms-refactor` ist der Branch fuer die CMS-Vorbereitung im bestehenden Live-Repo.
+- `cms-refactor-plan` ist die isolierte Test-/Arbeitskopie fuer den Refactor.
 - Experimente sollten nicht direkt auf `main` gepusht werden.
 - Wenn etwas nur lokal getestet werden soll, eigenen Branch verwenden.
 

@@ -6,6 +6,12 @@ Arbeitskopie:
 
 `/Users/elkekastl/Downloads/anne-leinen-portfolio-cms-refactor`
 
+GitHub-Staende:
+
+- Test-Repo: `elkesoso/anne-leinen-portfolio-cms-test`, Branch `cms-refactor-plan`
+- Live-Repo: `elkesoso/anne-leinen-portfolio-neu`, Branch `cms-refactor`
+- Live-Hauptbranch: `elkesoso/anne-leinen-portfolio-neu`, Branch `main`
+
 Ziel dieses Plans ist nicht, die bestehende Website sofort komplett neu zu bauen. Ziel ist eine saubere Vorbereitung fuer einen spaeteren CMS-Umbau: Sektionen sollen klar getrennt, Inhalte strukturiert und wiederverwendbare Komponenten sichtbar werden.
 
 ## Ausgangslage
@@ -194,6 +200,9 @@ Status: erledigt
 - Projektkopie erstellt.
 - Eigener Branch `cms-refactor-plan` in der Kopie angelegt.
 - Bestehende Doku und Konzeptnotizen gelesen.
+- Refactor-Stand in separates Test-Repo `anne-leinen-portfolio-cms-test` gepusht.
+- Refactor-Branch `cms-refactor` im bestehenden Live-Repo angelegt.
+- Hauptbranch `main` bleibt die oeffentliche Version; gezielte Live-Fixes werden dort nur bewusst uebernommen.
 
 ### Phase 1: Bestandsaufnahme und Inventar
 
@@ -290,6 +299,19 @@ Aufgaben:
 - Highlight- und Katalog-Reihenfolge ueber `isHighlight` und `sortOrder` steuern. Erledigt.
 - Modal-Kontexte erhalten: Highlight, Katalog, Slider.
 - Bestehende Regeln fuer Overlay, Body-Scroll und Back-Button beibehalten.
+
+Status am 06.05.2026:
+
+- Startseiten-Modal und Kunstwerke-Modal nutzen auf Desktop dieselbe aeussere Pfeilposition.
+- Das Startseiten-Slider-Modal bleibt technisch `is-minimal`, verwendet auf Desktop aber die aeusseren Pfeile.
+- Die Desktop-Pfeile unterscheiden in `gallery.js` anhand von `is-minimal`, ob `navigateSliderModal(...)` oder `navigateArtworkModal(...)` ausgefuehrt wird.
+- Auf Mobile bleiben die inneren Pfeile sichtbar; die aeusseren Desktop-Pfeile bleiben ausgeblendet.
+- Aenderung wurde in der CMS-Testkopie, auf `cms-refactor` und auf `main` uebernommen.
+
+Commits:
+
+- `77050c5` auf `cms-refactor-plan` und `cms-refactor`: `Align homepage modal arrows`
+- `1033282` auf `main`: `Align homepage modal arrows`
 
 ### Phase 6: Kontaktformular entkoppeln
 
