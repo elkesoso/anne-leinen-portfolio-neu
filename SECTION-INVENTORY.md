@@ -42,8 +42,9 @@ Status:
 
 - `window.AnneLeinen.pageData.home.sections` bildet die aktuelle Startseite jetzt als Datenmodell ab.
 - `collector-voices` wird als erste Testsektion ueber `sections.js` aus `pageData` gerendert.
+- `art-in-room` wird ebenfalls ueber `sections.js` aus `pageData` gerendert.
 - Die uebrigen Startseiten-Sektionen rendern noch statisch in `index.html`.
-- Naechster Umbaupunkt waere eine einfache Sektion wie `art-in-room` aus `pageData` zu rendern.
+- Naechster Umbaupunkt waere das Kontaktformular, damit Startseite und Kontaktseite dieselbe Formularlogik nutzen.
 
 ## `artworks.html`
 

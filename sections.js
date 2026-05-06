@@ -45,6 +45,13 @@ window.AnneLeinen = window.AnneLeinen || {};
     }).join('');
   }
 
+  function renderBodyParagraphs(body) {
+    var paragraphs = Array.isArray(body) ? body : [body];
+    return paragraphs.map(function (paragraph) {
+      return '<p class="font-body text-secondary-container leading-relaxed mb-8">' + escH(paragraph) + '</p>';
+    }).join('');
+  }
+
   function renderCollectorVoices() {
     var root = document.querySelector('[data-section-render="collector-voices"]');
     var section = findHomeSection('collector-voices');
@@ -70,7 +77,57 @@ window.AnneLeinen = window.AnneLeinen || {};
     root.innerHTML = html;
   }
 
+  function renderArtInRoom() {
+    var root = document.querySelector('[data-section-render="art-in-room"]');
+    var section = findHomeSection('art-in-room');
+    if (!root || !section || !section.image || !section.image.src) return;
+
+    var title = section.linkedArtworkTitle || section.title || '';
+    var imageAlt = section.image.alt || title || section.title;
+
+    root.innerHTML = '<div class="px-8 md:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">'
+      + '<div class="order-2 lg:order-1">'
+      + '<div class="p-12 bg-secondary-fixed/5 border-l-4 border-secondary-fixed">'
+      + '<h2 class="font-headline text-3xl text-secondary-fixed mb-6">' + escH(section.title) + '</h2>'
+      + renderBodyParagraphs(section.body)
+      + '<p class="font-label text-secondary-container/60 uppercase tracking-widest text-xs">' + escH(section.note) + '</p>'
+      + '</div>'
+      + '</div>'
+      + '<div class="relative z-10 order-1 lg:order-2 overflow-hidden shadow-2xl max-w-sm mx-auto cursor-pointer group"'
+      + ' data-open-artwork="' + escA(title) + '"'
+      + ' role="button"'
+      + ' tabindex="0"'
+      + ' aria-label="' + escA(imageAlt + ' - Bild vergroessern') + '">'
+      + '<img alt="' + escA(imageAlt) + '"'
+      + ' class="w-full h-auto hover:scale-105 transition-transform duration-500"'
+      + ' loading="lazy"'
+      + ' width="' + escA(section.image.width || '') + '"'
+      + ' height="' + escA(section.image.height || '') + '"'
+      + ' src="' + escA(section.image.src) + '"/>'
+      + '<div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">'
+      + '<span class="text-xs">Groß ansehen</span>'
+      + '</div>'
+      + '</div>'
+      + '</div>';
+
+    var trigger = root.querySelector('[data-open-artwork]');
+    if (!trigger) return;
+
+    function openArtwork() {
+      if (AL.openModalByName) AL.openModalByName(trigger.getAttribute('data-open-artwork'));
+    }
+
+    trigger.addEventListener('click', openArtwork);
+    trigger.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openArtwork();
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     renderCollectorVoices();
+    renderArtInRoom();
   });
 })();

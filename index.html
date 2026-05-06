@@ -279,32 +279,7 @@
 
 
 <!-- KUNST IM RAUM -->
-<section class="w-full py-24 bg-surface-container/5">
-  <div class="px-8 md:px-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-    <div class="order-2 lg:order-1">
-      <div class="p-12 bg-secondary-fixed/5 border-l-4 border-secondary-fixed">
-        <h2 class="font-headline text-3xl text-secondary-fixed mb-6">Kunst im Raum</h2>
-        <p class="font-body text-secondary-container leading-relaxed mb-8">Erleben Sie, wie meine Werke in einem modernen Ambiente wirken. Die metallischen Reflexionen verändern sich mit dem natürlichen Lichtverlauf des Tages und schaffen eine lebendige Atmosphäre in Ihrem Zuhause.</p>
-        <p class="font-label text-secondary-container/60 uppercase tracking-widest text-xs">Abgebildet: Aurelia II in einem Loft in Berlin</p>
-      </div>
-    </div>
-    <div class="relative z-10 order-1 lg:order-2 overflow-hidden shadow-2xl max-w-sm mx-auto cursor-pointer group"
-         onclick="AnneLeinen.openModalByName('Vibrant Energy')"
-         role="button"
-         tabindex="0"
-         aria-label="Vibrant Energy – Bild vergrößern"
-         onkeydown="if(event.key==='Enter'||event.key===' ')AnneLeinen.openModalByName('Vibrant Energy')">
-      <img alt="Vibrant Energy – Kunstwerk im Raum"
-           class="w-full h-auto hover:scale-105 transition-transform duration-500"
-           loading="lazy"
-           width="1851" height="2000"
-           src="INHALTE/startseite/04_kunst-im-raum/Vibrant Energy G.webp"/>
-      <div class="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/30 backdrop-blur-md text-white rounded-full px-3 py-1 border border-white/20 group-hover:bg-black/50 transition-colors duration-300">
-        <span class="text-xs">Groß ansehen</span>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="w-full py-24 bg-surface-container/5" data-section-render="art-in-room"></section>
 
 <!-- KONTAKTFORMULAR -->
 <section class="px-8 md:px-16 py-8 md:py-16 bg-secondary-fixed" id="contact">
@@ -445,7 +420,7 @@
 </footer>
 
 <script src="data.js?v=1.11"></script>
-<script src="sections.js?v=1.0"></script>
+<script src="sections.js?v=1.1"></script>
 <script src="gallery.js?v=4.3"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
