@@ -183,6 +183,8 @@ Bestehende Ausstellungsdaten bleiben datenbasiert, sollten aber langfristig klar
 - `archiv`
 - `sortOrder`
 
+Status: begonnen. Die bestehenden Eintraege wurden nicht-brechend um diese Felder erweitert.
+
 ## Refactor-Phasen
 
 ### Phase 0: Arbeitskopie absichern
@@ -221,7 +223,7 @@ Aufgaben:
 - Startseiteninhalte als Datenmodell erfassen. Begonnen: `window.AnneLeinen.pageData.home.sections` beschreibt Hero, Ueber-mich, Stimmen, Slider, Kunst-im-Raum und Kontakt als einzelne Sektionen.
 - Kunstwerkdaten um CMS-relevante Felder vorbereiten.
 - Mood-Zuordnung aus `gallery.js` in die Kunstwerkdaten verschieben. Begonnen: `gallery.js` liest zuerst `item.mood` und nutzt das alte Titel-Mapping nur noch als Fallback.
-- Ausstellungsdaten normalisieren.
+- Ausstellungsdaten normalisieren. Begonnen: `exhibitionData` enthaelt jetzt `id`, strukturierte Ortsfelder, `datumVon`, `datumBis`, `anzeigeDatum` und `sortOrder`; `exhibitions.js` nutzt diese Felder mit Fallbacks auf alte Anzeigenfelder.
 
 Risiko:
 

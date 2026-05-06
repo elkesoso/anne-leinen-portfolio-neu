@@ -456,9 +456,16 @@ window.AnneLeinen.artworkMetaByTitle = {
 // archiv: false = aktuelle/kommende Ausstellungen | archiv: true = Vergangenheit
 window.AnneLeinen.exhibitionData = [
   {
+    id:           "kreativmarkt-hubertusbad-2026",
     titel:        "2. Kreativmarkt im Hubertusbad",
     typ:          "Kreativmarkt",
+    locationName: "Hubertusbad",
+    stadtteil:    "Berlin-Lichtenberg",
+    stadt:        "Berlin",
     ort:          "Hubertusbad, Berlin-Lichtenberg",
+    datumVon:     "2026-04-25",
+    datumBis:     "2026-04-25",
+    anzeigeDatum: "25. April 2026",
     datum:        "25. April 2026",
     uhrzeit:      "11:00 – 17:00 Uhr",
     beschreibung: "Am 25. April verwandelt sich das historische Hubertusbad in ein buntes Paradies – Anne Leinen ist mit einem eigenen Stand vor Ort. Originalwerke entdecken, ins Gespräch kommen und eine lebendige Berliner Kunstszene erleben.",
@@ -467,12 +474,22 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "Dance of Tides",
     ctaText:      "Kostenloser Eintritt",
     ctaIcon:      "arrow_forward",
-    archiv:       false
+    archiv:       false,
+    sortOrder:    10
   },
   {
+    id:           "not-an-advent-art-sale-finissage-2025",
     titel:        "Not an Advent Art Sale – Finissage",
     typ:          "Finissage",
+    locationName: "Envision Berlin",
+    strasse:      "Parkstraße 11",
+    plz:          "13086",
+    stadtteil:    "Berlin-Weißensee",
+    stadt:        "Berlin",
     ort:          "Envision Berlin, Parkstraße 11, 13086 Berlin-Weißensee",
+    datumVon:     "2025-11-28",
+    datumBis:     "2025-11-28",
+    anzeigeDatum: "28. November 2025",
     datum:        "28. November 2025",
     uhrzeit:      "19:00 Uhr",
     beschreibung: "Herzlich eingeladen zur Finissage von Envision Berlins erstem jährlichen 'Not an Advent Sale' – über 70 Werke von Dutzenden Berliner Künstlerinnen und Künstlern, alle für 250 Euro oder weniger. Ein bedeutungsvolles Kunstgeschenk finden und gleichzeitig die lokale Berliner Kunstszene unterstützen. Mehrere Künstler sprechen während der Veranstaltung über ihre Werke.",
@@ -481,12 +498,19 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       false
+    archiv:       false,
+    sortOrder:    20
   },
   {
+    id:           "kompass-haus-2025",
     titel:        "KOMPASS-Haus",
     typ:          "Ausstellung",
+    locationName: "KOMPASS-Haus",
+    stadt:        "Berlin",
     ort:          "KOMPASS-Haus, Berlin",
+    datumVon:     "2025-05-01",
+    datumBis:     "2025-07-31",
+    anzeigeDatum: "Mai 2025",
     datum:        "Mai 2025",
     uhrzeit:      "Mai – Juli 2025",
     beschreibung: "",
@@ -495,12 +519,19 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       true
+    archiv:       true,
+    sortOrder:    30
   },
   {
+    id:           "kuenstler-gegen-krebs-malchin-2025",
     titel:        "Künstler gegen Krebs – Kunstwerk-Versteigerung",
     typ:          "Charity-Auktion",
+    locationName: "Rathaussaal Malchin",
+    stadt:        "Malchin",
     ort:          "Rathaussaal Malchin",
+    datumVon:     "2025-06-27",
+    datumBis:     "2025-06-27",
+    anzeigeDatum: "27. Juni 2025",
     datum:        "27. Juni 2025",
     uhrzeit:      "",
     beschreibung: "",
@@ -509,12 +540,19 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       true
+    archiv:       true,
+    sortOrder:    40
   },
   {
+    id:           "hinschauen-kultur-festival-2025",
     titel:        "Hinschauen Kultur Festival",
     typ:          "Festival",
+    locationName: "Eugeniu-Botanari-Platz",
+    stadt:        "Berlin",
     ort:          "Eugeniu-Botanari-Platz, Berlin",
+    datumVon:     "2025-08-28",
+    datumBis:     "2025-08-31",
+    anzeigeDatum: "28. August 2025",
     datum:        "28. August 2025",
     uhrzeit:      "28.–31. August 2025",
     beschreibung: "",
@@ -523,12 +561,19 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       true
+    archiv:       true,
+    sortOrder:    50
   },
   {
+    id:           "kunst-im-einheizhaus-2025",
     titel:        "Kunst im Einheizhaus",
     typ:          "Ausstellung",
+    locationName: "Einheizhaus",
+    stadt:        "Berlin",
     ort:          "Einheizhaus, Berlin",
+    datumVon:     "2025-10-03",
+    datumBis:     "2025-10-05",
+    anzeigeDatum: "3. Oktober 2025",
     datum:        "3. Oktober 2025",
     uhrzeit:      "3.–5. Oktober 2025",
     beschreibung: "",
@@ -537,12 +582,21 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       true
+    archiv:       true,
+    sortOrder:    60
   },
   {
+    id:           "lange-nacht-der-bilder-2025",
     titel:        "Lange Nacht der Bilder 2025",
     typ:          "Gruppenausstellung",
+    locationName: "Galerie der oskar | Freiwilligenagentur Lichtenberg",
+    strasse:      "Weitlingstraße 89",
+    plz:          "10317",
+    stadt:        "Berlin",
     ort:          "Galerie der oskar | Freiwilligenagentur Lichtenberg, Weitlingstraße 89, 10317 Berlin",
+    datumVon:     "2025-09-05",
+    datumBis:     "2025-10-31",
+    anzeigeDatum: "05. September 2025",
     datum:        "05. September 2025",
     uhrzeit:      "18:00 Uhr",
     beschreibung: "Im Rahmen der Langen Nacht der Bilder 2025 präsentiert das Oskar-Freiwilligen-Team Interpretationen Lichtenberger Künstlerinnen und Künstler zum Thema 'Urbanes Leben / Urbanes Lebensgefühl'. Die Ausstellung war bis zum 31. Oktober 2025 zu sehen – Di/Mi/Do 10–16 Uhr sowie nach telefonischer Vereinbarung.",
@@ -551,6 +605,7 @@ window.AnneLeinen.exhibitionData = [
     bildName:     "",
     ctaText:      "",
     ctaIcon:      "",
-    archiv:       false
+    archiv:       false,
+    sortOrder:    30
   }
 ];

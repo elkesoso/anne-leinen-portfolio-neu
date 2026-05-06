@@ -77,11 +77,16 @@ Die Trennung `erste drei Werke = Highlights` sollte durch explizite Datenfelder 
 | Sektion | Aktueller Ort | Inhalt aktuell | CMS-Felder spaeter |
 | --- | --- | --- | --- |
 | Header | HTML | Eyebrow, H1 | `pageTitle`, `eyebrow`, `intro` |
-| Ausstellungs-Liste | `exhibitions.js` + `data.js` | Aktuelle/nicht archivierte Ausstellungen | `exhibitions.where(!archive)` |
+| Ausstellungs-Liste | `exhibitions.js` + `data.js` | Aktuelle/nicht archivierte Ausstellungen, mit normalisierten Datums- und Ortsfeldern | `exhibitions.where(!archive)` |
 | Kuratorinnen-Zitat | HTML | Statisches Zitat | `quote.text`, `quote.author/label`, Sichtbarkeit |
-| Ausstellungen 2025 | `exhibitions.js` + `data.js` | Archiv nach Monat | `exhibitions.where(archive)`, Jahr/Monat |
+| Ausstellungen 2025 | `exhibitions.js` + `data.js` | Archiv nach Monat, gruppiert ueber `datumVon` | `exhibitions.where(archive)`, Jahr/Monat |
 
 Guter Kandidat fuer fruehen CMS-Test, weil die Seite bereits datenbasiert arbeitet.
+
+Status:
+
+- `exhibitionData` enthaelt jetzt `id`, strukturierte Ortsfelder, `datumVon`, `datumBis`, `anzeigeDatum` und `sortOrder`.
+- `exhibitions.js` bevorzugt die normalisierten Felder und nutzt alte Felder weiter als Fallback.
 
 ## `contact.html`
 

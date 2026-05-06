@@ -13,6 +13,36 @@
   function escA(s) { return String(s).replace(/"/g, '&quot;'); }
   function escH(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
+  function getLocationLabel(item) {
+    var parts = [];
+    if (item.locationName) parts.push(item.locationName);
+    if (item.strasse) parts.push(item.strasse);
+    if (item.plz || item.stadtteil || item.stadt) {
+      var place = item.stadtteil || item.stadt;
+      var locationIncludesPlace = item.locationName && place
+        && item.locationName.toLowerCase().indexOf(place.toLowerCase()) !== -1;
+      if (!locationIncludesPlace) {
+        parts.push([item.plz, place].filter(Boolean).join(' '));
+      }
+    }
+    return parts.filter(Boolean).join(', ') || item.ort || '';
+  }
+
+  function getDateLabel(item) {
+    return item.anzeigeDatum || item.datum || '';
+  }
+
+  function getDateTimeLabel(item) {
+    var dateLabel = getDateLabel(item);
+    return dateLabel + (item.uhrzeit ? ', ' + item.uhrzeit : '');
+  }
+
+  function getSortValue(item, fallbackIndex) {
+    if (typeof item.sortOrder === 'number') return item.sortOrder;
+    if (item.datumVon) return Number(item.datumVon.replace(/-/g, ''));
+    return fallbackIndex;
+  }
+
   // ─── AKTUELLE AUSSTELLUNGEN ───────────────────────────────────────────────
   // Rendert alle Einträge mit archiv: false.
   // Jede zweite Ausstellung ist gespiegelt (Bild rechts statt links).
@@ -21,13 +51,12 @@
     var container = document.getElementById('exhibitions-list');
     if (!container) return;
     var data = AL.exhibitionData || [];
-    var current = data.filter(function (e) { return !e.archiv; });
+    var current = data.filter(function (e) { return !e.archiv; }).sort(function (a, b) {
+      return getSortValue(a, 0) - getSortValue(b, 0);
+    });
 
     var html = '';
     current.forEach(function (item, i) {
-      // Debug: Mapping aus data.js sichtbar machen
-      console.log('Rendering Exhibition:', item.titel, '| Path:', item.bildPfad, '| bildName:', item.bildName);
-
       // Abwechselnde Richtung: gerade = Bild links (flex-row), ungerade = Bild rechts (flex-row-reverse)
       var flexDir = i % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row';
 
@@ -51,8 +80,8 @@
           + '</button>';
       }
 
-      // Uhrzeit anhängen wenn vorhanden
-      var datumStr = escH(item.datum) + (item.uhrzeit ? ', ' + escH(item.uhrzeit) : '');
+      var datumStr = getDateTimeLabel(item);
+      var locationLabel = getLocationLabel(item);
 
       // Textbreite: 5/12 wenn Bild vorhanden, sonst volle Breite
       var textWidth = item.bildPfad ? 'md:w-5/12' : '';
@@ -72,7 +101,7 @@
               + '<span class="material-symbols-outlined text-secondary-container mt-1">location_on</span>'
               + '<div>'
                 + '<p class="font-label text-xs uppercase tracking-widest text-secondary-fixed-dim">Location</p>'
-                + '<p class="font-headline text-xl text-secondary-container">' + escH(item.ort) + '</p>'
+                + '<p class="font-headline text-xl text-secondary-container">' + escH(locationLabel) + '</p>'
               + '</div>'
             + '</div>'
             + '<div class="flex items-start gap-4">'
@@ -102,6 +131,24 @@
     'Mai': 5, 'Juni': 6, 'Juli': 7, 'August': 8,
     'September': 9, 'Oktober': 10, 'November': 11, 'Dezember': 12
   };
+  var MONATE_DE_BY_NUMBER = [
+    '',
+    'Januar', 'Februar', 'März', 'April',
+    'Mai', 'Juni', 'Juli', 'August',
+    'September', 'Oktober', 'November', 'Dezember'
+  ];
+
+  function parseIsoMonth(dateString) {
+    var match = /^(\d{4})-(\d{2})-\d{2}$/.exec(dateString || '');
+    if (!match) return null;
+    var year = parseInt(match[1], 10);
+    var monthNum = parseInt(match[2], 10);
+    return {
+      sortKey: match[1] + '-' + match[2],
+      label: MONATE_DE_BY_NUMBER[monthNum] + ' ' + year,
+      year: year
+    };
+  }
 
   function parseDatum(datumsStr) {
     var parts = (datumsStr || '').split(' ');
@@ -112,7 +159,11 @@
       if (MONATE_DE[p]) { monthName = p; monthNum = MONATE_DE[p]; }
     });
     var sortKey = year + '-' + (monthNum < 10 ? '0' : '') + monthNum;
-    return { sortKey: sortKey, label: monthName + ' ' + year };
+    return { sortKey: sortKey, label: monthName + ' ' + year, year: year };
+  }
+
+  function getArchiveMonthInfo(item) {
+    return parseIsoMonth(item.datumVon) || parseDatum(item.datum);
   }
 
   function renderArchive() {
@@ -121,14 +172,17 @@
     var data = AL.exhibitionData || [];
     // Nur archiv:true Einträge aus 2025 (archiv:false = oben als Bild-Blöcke, gehören nicht hierher)
     var archive = data.filter(function (e) {
-      return e.archiv && /2025/.test(e.datum);
+      var info = getArchiveMonthInfo(e);
+      return e.archiv && info.year === 2025;
+    }).sort(function (a, b) {
+      return getSortValue(b, 0) - getSortValue(a, 0);
     });
 
     // Nach Monat gruppieren
     var byMonth = {};
     var monthKeys = [];
     archive.forEach(function (ex) {
-      var info = parseDatum(ex.datum);
+      var info = getArchiveMonthInfo(ex);
       if (!byMonth[info.sortKey]) {
         byMonth[info.sortKey] = { label: info.label, items: [] };
         monthKeys.push(info.sortKey);
@@ -151,10 +205,11 @@
         + '<ul class="space-y-4 pl-5">';
 
       group.items.forEach(function (ex) {
+        var locationLabel = getLocationLabel(ex);
         html += '<li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6">'
           + '<span class="font-label text-xs uppercase tracking-widest text-secondary-container/50 w-36 shrink-0">' + escH(ex.typ) + '</span>'
           + '<span class="font-headline text-lg text-secondary-container">' + escH(ex.titel) + '</span>'
-          + '<span class="font-body text-secondary-container/60 text-sm sm:ml-auto shrink-0">' + escH(ex.ort) + '</span>'
+          + '<span class="font-body text-secondary-container/60 text-sm sm:ml-auto shrink-0">' + escH(locationLabel) + '</span>'
         + '</li>';
       });
 
