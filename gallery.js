@@ -112,7 +112,7 @@
 
   function getModalScopeIndices(scope) {
     var total = AL.galleryData ? AL.galleryData.length : 0;
-    if (scope === 'highlight') return [0, 1, 2].filter(function (index) { return index < total; });
+    if (scope === 'highlight') return getHighlightIndices();
     if (scope === 'catalog') {
       var catalogGrid = document.getElementById('catalog-grid');
       if (catalogGrid) {
@@ -125,9 +125,7 @@
         if (visibleIndices.length) return visibleIndices;
       }
 
-      var catalogIndices = [];
-      for (var i = 3; i < total; i++) catalogIndices.push(i);
-      return catalogIndices;
+      return getCatalogIndices().filter(function (index) { return index >= 0 && index < total; });
     }
 
     var allIndices = [];
@@ -419,7 +417,29 @@
   }
 
   function getArtworkMood(item) {
-    return MOOD_BY_TITLE[normalizeTitle(item && item.titel)] || '';
+    return (item && item.mood) || MOOD_BY_TITLE[normalizeTitle(item && item.titel)] || '';
+  }
+
+  function getHighlightIndices() {
+    var total = AL.galleryData ? AL.galleryData.length : 0;
+    var indices = [];
+    for (var i = 0; i < total; i++) {
+      if (AL.galleryData[i] && AL.galleryData[i].isHighlight) indices.push(i);
+    }
+    if (indices.length) return indices;
+    return [0, 1, 2].filter(function (index) { return index < total; });
+  }
+
+  function getCatalogIndices() {
+    var total = AL.galleryData ? AL.galleryData.length : 0;
+    var highlightLookup = {};
+    getHighlightIndices().forEach(function (index) { highlightLookup[index] = true; });
+
+    var indices = [];
+    for (var i = 0; i < total; i++) {
+      if (!highlightLookup[i]) indices.push(i);
+    }
+    return indices;
   }
 
   function initMoodFilters(catalogGrid, countEl) {
@@ -494,9 +514,9 @@
 
     // ── Highlight-Sektion: Bilder 0–2 (groß, Overlay-Design) ────────────────
     if (highlightGrid) {
-      var HIGHLIGHT_COUNT = 3;
       var hHtml = '';
-      AL.galleryData.slice(0, HIGHLIGHT_COUNT).forEach(function (item, i) {
+      getHighlightIndices().forEach(function (globalIdx) {
+        var item = AL.galleryData[globalIdx];
         var highlightSrc = item.mockupPfad || item.pfad;
         var badge = item.meta
           ? '<span class="font-label text-xs md:text-[11px] leading-snug uppercase tracking-[1.5px] md:tracking-[2px] text-on-surface-variant/70 mt-2 md:mt-3 block text-left">' + escH(item.meta) + '</span>'
@@ -531,12 +551,11 @@
 
     // ── Katalog-Sektion: Index 3 bis Ende (kompaktes Grid, Card-Design) ──────
     if (catalogGrid) {
-      var HIGHLIGHT_COUNT = 3;
-      var catalogItems    = AL.galleryData.slice(HIGHLIGHT_COUNT);
+      var catalogIndices = getCatalogIndices();
       var cHtml = '';
 
-      catalogItems.forEach(function (item, i) {
-        var globalIdx = i + HIGHLIGHT_COUNT;
+      catalogIndices.forEach(function (globalIdx) {
+        var item = AL.galleryData[globalIdx];
         var lazyAttr  = globalIdx >= 5 ? 'loading="lazy" decoding="async"' : 'decoding="async"';
         var mood      = getArtworkMood(item);
 

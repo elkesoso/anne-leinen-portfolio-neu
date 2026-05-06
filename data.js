@@ -263,6 +263,69 @@ window.AnneLeinen.galleryData = [
   }
 ];
 
+// ─── CMS-VORBEREITUNG: KUNSTWERK-METADATEN ───────────────────────────────
+// Nicht-brechende Anreicherung der bestehenden Galerie-Daten. Bestehende Felder
+// bleiben erhalten; neue Felder machen Highlights, Filter und Sortierung spaeter
+// explizit ansteuerbar.
+window.AnneLeinen.artworkMetaByTitle = {
+  "Metamorphosis": { id: "metamorphosis", slug: "metamorphosis", mood: "materie", isHighlight: true, sortOrder: 10 },
+  "Vibrant Energy": { id: "vibrant-energy", slug: "vibrant-energy", mood: "dynamik", isHighlight: true, sortOrder: 20 },
+  "Epizentrum": { id: "epizentrum", slug: "epizentrum", mood: "materie", isHighlight: true, sortOrder: 30 },
+  "Dance of Tides": { id: "dance-of-tides", slug: "dance-of-tides", mood: "stille", isHighlight: false, sortOrder: 40 },
+  "Voices Like Storms": { id: "voices-like-storms", slug: "voices-like-storms", isHighlight: false, sortOrder: 50 },
+  "Self-Confidence in Color": { id: "self-confidence-in-color", slug: "self-confidence-in-color", mood: "dynamik", isHighlight: false, sortOrder: 60 },
+  "Aurora Bloom": { id: "aurora-bloom", slug: "aurora-bloom", mood: "weite", isHighlight: false, sortOrder: 70 },
+  "Awakening in Pastel": { id: "awakening-in-pastel", slug: "awakening-in-pastel", mood: "weite", isHighlight: false, sortOrder: 80 },
+  "Crystalline Breath": { id: "crystalline-breath", slug: "crystalline-breath", mood: "materie", isHighlight: false, sortOrder: 90 },
+  "Embedded": { id: "embedded", slug: "embedded", mood: "stille", isHighlight: false, sortOrder: 100 },
+  "Feminine Galaxy": { id: "feminine-galaxy", slug: "feminine-galaxy", mood: "weite", isHighlight: false, sortOrder: 110 },
+  "Fire dance ": { id: "fire-dance", slug: "fire-dance", mood: "dynamik", isHighlight: false, sortOrder: 120 },
+  "Her Current": { id: "her-current", slug: "her-current", mood: "weite", isHighlight: false, sortOrder: 130 },
+  "Her Momentum": { id: "her-momentum", slug: "her-momentum", mood: "weite", isHighlight: false, sortOrder: 140 },
+  "Infinite Future": { id: "infinite-future", slug: "infinite-future", mood: "dynamik", isHighlight: false, sortOrder: 150 },
+  "Life Energy": { id: "life-energy", slug: "life-energy", mood: "dynamik", isHighlight: false, sortOrder: 160 },
+  "OlorN_ervuD": { id: "olorn-ervud", slug: "olorn-ervud", isHighlight: false, sortOrder: 170 },
+  "Rainbow Home": { id: "rainbow-home", slug: "rainbow-home", mood: "materie", isHighlight: false, sortOrder: 180 },
+  "Solyra – Deep yet Light": { id: "solyra-deep-yet-light", slug: "solyra-deep-yet-light", mood: "stille", isHighlight: false, sortOrder: 190 },
+  "Spring fever": { id: "spring-fever", slug: "spring-fever", mood: "dynamik", isHighlight: false, sortOrder: 200 },
+  "Synapse Deep Blue REMSTAGE": { id: "synapse-deep-blue-remstage", slug: "synapse-deep-blue-remstage", mood: "stille", isHighlight: false, sortOrder: 210 },
+  "System Split (1)": { id: "system-split-1", slug: "system-split-1", isHighlight: false, sortOrder: 220 },
+  "Tightrope walking": { id: "tightrope-walking", slug: "tightrope-walking", mood: "stille", isHighlight: false, sortOrder: 230 },
+  "Utopia of Rhythm": { id: "utopia-of-rhythm", slug: "utopia-of-rhythm", mood: "dynamik", isHighlight: false, sortOrder: 240 },
+  "Violet Tale": { id: "violet-tale", slug: "violet-tale", mood: "weite", isHighlight: false, sortOrder: 250 },
+  "Visibility": { id: "visibility", slug: "visibility", mood: "stille", isHighlight: false, sortOrder: 260 },
+  "Voices in color": { id: "voices-in-color", slug: "voices-in-color", mood: "weite", isHighlight: false, sortOrder: 270 },
+  "Whispers of the Sea": { id: "whispers-of-the-sea", slug: "whispers-of-the-sea", mood: "materie", isHighlight: false, sortOrder: 280 }
+};
+
+(function enrichArtworkData() {
+  function normalizeTitle(title) {
+    return String(title || '').trim().replace(/\s+/g, ' ').toLowerCase();
+  }
+
+  function slugify(title) {
+    return normalizeTitle(title)
+      .replace(/[–—]/g, '-')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  var metaByNormalizedTitle = {};
+  Object.keys(window.AnneLeinen.artworkMetaByTitle).forEach(function (title) {
+    metaByNormalizedTitle[normalizeTitle(title)] = window.AnneLeinen.artworkMetaByTitle[title];
+  });
+
+  window.AnneLeinen.galleryData.forEach(function (item, index) {
+    var meta = metaByNormalizedTitle[normalizeTitle(item.titel)] || {};
+    item.id = item.id || meta.id || slugify(item.titel);
+    item.slug = item.slug || meta.slug || item.id;
+    item.mood = item.mood || meta.mood || '';
+    item.isHighlight = typeof item.isHighlight === 'boolean' ? item.isHighlight : !!meta.isHighlight;
+    item.sortOrder = typeof item.sortOrder === 'number' ? item.sortOrder : (meta.sortOrder || ((index + 1) * 10));
+    item.altText = item.altText || item.titel;
+  });
+})();
+
 // ─── AUSSTELLUNGS-DATEN (exhibitions.html) ────────────────────────────────
 // archiv: false = aktuelle/kommende Ausstellungen | archiv: true = Vergangenheit
 window.AnneLeinen.exhibitionData = [
