@@ -52,6 +52,37 @@ window.AnneLeinen = window.AnneLeinen || {};
     }).join('');
   }
 
+  function renderHero() {
+    var root = document.querySelector('[data-section-render="hero"]');
+    var section = findHomeSection('hero');
+    if (!root || !section || !section.media || !section.media.src) return;
+
+    var mediaHtml = '';
+    if (section.media.type === 'video') {
+      mediaHtml = '<video class="w-full h-full object-cover" autoplay loop muted playsinline'
+        + ' aria-label="' + escA(section.media.label || section.title) + '">'
+        + '<source src="' + escA(section.media.src) + '" type="video/mp4"/>'
+        + '</video>';
+    } else {
+      mediaHtml = '<img class="w-full h-full object-cover"'
+        + ' src="' + escA(section.media.src) + '"'
+        + ' alt="' + escA(section.media.alt || section.media.label || section.title) + '"'
+        + ' loading="eager"/>';
+    }
+
+    root.innerHTML = '<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">'
+      + '<div class="lg:col-span-8 overflow-hidden aspect-video">'
+      + mediaHtml
+      + '</div>'
+      + '<div class="lg:col-span-4 pb-4 flex flex-col gap-6">'
+      + '<span class="font-label text-xs uppercase tracking-[0.3em] text-secondary-container/60">' + escH(section.eyebrow) + '</span>'
+      + '<h1 class="font-headline text-5xl md:text-6xl font-light text-secondary-fixed leading-tight italic">' + escH(section.title) + '</h1>'
+      + '<div class="w-12 h-[1px] bg-secondary-container/40"></div>'
+      + '<p class="font-body text-secondary-container text-base leading-relaxed">' + escH(section.subtitle) + '</p>'
+      + '</div>'
+      + '</div>';
+  }
+
   function renderArtistIntro() {
     var root = document.querySelector('[data-section-render="artist-intro"]');
     var section = findHomeSection('artist-intro');
@@ -159,6 +190,7 @@ window.AnneLeinen = window.AnneLeinen || {};
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    renderHero();
     renderArtistIntro();
     renderCollectorVoices();
     renderArtInRoom();

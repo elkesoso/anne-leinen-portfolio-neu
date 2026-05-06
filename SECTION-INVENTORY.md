@@ -41,6 +41,7 @@ Empfohlene neue Startseiten-Dramaturgie:
 Status:
 
 - `window.AnneLeinen.pageData.home.sections` bildet die aktuelle Startseite jetzt als Datenmodell ab.
+- `hero` wird ueber `sections.js` aus `pageData` gerendert.
 - `artist-intro` wird ueber `sections.js` aus `pageData` gerendert.
 - `collector-voices` wird ueber `sections.js` aus `pageData` gerendert.
 - `art-in-room` wird ebenfalls ueber `sections.js` aus `pageData` gerendert.
