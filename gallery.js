@@ -612,20 +612,65 @@
 
   var _lastSliderFocus = null; // Fokus-Merker für closeModal
   var _currentSliderIndex = -1;
+  var _sliderItems = null;
+
+  function findHomeSection(id) {
+    var sections = AL.pageData && AL.pageData.home && AL.pageData.home.sections;
+    if (!sections) return null;
+    return sections.find(function (section) {
+      return section.id === id && section.isVisible !== false;
+    }) || null;
+  }
+
+  function getSliderItems() {
+    if (_sliderItems) return _sliderItems;
+
+    var section = findHomeSection('featured-artworks');
+    var artworkIds = section && section.artworkIds;
+    var galleryData = AL.galleryData || [];
+
+    if (Array.isArray(artworkIds) && artworkIds.length) {
+      var byId = {};
+      galleryData.forEach(function (item) {
+        if (item && item.id) byId[item.id] = item;
+      });
+
+      _sliderItems = artworkIds.map(function (id) {
+        var item = byId[id];
+        if (!item) return null;
+        return {
+          id: item.id,
+          titel: item.titel,
+          pfad: item.thumbnailPfad || item.pfad,
+          fullItem: item
+        };
+      }).filter(Boolean);
+
+      if (_sliderItems.length) return _sliderItems;
+    }
+
+    _sliderItems = (AL.sliderData || []).map(function (item) {
+      var fullItem = null;
+      galleryData.forEach(function (galleryItem) {
+        if (galleryItem.titel === item.titel) fullItem = galleryItem;
+      });
+      return {
+        titel: item.titel,
+        pfad: item.pfad,
+        fullItem: fullItem
+      };
+    });
+
+    return _sliderItems;
+  }
 
   function renderSliderModal(index) {
-    var sliderItem = AL.sliderData[index];
+    var sliderItems = getSliderItems();
+    var sliderItem = sliderItems[index];
     if (!sliderItem) return false;
 
     _currentSliderIndex = index;
-
-    // Vollständige Infos aus galleryData per Titel-Lookup (für Beschreibung)
-    var fullItem = null;
-    if (AL.galleryData) {
-      AL.galleryData.forEach(function (g) {
-        if (g.titel === sliderItem.titel) fullItem = g;
-      });
-    }
+    var fullItem = sliderItem.fullItem;
 
     var img     = document.getElementById('modal-img');
     var content = document.getElementById('modal-content');
@@ -667,8 +712,9 @@
   };
 
   AL.navigateSliderModal = function (direction) {
-    if (!AL.sliderData || !AL.sliderData.length || _currentSliderIndex < 0) return;
-    var total = AL.sliderData.length;
+    var sliderItems = getSliderItems();
+    if (!sliderItems.length || _currentSliderIndex < 0) return;
+    var total = sliderItems.length;
     var nextIndex = (_currentSliderIndex + direction + total) % total;
     renderSliderModal(nextIndex);
   };
@@ -687,9 +733,11 @@
     var viewport = document.getElementById('al-slider-viewport');
     if (!viewport) return;
 
-    // Slides aus sliderData – Klick öffnet Modal via openSliderModal
+    var sliderItems = getSliderItems();
+
+    // Slides aus pageData.featured-artworks.artworkIds, Fallback: sliderData
     var slidesHtml = '';
-    AL.sliderData.forEach(function (item, index) {
+    sliderItems.forEach(function (item, index) {
       slidesHtml += '<div'
                   + ' class="gallery-item al-slide flex-none w-[85vw] md:w-1/4 h-[350px] md:h-[500px] overflow-hidden cursor-pointer img-gold-placeholder"'
                   + ' style="scroll-snap-align: start;"'

@@ -113,6 +113,14 @@ window.AnneLeinen.pageData = {
         eyebrow: "Aktuelle Kollektion",
         title: "Meine Kunstwerke",
         dataSource: "sliderData",
+        artworkIds: [
+          "metamorphosis",
+          "vibrant-energy",
+          "epizentrum",
+          "dance-of-tides",
+          "voices-like-storms",
+          "self-confidence-in-color"
+        ],
         cta: {
           label: "Alle Werke ansehen",
           href: "artworks.html"
