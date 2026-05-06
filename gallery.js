@@ -378,33 +378,6 @@
   function escA(s) { return String(s).replace(/"/g, '&quot;'); }
   function escH(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-  var MOOD_BY_TITLE = {
-    'fire dance': 'dynamik',
-    'self-confidence in color': 'dynamik',
-    'spring fever': 'dynamik',
-    'infinite future': 'dynamik',
-    'life energy': 'dynamik',
-    'utopia of rhythm': 'dynamik',
-    'dance of tides': 'stille',
-    'embedded': 'stille',
-    'synapse deep blue remstage': 'stille',
-    'tightrope walking': 'stille',
-    'visibility': 'stille',
-    'solyra – deep yet light': 'stille',
-    'aurora bloom': 'weite',
-    'awakening in pastel': 'weite',
-    'feminine galaxy': 'weite',
-    'her current': 'weite',
-    'her momentum': 'weite',
-    'violet tale': 'weite',
-    'voices in color': 'weite',
-    'whispers of the sea': 'materie',
-    'crystalline breath': 'materie',
-    'rainbow home': 'materie',
-    'metamorphosis': 'materie',
-    'epizentrum': 'materie'
-  };
-
   var MOOD_DESCRIPTIONS = {
     dynamik: 'Energie in Farbe und Form. Diese Werke fangen den Moment der Bewegung ein.',
     stille: 'Ein Rückzug in die Tiefe. Getragen von kühlen Blau- und Erdtönen.',
@@ -412,12 +385,8 @@
     materie: 'Die Haptik des Seins. Werke, die die raue Schönheit von Strukturen zelebrieren.'
   };
 
-  function normalizeTitle(title) {
-    return String(title || '').trim().replace(/\s+/g, ' ').toLowerCase();
-  }
-
   function getArtworkMood(item) {
-    return (item && item.mood) || MOOD_BY_TITLE[normalizeTitle(item && item.titel)] || '';
+    return (item && item.mood) || '';
   }
 
   function getArtworkSortOrder(index) {
@@ -735,7 +704,7 @@
 
     var sliderItems = getSliderItems();
 
-    // Slides aus pageData.featured-artworks.artworkIds, Fallback: sliderData
+    // Slides aus pageData.featured-artworks.artworkIds, mit Legacy-Fallback fuer externe sliderData.
     var slidesHtml = '';
     sliderItems.forEach(function (item, index) {
       slidesHtml += '<div'

@@ -22,7 +22,7 @@ Dieses Inventar beschreibt, welche sichtbaren Bereiche aktuell existieren, wo ih
 | Hero | HTML, Video direkt im Markup | Video, Eyebrow, H1, Kurztext | `video`, `eyebrow`, `title`, `subtitle`, `cta`, `alt/label` |
 | Ueber mich | HTML | Zwei Textabsaetze, Button, Bild | `title`, `body`, `image`, `cta`, `artistBioShort` |
 | Stimmen | HTML | Drei Zitate/Karten | `testimonials[]` mit Text, Name, Kontext, Sichtbarkeit |
-| Kunstwerke-Slider | HTML-Container + `gallery.js` + `data.js` | Slider wird aus `pageData.featured-artworks.artworkIds` gerendert, `sliderData` bleibt Fallback | `featuredArtworks[]`, Reihenfolge, Titel, CTA |
+| Kunstwerke-Slider | HTML-Container + `gallery.js` + `data.js` | Slider wird aus `pageData.featured-artworks.artworkIds` und `galleryData` gerendert | `featuredArtworks[]`, Reihenfolge, Titel, CTA |
 | Kunst im Raum | HTML | Statischer Raum-/Mockup-Abschnitt | Wahrscheinlich ersetzen durch `materialProcess` |
 | Kontaktformular | HTML + `contact-form.js` + API | Anfrageformular mit Erfolgsmeldung | Formular-Konfiguration, Empfaenger, Betreffoptionen |
 | Modal Lightbox | HTML + `gallery.js` | Bildmodal fuer Slider/Galerie | Zentrales Modal-Modul |
@@ -57,7 +57,7 @@ Status:
 | Highlights | HTML-Container + `gallery.js` | Eintraege mit `isHighlight`, sortiert ueber `sortOrder` | `artworks.where(isHighlight)`, Sortierung |
 | Trennlinie | HTML | Visuelle Trennung | Layout-only |
 | Alle Werke | HTML-Container + `gallery.js` | Nicht-Highlights, sortiert ueber `sortOrder` | `artworks[]`, Sortierung, Sichtbarkeit |
-| Mood-Filter | HTML + `gallery.js` | Filter ueber `MOOD_BY_TITLE` | `artwork.mood` als Datenfeld |
+| Mood-Filter | HTML + `gallery.js` | Filter ueber `artwork.mood` | `artwork.mood` als Datenfeld |
 | Modal Lightbox | HTML + `gallery.js` | Detailansicht mit Navigation | Zentrales Modal-Modul |
 
 Status:

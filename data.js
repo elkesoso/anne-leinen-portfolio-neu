@@ -2,35 +2,6 @@
 // Namespace-Pattern: alle Daten unter window.AnneLeinen
 window.AnneLeinen = window.AnneLeinen || {};
 
-// ─── SLIDER-DATEN (index.html) ────────────────────────────────────────────
-// Nur die 6 Highlight-Bilder für den Startseiten-Slider.
-window.AnneLeinen.sliderData = [
-  {
-    titel: "Metamorphosis",
-    pfad:  "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Metamorphosis.webp"
-  },
-  {
-    titel: "Vibrant Energy",
-    pfad:  "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Vibrant Energy.webp"
-  },
-  {
-    titel: "Epizentrum",
-    pfad:  "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Epizentrum.webp"
-  },
-  {
-    titel: "Dance of Tides",
-    pfad:  "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Dance of Tides.webp"
-  },
-  {
-    titel: "Voices Like Storms",
-    pfad:  "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Voices Like Storms.webp"
-  },
-  {
-    titel: "Self-Confidence in Color",
-    pfad:  "INHALTE/kunstwerke/alle-gemaelde/webp/thumbs/Self-Confidence in Color_Alive. True. You..webp"
-  }
-];
-
 // ─── SEITEN-DATEN (CMS-VORBEREITUNG) ─────────────────────────────────────
 // Diese Struktur beschreibt die Startseite als einzeln ansteuerbare Sektionen.
 // Noch rendert index.html statisch; die Daten dienen als stabiler Vertrag fuer
@@ -112,7 +83,7 @@ window.AnneLeinen.pageData = {
         isVisible: true,
         eyebrow: "Aktuelle Kollektion",
         title: "Meine Kunstwerke",
-        dataSource: "sliderData",
+        dataSource: "galleryData",
         artworkIds: [
           "metamorphosis",
           "vibrant-energy",
@@ -406,7 +377,7 @@ window.AnneLeinen.artworkMetaByTitle = {
   "Vibrant Energy": { id: "vibrant-energy", slug: "vibrant-energy", mood: "dynamik", isHighlight: true, sortOrder: 20 },
   "Epizentrum": { id: "epizentrum", slug: "epizentrum", mood: "materie", isHighlight: true, sortOrder: 30 },
   "Dance of Tides": { id: "dance-of-tides", slug: "dance-of-tides", mood: "stille", isHighlight: false, sortOrder: 40 },
-  "Voices Like Storms": { id: "voices-like-storms", slug: "voices-like-storms", isHighlight: false, sortOrder: 50 },
+  "Voices Like Storms": { id: "voices-like-storms", slug: "voices-like-storms", mood: "dynamik", isHighlight: false, sortOrder: 50 },
   "Self-Confidence in Color": { id: "self-confidence-in-color", slug: "self-confidence-in-color", mood: "dynamik", isHighlight: false, sortOrder: 60 },
   "Aurora Bloom": { id: "aurora-bloom", slug: "aurora-bloom", mood: "weite", isHighlight: false, sortOrder: 70 },
   "Awakening in Pastel": { id: "awakening-in-pastel", slug: "awakening-in-pastel", mood: "weite", isHighlight: false, sortOrder: 80 },
@@ -418,12 +389,12 @@ window.AnneLeinen.artworkMetaByTitle = {
   "Her Momentum": { id: "her-momentum", slug: "her-momentum", mood: "weite", isHighlight: false, sortOrder: 140 },
   "Infinite Future": { id: "infinite-future", slug: "infinite-future", mood: "dynamik", isHighlight: false, sortOrder: 150 },
   "Life Energy": { id: "life-energy", slug: "life-energy", mood: "dynamik", isHighlight: false, sortOrder: 160 },
-  "OlorN_ervuD": { id: "olorn-ervud", slug: "olorn-ervud", isHighlight: false, sortOrder: 170 },
+  "OlorN_ervuD": { id: "olorn-ervud", slug: "olorn-ervud", mood: "materie", isHighlight: false, sortOrder: 170 },
   "Rainbow Home": { id: "rainbow-home", slug: "rainbow-home", mood: "materie", isHighlight: false, sortOrder: 180 },
   "Solyra – Deep yet Light": { id: "solyra-deep-yet-light", slug: "solyra-deep-yet-light", mood: "stille", isHighlight: false, sortOrder: 190 },
   "Spring fever": { id: "spring-fever", slug: "spring-fever", mood: "dynamik", isHighlight: false, sortOrder: 200 },
   "Synapse Deep Blue REMSTAGE": { id: "synapse-deep-blue-remstage", slug: "synapse-deep-blue-remstage", mood: "stille", isHighlight: false, sortOrder: 210 },
-  "System Split (1)": { id: "system-split-1", slug: "system-split-1", isHighlight: false, sortOrder: 220 },
+  "System Split (1)": { id: "system-split-1", slug: "system-split-1", mood: "dynamik", isHighlight: false, sortOrder: 220 },
   "Tightrope walking": { id: "tightrope-walking", slug: "tightrope-walking", mood: "stille", isHighlight: false, sortOrder: 230 },
   "Utopia of Rhythm": { id: "utopia-of-rhythm", slug: "utopia-of-rhythm", mood: "dynamik", isHighlight: false, sortOrder: 240 },
   "Violet Tale": { id: "violet-tale", slug: "violet-tale", mood: "weite", isHighlight: false, sortOrder: 250 },

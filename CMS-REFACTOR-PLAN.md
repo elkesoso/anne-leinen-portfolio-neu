@@ -221,9 +221,9 @@ Aufgaben:
 
 - `data.js` in klarere Datenbereiche aufteilen oder intern sauberer strukturieren. Begonnen: Kunstwerkdaten werden nicht-brechend mit `id`, `slug`, `mood`, `isHighlight`, `sortOrder` und `altText` angereichert.
 - Startseiteninhalte als Datenmodell erfassen. Begonnen: `window.AnneLeinen.pageData.home.sections` beschreibt Hero, Ueber-mich, Stimmen, Slider, Kunst-im-Raum und Kontakt als einzelne Sektionen.
-- Startseiten-Slider an Kunstwerkdaten anbinden. Begonnen: `featured-artworks.artworkIds` referenziert Werke aus `galleryData`; `sliderData` bleibt als Legacy-Fallback.
+- Startseiten-Slider an Kunstwerkdaten anbinden. Erledigt: `featured-artworks.artworkIds` referenziert Werke aus `galleryData`; die separate `sliderData`-Pflegeliste wurde entfernt.
 - Kunstwerkdaten um CMS-relevante Felder vorbereiten.
-- Mood-Zuordnung aus `gallery.js` in die Kunstwerkdaten verschieben. Begonnen: `gallery.js` liest zuerst `item.mood` und nutzt das alte Titel-Mapping nur noch als Fallback.
+- Mood-Zuordnung aus `gallery.js` in die Kunstwerkdaten verschieben. Erledigt: `gallery.js` liest `item.mood`; das alte Titel-Mapping wurde entfernt.
 - Highlight- und Katalog-Trennung in `gallery.js` datenbasiert machen. Erledigt: Highlights nutzen `isHighlight`, Highlights und Katalog sortieren ueber `sortOrder`.
 - Ausstellungsdaten normalisieren. Begonnen: `exhibitionData` enthaelt jetzt `id`, strukturierte Ortsfelder, `datumVon`, `datumBis`, `anzeigeDatum` und `sortOrder`; `exhibitions.js` nutzt diese Felder mit Fallbacks auf alte Anzeigenfelder.
 
