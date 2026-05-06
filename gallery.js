@@ -352,11 +352,19 @@
     });
     if (desktopPrevBtn) desktopPrevBtn.addEventListener('click', function (e) {
       e.stopPropagation();
-      AL.navigateArtworkModal(-1);
+      if (overlay.classList.contains('is-minimal')) {
+        AL.navigateSliderModal(-1);
+      } else {
+        AL.navigateArtworkModal(-1);
+      }
     });
     if (desktopNextBtn) desktopNextBtn.addEventListener('click', function (e) {
       e.stopPropagation();
-      AL.navigateArtworkModal(1);
+      if (overlay.classList.contains('is-minimal')) {
+        AL.navigateSliderModal(1);
+      } else {
+        AL.navigateArtworkModal(1);
+      }
     });
 
     // Browser-Zurück-Button: popstate feuert wenn history.back() ausgelöst wird.
