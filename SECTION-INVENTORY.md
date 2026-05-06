@@ -41,8 +41,9 @@ Empfohlene neue Startseiten-Dramaturgie:
 Status:
 
 - `window.AnneLeinen.pageData.home.sections` bildet die aktuelle Startseite jetzt als Datenmodell ab.
-- Das Rendering ist noch statisch in `index.html`; dadurch ist dieser Schritt bewusst nicht sichtbar.
-- Naechster Umbaupunkt waere eine einfache Sektion wie `collector-voices` oder `art-in-room` aus `pageData` zu rendern.
+- `collector-voices` wird als erste Testsektion ueber `sections.js` aus `pageData` gerendert.
+- Die uebrigen Startseiten-Sektionen rendern noch statisch in `index.html`.
+- Naechster Umbaupunkt waere eine einfache Sektion wie `art-in-room` aus `pageData` zu rendern.
 
 ## `artworks.html`
 

@@ -244,12 +244,14 @@ Da die aktuelle Seite ohne Build-Prozess arbeitet, darf Navigation/Footer nicht 
 
 ### Phase 4: Sektionen renderbar machen
 
+Status: begonnen
+
 Ziel: Seiten bestehen aus ansteuerbaren Sektionen.
 
 Aufgaben:
 
 - Startseiten-Sektionen einzeln benennen und mit stabilen IDs versehen.
-- Sektionen als Render-Funktionen vorbereiten.
+- Sektionen als Render-Funktionen vorbereiten. Begonnen: `sections.js` rendert `collector-voices` aus `pageData.home.sections`.
 - Pro Sektion definieren, welche Daten sie braucht.
 - Sichtbarkeit/Reihenfolge ueber Daten steuerbar machen.
 - Bestehendes Design exakt beibehalten.
