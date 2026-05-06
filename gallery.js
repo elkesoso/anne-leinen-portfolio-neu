@@ -591,6 +591,18 @@
   var _currentSliderIndex = -1;
   var _sliderItems = null;
 
+  function updateSliderModalImageBounds() {
+    var overlay = document.getElementById('modal-overlay');
+    var img = document.getElementById('modal-img');
+    if (!overlay || !img || !overlay.classList.contains('is-minimal')) return;
+
+    var rect = img.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+
+    overlay.style.setProperty('--modal-image-left', Math.round(rect.left) + 'px');
+    overlay.style.setProperty('--modal-image-right', Math.round(rect.right) + 'px');
+  }
+
   function findHomeSection(id) {
     var sections = AL.pageData && AL.pageData.home && AL.pageData.home.sections;
     if (!sections) return null;
@@ -657,12 +669,19 @@
 
     // Inhalt verstecken bis Bild geladen (kein weißer Kasten-Blitz)
     content.style.opacity = '0';
-    img.onload = function () { content.style.opacity = '1'; img.onload = null; };
+    img.onload = function () {
+      content.style.opacity = '1';
+      updateSliderModalImageBounds();
+      img.onload = null;
+    };
 
     img.src = fullItem ? fullItem.pfad : sliderItem.pfad;
     img.alt = sliderItem.titel;
 
-    if (img.complete && img.naturalWidth > 0) content.style.opacity = '1';
+    if (img.complete && img.naturalWidth > 0) {
+      content.style.opacity = '1';
+      updateSliderModalImageBounds();
+    }
 
     document.getElementById('modal-titel').textContent       = sliderItem.titel;
     document.getElementById('modal-beschreibung').textContent =
@@ -685,6 +704,7 @@
     overlay.classList.add('is-open', 'is-minimal');
     document.documentElement.classList.add('modal-open');
     document.body.style.overflowY = 'hidden';
+    requestAnimationFrame(updateSliderModalImageBounds);
     history.pushState({ modalOpen: true }, '');
   };
 
@@ -694,7 +714,10 @@
     var total = sliderItems.length;
     var nextIndex = (_currentSliderIndex + direction + total) % total;
     renderSliderModal(nextIndex);
+    requestAnimationFrame(updateSliderModalImageBounds);
   };
+
+  window.addEventListener('resize', updateSliderModalImageBounds);
 
   // ─── SCROLL-SNAP SLIDER (index.html) ─────────────────────────────────────
 
