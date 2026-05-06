@@ -38,6 +38,12 @@ Empfohlene neue Startseiten-Dramaturgie:
 7. Ausstellungshinweis
 8. Kontakt / Anfrage
 
+Status:
+
+- `window.AnneLeinen.pageData.home.sections` bildet die aktuelle Startseite jetzt als Datenmodell ab.
+- Das Rendering ist noch statisch in `index.html`; dadurch ist dieser Schritt bewusst nicht sichtbar.
+- Naechster Umbaupunkt waere eine einfache Sektion wie `collector-voices` oder `art-in-room` aus `pageData` zu rendern.
+
 ## `artworks.html`
 
 | Sektion | Aktueller Ort | Inhalt aktuell | CMS-Felder spaeter |
@@ -113,4 +119,3 @@ Empfehlung: Nicht frueh modularisieren. Nur globale Nav/Footer spaeter zentralis
 3. Ausstellungen, weil die Seite bereits datenbasiert ist und als Pilot dienen kann.
 4. Kontakt, weil Formularlogik dupliziert ist.
 5. Impressum/Datenschutz zuletzt, nur Layout-Duplikate entfernen.
-

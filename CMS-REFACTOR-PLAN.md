@@ -218,7 +218,7 @@ Ziel: Inhalte aus dem Markup loesen, ohne das Rendering gross zu veraendern.
 Aufgaben:
 
 - `data.js` in klarere Datenbereiche aufteilen oder intern sauberer strukturieren. Begonnen: Kunstwerkdaten werden nicht-brechend mit `id`, `slug`, `mood`, `isHighlight`, `sortOrder` und `altText` angereichert.
-- Startseiteninhalte als Datenmodell erfassen.
+- Startseiteninhalte als Datenmodell erfassen. Begonnen: `window.AnneLeinen.pageData.home.sections` beschreibt Hero, Ueber-mich, Stimmen, Slider, Kunst-im-Raum und Kontakt als einzelne Sektionen.
 - Kunstwerkdaten um CMS-relevante Felder vorbereiten.
 - Mood-Zuordnung aus `gallery.js` in die Kunstwerkdaten verschieben. Begonnen: `gallery.js` liest zuerst `item.mood` und nutzt das alte Titel-Mapping nur noch als Fallback.
 - Ausstellungsdaten normalisieren.

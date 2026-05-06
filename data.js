@@ -31,6 +31,132 @@ window.AnneLeinen.sliderData = [
   }
 ];
 
+// ─── SEITEN-DATEN (CMS-VORBEREITUNG) ─────────────────────────────────────
+// Diese Struktur beschreibt die Startseite als einzeln ansteuerbare Sektionen.
+// Noch rendert index.html statisch; die Daten dienen als stabiler Vertrag fuer
+// den schrittweisen Umbau in CMS-faehige Module.
+window.AnneLeinen.pageData = {
+  home: {
+    slug: "home",
+    title: "Anne Leinen | Portfolio",
+    metaDescription: "Portfolio der Berliner Kuenstlerin Anne Leinen mit abstrakten Mixed-Media-Kompositionen, Kunstwerken, Ausstellungen und Kontaktmoeglichkeit.",
+    sections: [
+      {
+        id: "hero",
+        type: "hero",
+        isVisible: true,
+        eyebrow: "Berlin · Atelier",
+        title: "Anne Leinen",
+        subtitle: "Abstrakte Kompositionen mit metallischen Texturen in Rosa & Gold",
+        media: {
+          type: "video",
+          src: "INHALTE/startseite/01_hero/Videoerstellung_fur_Hero_Bereich.mp4",
+          label: "Hero-Video aus dem Atelierkontext"
+        }
+      },
+      {
+        id: "artist-intro",
+        type: "artistIntro",
+        isVisible: true,
+        title: "Über mich",
+        body: [
+          "Ich bin Anne Leinen, geboren 1985 in Karlsruhe, heute lebe und arbeite ich in Berlin. Als autodidaktische Künstlerin mit gestalterischem Hintergrund (Akademie für Kommunikation, Grafikdesign) bin ich der kreative Kopf hinter artful_anne. Seit Februar 2024 widme ich mich intensiv der abstrakten Kunst — meiner wahren Berufung.",
+          "Meine Werke entstehen aus klar definierten Themen, die mich bewegen, mit dem Wunsch, Impulse zu setzen und Entwicklung anzustoßen. Mit Mixed Media erschaffe ich ausdrucksstarke Unikate mit Tiefe und Aussagekraft."
+        ],
+        image: {
+          src: "INHALTE/startseite/02_ueber-mich/UeberMich.webp",
+          alt: "Anne Leinen",
+          width: 621,
+          height: 757
+        },
+        cta: {
+          label: "Zur Galerie",
+          href: "artworks.html"
+        }
+      },
+      {
+        id: "collector-voices",
+        type: "testimonials",
+        isVisible: true,
+        title: "Stimmen der Sammler",
+        items: [
+          {
+            name: "Oliver",
+            context: "Clouds of Perseverance · Acryl auf Leinwand",
+            image: {
+              src: "INHALTE/startseite/05_stimmen/oliver.webp",
+              alt: "Oliver",
+              width: 580,
+              height: 700
+            },
+            quote: [
+              "Die Werke von Anne Leinen sind weit mehr als bloße Gemälde – sie sind lebendige Erzählungen auf Leinwand.",
+              "Mit einer beeindruckenden Mischung aus Farbintensität, Gefühl und Dynamik schafft es diese außergewöhnliche Künstlerin, Motive zu erschaffen, die nicht nur betrachtet, sondern erlebt werden wollen.",
+              "Ihre Kompositionen wirken kraftvoll und gleichzeitig harmonisch – niemals überladen, sondern fein ausbalanciert."
+            ]
+          },
+          {
+            name: "Sandra",
+            initials: "S",
+            context: "Smoke of Fortune · Auftragsarbeit",
+            quote: [
+              "Bei der Übergabe war ich zunächst sprachlos, weil es etwas sehr Persönliches war. Anne wählte Farben, die mir besonders zusagen.",
+              "Ich freue mich sehr, dass Anne für mich gemalt hat, und kann nur empfehlen, sich auch ihre weiteren Gemälde anzusehen."
+            ]
+          }
+        ]
+      },
+      {
+        id: "featured-artworks",
+        type: "artworkSlider",
+        isVisible: true,
+        eyebrow: "Aktuelle Kollektion",
+        title: "Meine Kunstwerke",
+        dataSource: "sliderData",
+        cta: {
+          label: "Alle Werke ansehen",
+          href: "artworks.html"
+        }
+      },
+      {
+        id: "art-in-room",
+        type: "artInRoom",
+        isVisible: true,
+        title: "Kunst im Raum",
+        body: [
+          "Erleben Sie, wie meine Werke in einem modernen Ambiente wirken. Die metallischen Reflexionen verändern sich mit dem natürlichen Lichtverlauf des Tages und schaffen eine lebendige Atmosphäre in Ihrem Zuhause."
+        ],
+        note: "Abgebildet: Aurelia II in einem Loft in Berlin",
+        linkedArtworkTitle: "Vibrant Energy",
+        image: {
+          src: "INHALTE/startseite/04_kunst-im-raum/Vibrant Energy G.webp",
+          alt: "Vibrant Energy – Kunstwerk im Raum",
+          width: 1851,
+          height: 2000
+        }
+      },
+      {
+        id: "contact",
+        type: "contactForm",
+        isVisible: true,
+        title: "Anfragen & Kontakt",
+        intro: "Interesse an einem Werk oder einer Auftragsarbeit? Ich freue mich auf Ihre Nachricht.",
+        success: {
+          title: "Vielen Dank für Ihre Nachricht.",
+          body: "Ich melde mich so bald wie möglich bei Ihnen.",
+          signature: "Anne Leinen"
+        },
+        subjects: [
+          "Kaufinteresse",
+          "Auftragsarbeit",
+          "Allgemeine Frage zu meiner Kunst",
+          "Zusammenarbeit oder Ideen austauschen"
+        ]
+      }
+    ]
+  }
+};
+
 // ─── GALERIE-DATEN (artworks.html) ───────────────────────────────────────
 // Vollständige Daten für das Bento-Grid.
 window.AnneLeinen.galleryData = [
