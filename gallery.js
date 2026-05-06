@@ -420,26 +420,44 @@
     return (item && item.mood) || MOOD_BY_TITLE[normalizeTitle(item && item.titel)] || '';
   }
 
+  function getArtworkSortOrder(index) {
+    var item = AL.galleryData && AL.galleryData[index];
+    if (item && typeof item.sortOrder === 'number') return item.sortOrder;
+    return (index + 1) * 10;
+  }
+
+  function sortArtworkIndices(indices) {
+    return indices.slice().sort(function (a, b) {
+      var orderDiff = getArtworkSortOrder(a) - getArtworkSortOrder(b);
+      if (orderDiff !== 0) return orderDiff;
+      return a - b;
+    });
+  }
+
+  function getAllArtworkIndices() {
+    var total = AL.galleryData ? AL.galleryData.length : 0;
+    var indices = [];
+    for (var i = 0; i < total; i++) indices.push(i);
+    return sortArtworkIndices(indices);
+  }
+
   function getHighlightIndices() {
     var total = AL.galleryData ? AL.galleryData.length : 0;
     var indices = [];
     for (var i = 0; i < total; i++) {
       if (AL.galleryData[i] && AL.galleryData[i].isHighlight) indices.push(i);
     }
-    if (indices.length) return indices;
-    return [0, 1, 2].filter(function (index) { return index < total; });
+    if (indices.length) return sortArtworkIndices(indices);
+    return getAllArtworkIndices().slice(0, Math.min(3, total));
   }
 
   function getCatalogIndices() {
-    var total = AL.galleryData ? AL.galleryData.length : 0;
     var highlightLookup = {};
     getHighlightIndices().forEach(function (index) { highlightLookup[index] = true; });
 
-    var indices = [];
-    for (var i = 0; i < total; i++) {
-      if (!highlightLookup[i]) indices.push(i);
-    }
-    return indices;
+    return getAllArtworkIndices().filter(function (index) {
+      return !highlightLookup[index];
+    });
   }
 
   function initMoodFilters(catalogGrid, countEl) {
@@ -512,7 +530,7 @@
     var highlightGrid = document.getElementById('highlight-grid');
     var catalogGrid   = document.getElementById('catalog-grid');
 
-    // ── Highlight-Sektion: Bilder 0–2 (groß, Overlay-Design) ────────────────
+    // ── Highlight-Sektion: isHighlight=true, sortiert ueber sortOrder ────────
     if (highlightGrid) {
       var hHtml = '';
       getHighlightIndices().forEach(function (globalIdx) {
@@ -549,7 +567,7 @@
       highlightGrid.innerHTML = hHtml;
     }
 
-    // ── Katalog-Sektion: Index 3 bis Ende (kompaktes Grid, Card-Design) ──────
+    // ── Katalog-Sektion: alle Nicht-Highlights, sortiert ueber sortOrder ─────
     if (catalogGrid) {
       var catalogIndices = getCatalogIndices();
       var cHtml = '';

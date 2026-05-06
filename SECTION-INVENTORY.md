@@ -52,15 +52,15 @@ Status:
 | Sektion | Aktueller Ort | Inhalt aktuell | CMS-Felder spaeter |
 | --- | --- | --- | --- |
 | Header | HTML | Seitentitel, Einleitung | `pageTitle`, `intro`, `seo` |
-| Highlights | HTML-Container + `gallery.js` | Erste drei Eintraege aus `galleryData` | `artworks.where(isHighlight)`, Sortierung |
+| Highlights | HTML-Container + `gallery.js` | Eintraege mit `isHighlight`, sortiert ueber `sortOrder` | `artworks.where(isHighlight)`, Sortierung |
 | Trennlinie | HTML | Visuelle Trennung | Layout-only |
-| Alle Werke | HTML-Container + `gallery.js` | Katalog ab Index 3 | `artworks[]`, Sortierung, Sichtbarkeit |
+| Alle Werke | HTML-Container + `gallery.js` | Nicht-Highlights, sortiert ueber `sortOrder` | `artworks[]`, Sortierung, Sichtbarkeit |
 | Mood-Filter | HTML + `gallery.js` | Filter ueber `MOOD_BY_TITLE` | `artwork.mood` als Datenfeld |
 | Modal Lightbox | HTML + `gallery.js` | Detailansicht mit Navigation | Zentrales Modal-Modul |
 
-Wichtigster Refactor:
+Status:
 
-Die Trennung `erste drei Werke = Highlights` sollte durch explizite Datenfelder ersetzt werden:
+Die Trennung `erste drei Werke = Highlights` ist ersetzt: `gallery.js` liest `isHighlight` und `sortOrder`, mit einem Fallback auf die ersten drei sortierten Werke, falls keine Highlights gepflegt sind.
 
 ```js
 {

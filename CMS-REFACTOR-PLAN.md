@@ -223,6 +223,7 @@ Aufgaben:
 - Startseiteninhalte als Datenmodell erfassen. Begonnen: `window.AnneLeinen.pageData.home.sections` beschreibt Hero, Ueber-mich, Stimmen, Slider, Kunst-im-Raum und Kontakt als einzelne Sektionen.
 - Kunstwerkdaten um CMS-relevante Felder vorbereiten.
 - Mood-Zuordnung aus `gallery.js` in die Kunstwerkdaten verschieben. Begonnen: `gallery.js` liest zuerst `item.mood` und nutzt das alte Titel-Mapping nur noch als Fallback.
+- Highlight- und Katalog-Trennung in `gallery.js` datenbasiert machen. Erledigt: Highlights nutzen `isHighlight`, Highlights und Katalog sortieren ueber `sortOrder`.
 - Ausstellungsdaten normalisieren. Begonnen: `exhibitionData` enthaelt jetzt `id`, strukturierte Ortsfelder, `datumVon`, `datumBis`, `anzeigeDatum` und `sortOrder`; `exhibitions.js` nutzt diese Felder mit Fallbacks auf alte Anzeigenfelder.
 
 Risiko:
@@ -285,6 +286,7 @@ Aufgaben:
   - Modal
   - Filter
 - Filter nicht mehr ueber Titel-Mapping, sondern ueber Datenfelder.
+- Highlight- und Katalog-Reihenfolge ueber `isHighlight` und `sortOrder` steuern. Erledigt.
 - Modal-Kontexte erhalten: Highlight, Katalog, Slider.
 - Bestehende Regeln fuer Overlay, Body-Scroll und Back-Button beibehalten.
 
