@@ -52,6 +52,38 @@ window.AnneLeinen = window.AnneLeinen || {};
     }).join('');
   }
 
+  function renderArtistIntro() {
+    var root = document.querySelector('[data-section-render="artist-intro"]');
+    var section = findHomeSection('artist-intro');
+    if (!root || !section || !section.image || !section.image.src) return;
+
+    var cta = section.cta && section.cta.href && section.cta.label
+      ? '<div class="mt-12">'
+        + '<a href="' + escA(section.cta.href) + '" class="inline-block bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-xs hover:bg-primary-container transition-colors duration-300">' + escH(section.cta.label) + '</a>'
+        + '</div>'
+      : '';
+
+    root.innerHTML = '<div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">'
+      + '<div class="order-2 md:order-1">'
+      + '<h2 class="font-headline text-3xl text-secondary-fixed mb-8">' + escH(section.title) + '</h2>'
+      + '<div class="font-body text-secondary-container leading-relaxed space-y-6">'
+      + (Array.isArray(section.body) ? section.body : [section.body]).map(function (paragraph) {
+        return '<p>' + escH(paragraph) + '</p>';
+      }).join('')
+      + '</div>'
+      + cta
+      + '</div>'
+      + '<div class="order-1 md:order-2 overflow-hidden aspect-[3/4] max-w-[220px] md:max-w-xs mx-auto">'
+      + '<img alt="' + escA(section.image.alt || section.title) + '"'
+      + ' class="w-full h-full object-cover"'
+      + ' src="' + escA(section.image.src) + '"'
+      + ' loading="lazy"'
+      + ' width="' + escA(section.image.width || '') + '"'
+      + ' height="' + escA(section.image.height || '') + '"/>'
+      + '</div>'
+      + '</div>';
+  }
+
   function renderCollectorVoices() {
     var root = document.querySelector('[data-section-render="collector-voices"]');
     var section = findHomeSection('collector-voices');
@@ -127,6 +159,7 @@ window.AnneLeinen = window.AnneLeinen || {};
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    renderArtistIntro();
     renderCollectorVoices();
     renderArtInRoom();
   });

@@ -41,7 +41,8 @@ Empfohlene neue Startseiten-Dramaturgie:
 Status:
 
 - `window.AnneLeinen.pageData.home.sections` bildet die aktuelle Startseite jetzt als Datenmodell ab.
-- `collector-voices` wird als erste Testsektion ueber `sections.js` aus `pageData` gerendert.
+- `artist-intro` wird ueber `sections.js` aus `pageData` gerendert.
+- `collector-voices` wird ueber `sections.js` aus `pageData` gerendert.
 - `art-in-room` wird ebenfalls ueber `sections.js` aus `pageData` gerendert.
 - Die uebrigen Startseiten-Sektionen rendern noch statisch in `index.html`.
 - Das Kontaktformular-Markup ist noch statisch, nutzt aber dieselbe Formularlogik wie `contact.html` ueber `contact-form.js`.

@@ -254,7 +254,7 @@ Ziel: Seiten bestehen aus ansteuerbaren Sektionen.
 Aufgaben:
 
 - Startseiten-Sektionen einzeln benennen und mit stabilen IDs versehen.
-- Sektionen als Render-Funktionen vorbereiten. Begonnen: `sections.js` rendert `collector-voices` und `art-in-room` aus `pageData.home.sections`.
+- Sektionen als Render-Funktionen vorbereiten. Begonnen: `sections.js` rendert `artist-intro`, `collector-voices` und `art-in-room` aus `pageData.home.sections`.
 - Pro Sektion definieren, welche Daten sie braucht.
 - Sichtbarkeit/Reihenfolge ueber Daten steuerbar machen.
 - Bestehendes Design exakt beibehalten.
