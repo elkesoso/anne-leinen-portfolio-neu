@@ -22,7 +22,7 @@ Dieses Inventar beschreibt, welche sichtbaren Bereiche aktuell existieren, wo ih
 | Hero | HTML, Video direkt im Markup | Video, Eyebrow, H1, Kurztext | `video`, `eyebrow`, `title`, `subtitle`, `cta`, `alt/label` |
 | Ueber mich | HTML | Zwei Textabsaetze, Button, Bild | `title`, `body`, `image`, `cta`, `artistBioShort` |
 | Stimmen | HTML | Drei Zitate/Karten | `testimonials[]` mit Text, Name, Kontext, Sichtbarkeit |
-| Kunstwerke-Slider | HTML-Container + `gallery.js` + `data.js` | Slider wird aus `pageData.featured-artworks.artworkIds` und `galleryData` gerendert | `featuredArtworks[]`, Reihenfolge, Titel, CTA |
+| Kunstwerke-Slider | `sections.js` + `gallery.js` + `data.js` | Sektion wird aus `pageData.featured-artworks` gerendert; Slides kommen aus `artworkIds` und `galleryData` | `featuredArtworks[]`, Reihenfolge, Titel, CTA |
 | Kunst im Raum | HTML | Statischer Raum-/Mockup-Abschnitt | Wahrscheinlich ersetzen durch `materialProcess` |
 | Kontaktformular | HTML + `contact-form.js` + API | Anfrageformular mit Erfolgsmeldung | Formular-Konfiguration, Empfaenger, Betreffoptionen |
 | Modal Lightbox | HTML + `gallery.js` | Bildmodal fuer Slider/Galerie | Zentrales Modal-Modul |
@@ -44,10 +44,11 @@ Status:
 - `hero` wird ueber `sections.js` aus `pageData` gerendert.
 - `artist-intro` wird ueber `sections.js` aus `pageData` gerendert.
 - `collector-voices` wird ueber `sections.js` aus `pageData` gerendert.
+- `featured-artworks` wird ueber `sections.js` als Slider-Sektion gerendert; `gallery.js` befuellt danach die Slides.
 - `art-in-room` wird ebenfalls ueber `sections.js` aus `pageData` gerendert.
 - `contact` wird ueber `sections.js` aus `pageData` gerendert und nutzt dieselbe Formularlogik wie `contact.html` ueber `contact-form.js`.
-- Die uebrigen Startseiten-Sektionen rendern noch statisch in `index.html`.
-- Naechster Umbaupunkt waere, den statischen Slider-Container als `featured-artworks`-Sektion aus `pageData` zu rendern.
+- Die sichtbaren Startseiten-Inhaltssektionen rendern jetzt aus `pageData`; statisch bleiben vorerst globale Bloecke wie Navigation, Mobile-Menue, Footer und Modal-Markup.
+- Naechster Umbaupunkt waere die Kontaktseite: Formular-Konfiguration und Kontaktinfo in einen eigenen Datenbereich auslagern.
 
 ## `artworks.html`
 

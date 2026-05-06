@@ -202,50 +202,7 @@
 <section class="px-8 md:px-16 py-24 lg:py-32" data-section-render="collector-voices"></section>
 
 <!-- KUNSTWERKE SLIDER -->
-<section class="pt-6 pb-12 lg:pt-8 lg:pb-16 overflow-hidden" id="artworks">
-  <div class="px-8 md:px-16 mb-8 text-center">
-    <span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs block mb-4">Aktuelle Kollektion</span>
-    <h2 class="font-headline text-4xl text-secondary-fixed">Meine Kunstwerke</h2>
-  </div>
-
-  <!-- Slider: Wrapper mit Pfeil-Navigation -->
-  <div class="relative group/slider">
-
-    <!-- Pfeil links -->
-    <button id="slider-prev"
-      class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10
-             w-10 h-10 md:w-12 md:h-12 flex items-center justify-center
-             bg-nav-bg/70 text-secondary-fixed backdrop-blur-sm
-             hover:bg-primary hover:text-on-primary"
-      aria-label="Vorheriges Bild">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-      </svg>
-    </button>
-
-    <!-- Scrollbarer Viewport -->
-    <div id="al-slider-viewport" class="flex flex-nowrap gap-3 md:gap-4">
-      <!-- wird von gallery.js befüllt -->
-    </div>
-
-    <!-- Pfeil rechts -->
-    <button id="slider-next"
-      class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10
-             w-10 h-10 md:w-12 md:h-12 flex items-center justify-center
-             bg-nav-bg/70 text-secondary-fixed backdrop-blur-sm
-             hover:bg-primary hover:text-on-primary"
-      aria-label="Nächstes Bild">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-      </svg>
-    </button>
-
-  </div>
-
-  <div class="text-center mt-10 px-8">
-    <a href="artworks.html" class="inline-block bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-xs hover:bg-primary-container transition-colors duration-300">Alle Werke ansehen</a>
-  </div>
-</section>
+<section class="pt-6 pb-12 lg:pt-8 lg:pb-16 overflow-hidden" id="artworks" data-section-render="featured-artworks"></section>
 
 
 <!-- KUNST IM RAUM -->
@@ -320,7 +277,7 @@
 </footer>
 
 <script src="data.js?v=1.14"></script>
-<script src="sections.js?v=1.4"></script>
+<script src="sections.js?v=1.5"></script>
 <script src="gallery.js?v=4.7"></script>
 <script src="contact-form.js?v=1.1"></script>
 <script>

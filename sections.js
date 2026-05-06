@@ -140,6 +140,44 @@ window.AnneLeinen = window.AnneLeinen || {};
     root.innerHTML = html;
   }
 
+  function renderFeaturedArtworks() {
+    var root = document.querySelector('[data-section-render="featured-artworks"]');
+    var section = findHomeSection('featured-artworks');
+    if (!root || !section) return;
+
+    var eyebrow = section.eyebrow
+      ? '<span class="font-label text-secondary-container/60 tracking-widest uppercase text-xs block mb-4">' + escH(section.eyebrow) + '</span>'
+      : '';
+    var cta = section.cta && section.cta.href && section.cta.label
+      ? '<div class="text-center mt-10 px-8">'
+        + '<a href="' + escA(section.cta.href) + '" class="inline-block bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-xs hover:bg-primary-container transition-colors duration-300">' + escH(section.cta.label) + '</a>'
+        + '</div>'
+      : '';
+
+    root.innerHTML = '<div class="px-8 md:px-16 mb-8 text-center">'
+      + eyebrow
+      + '<h2 class="font-headline text-4xl text-secondary-fixed">' + escH(section.title) + '</h2>'
+      + '</div>'
+      + '<div class="relative group/slider">'
+      + '<button id="slider-prev"'
+      + ' class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-nav-bg/70 text-secondary-fixed backdrop-blur-sm hover:bg-primary hover:text-on-primary"'
+      + ' aria-label="Vorheriges Bild">'
+      + '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">'
+      + '<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>'
+      + '</svg>'
+      + '</button>'
+      + '<div id="al-slider-viewport" class="flex flex-nowrap gap-3 md:gap-4"></div>'
+      + '<button id="slider-next"'
+      + ' class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-nav-bg/70 text-secondary-fixed backdrop-blur-sm hover:bg-primary hover:text-on-primary"'
+      + ' aria-label="Naechstes Bild">'
+      + '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">'
+      + '<path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>'
+      + '</svg>'
+      + '</button>'
+      + '</div>'
+      + cta;
+  }
+
   function renderArtInRoom() {
     var root = document.querySelector('[data-section-render="art-in-room"]');
     var section = findHomeSection('art-in-room');
@@ -269,6 +307,7 @@ window.AnneLeinen = window.AnneLeinen || {};
     renderHero();
     renderArtistIntro();
     renderCollectorVoices();
+    renderFeaturedArtworks();
     renderArtInRoom();
     renderContactForm();
   });

@@ -231,6 +231,7 @@ Aufgaben:
 - `data.js` in klarere Datenbereiche aufteilen oder intern sauberer strukturieren. Begonnen: Kunstwerkdaten werden nicht-brechend mit `id`, `slug`, `mood`, `isHighlight`, `sortOrder` und `altText` angereichert.
 - Startseiteninhalte als Datenmodell erfassen. Begonnen: `window.AnneLeinen.pageData.home.sections` beschreibt Hero, Ueber-mich, Stimmen, Slider, Kunst-im-Raum und Kontakt als einzelne Sektionen.
 - Startseiten-Slider an Kunstwerkdaten anbinden. Erledigt: `featured-artworks.artworkIds` referenziert Werke aus `galleryData`; die separate `sliderData`-Pflegeliste wurde entfernt.
+- Startseiten-Slider als Sektion rendern. Erledigt: `sections.js` erzeugt den `featured-artworks`-Container, `gallery.js` befuellt danach den Slider.
 - Kunstwerkdaten um CMS-relevante Felder vorbereiten.
 - Mood-Zuordnung aus `gallery.js` in die Kunstwerkdaten verschieben. Erledigt: `gallery.js` liest `item.mood`; das alte Titel-Mapping wurde entfernt.
 - Highlight- und Katalog-Trennung in `gallery.js` datenbasiert machen. Erledigt: Highlights nutzen `isHighlight`, Highlights und Katalog sortieren ueber `sortOrder`.
@@ -265,6 +266,7 @@ Aufgaben:
 
 - Startseiten-Sektionen einzeln benennen und mit stabilen IDs versehen.
 - Sektionen als Render-Funktionen vorbereiten. Begonnen: `sections.js` rendert `hero`, `artist-intro`, `collector-voices`, `art-in-room` und `contact` aus `pageData.home.sections`.
+- `featured-artworks` rendert jetzt ebenfalls ueber `sections.js`; `gallery.js` bleibt fuer Slider-Slides, Scrollen und Modal verantwortlich.
 - Pro Sektion definieren, welche Daten sie braucht.
 - Sichtbarkeit/Reihenfolge ueber Daten steuerbar machen.
 - Bestehendes Design exakt beibehalten.

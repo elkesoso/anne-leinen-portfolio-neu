@@ -4,8 +4,7 @@ window.AnneLeinen = window.AnneLeinen || {};
 
 // ─── SEITEN-DATEN (CMS-VORBEREITUNG) ─────────────────────────────────────
 // Diese Struktur beschreibt die Startseite als einzeln ansteuerbare Sektionen.
-// Noch rendert index.html statisch; die Daten dienen als stabiler Vertrag fuer
-// den schrittweisen Umbau in CMS-faehige Module.
+// sections.js rendert die Startseiten-Sektionen schrittweise aus diesem Vertrag.
 window.AnneLeinen.pageData = {
   home: {
     slug: "home",
