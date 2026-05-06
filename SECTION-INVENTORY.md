@@ -45,9 +45,9 @@ Status:
 - `artist-intro` wird ueber `sections.js` aus `pageData` gerendert.
 - `collector-voices` wird ueber `sections.js` aus `pageData` gerendert.
 - `art-in-room` wird ebenfalls ueber `sections.js` aus `pageData` gerendert.
+- `contact` wird ueber `sections.js` aus `pageData` gerendert und nutzt dieselbe Formularlogik wie `contact.html` ueber `contact-form.js`.
 - Die uebrigen Startseiten-Sektionen rendern noch statisch in `index.html`.
-- Das Kontaktformular-Markup ist noch statisch, nutzt aber dieselbe Formularlogik wie `contact.html` ueber `contact-form.js`.
-- Naechster Umbaupunkt waere, die Formular-Konfiguration und Texte als Datenmodell vorzubereiten.
+- Naechster Umbaupunkt waere, den statischen Slider-Container als `featured-artworks`-Sektion aus `pageData` zu rendern.
 
 ## `artworks.html`
 

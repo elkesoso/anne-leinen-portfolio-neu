@@ -189,10 +189,87 @@ window.AnneLeinen = window.AnneLeinen || {};
     });
   }
 
+  function getSubjectLabel(subject) {
+    if (subject === 'Allgemeine Frage zu meiner Kunst') return 'Allgemeine Frage';
+    if (subject === 'Zusammenarbeit oder Ideen austauschen') return 'Zusammenarbeit';
+    return subject;
+  }
+
+  function renderContactForm() {
+    var root = document.querySelector('[data-section-render="contact"]');
+    var section = findHomeSection('contact');
+    if (!root || !section) return;
+
+    var subjects = section.subjects && section.subjects.length
+      ? section.subjects
+      : ['Kaufinteresse'];
+    var defaultSubject = subjects[0];
+    var subjectHtml = subjects.map(function (subject, index) {
+      return '<label class="subject-radio cursor-pointer">'
+        + '<input class="sr-only" type="radio" name="subject-choice" value="' + escA(subject) + '"' + (index === 0 ? ' checked' : '') + '>'
+        + '<span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">' + escH(getSubjectLabel(subject)) + '</span>'
+        + '</label>';
+    }).join('');
+
+    var success = section.success || {};
+    var successTitle = success.title || 'Vielen Dank für Ihre Nachricht.';
+    var successHtmlTitle = escH(successTitle).replace(/\s+Ihre Nachricht/, '<br>Ihre Nachricht');
+
+    root.innerHTML = '<div class="max-w-2xl mx-auto">'
+      + '<div id="form-header" class="text-center mb-3 md:mb-12" style="transition:opacity 0.5s ease-in-out;">'
+      + '<h2 class="font-headline text-4xl text-on-secondary-fixed mb-4">' + escH(section.title) + '</h2>'
+      + '<p class="font-body text-on-secondary-fixed/70">' + escH(section.intro) + '</p>'
+      + '</div>'
+      + '<div style="display:grid;grid-template-areas:\'stack\';">'
+      + '<div id="form-container" style="grid-area:stack;transition:opacity 0.5s ease-in-out;">'
+      + '<form id="contact-form" class="space-y-5 md:space-y-8" novalidate autocomplete="off">'
+      + '<div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">'
+      + '<label for="website">Website leer lassen</label>'
+      + '<input type="text" id="website" name="website" tabindex="-1" autocomplete="off">'
+      + '</div>'
+      + '<div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8">'
+      + '<div class="flex flex-col">'
+      + '<label for="field-name" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Name <span class="normal-case tracking-normal opacity-70">(Pflichtfeld)</span></label>'
+      + '<input id="field-name" name="name" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text" required/>'
+      + '</div>'
+      + '<div class="flex flex-col">'
+      + '<label for="field-email" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">E-Mail <span class="normal-case tracking-normal opacity-70">(Pflichtfeld)</span></label>'
+      + '<input id="field-email" name="email" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="ihre@email.de" type="email" required/>'
+      + '</div>'
+      + '</div>'
+      + '<div class="flex flex-col">'
+      + '<span class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-3">Anlass der Anfrage</span>'
+      + '<input id="field-subject" name="subject" type="hidden" value="' + escA(defaultSubject) + '">'
+      + '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup" aria-label="Anlass der Anfrage">'
+      + subjectHtml
+      + '</div>'
+      + '</div>'
+      + '<div class="flex flex-col" style="margin-top:0.75rem;">'
+      + '<label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-1">Ihre Nachricht <span class="normal-case tracking-normal opacity-70">(optional)</span></label>'
+      + '<textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none leading-relaxed" placeholder="" rows="1"></textarea>'
+      + '</div>'
+      + '<div class="text-center pt-3 md:pt-8">'
+      + '<button id="submit-btn" class="contact-submit bg-primary text-on-primary w-full py-5 font-label uppercase tracking-widest text-xs hover:brightness-110 hover:shadow-md transition-all duration-300 disabled:cursor-not-allowed" type="submit" disabled>Nachricht senden</button>'
+      + '<p id="form-error" class="hidden font-body text-sm text-red-300 mt-4 text-center"></p>'
+      + '</div>'
+      + '</form>'
+      + '</div>'
+      + '<div id="form-success" class="py-16 text-center space-y-6" style="grid-area:stack;opacity:0;pointer-events:none;transition:opacity 0.5s ease-in-out;">'
+      + '<p class="font-headline text-3xl md:text-4xl italic text-on-secondary-fixed leading-relaxed">„' + successHtmlTitle + '"</p>'
+      + '<p class="font-body text-on-secondary-fixed/70 leading-relaxed">' + escH(success.body) + '</p>'
+      + '<p class="font-label text-xs uppercase tracking-[0.25em] text-on-secondary-fixed/50 pt-2">— ' + escH(success.signature) + '</p>'
+      + '</div>'
+      + '</div>'
+      + '</div>';
+
+    if (AL.initContactForm) AL.initContactForm();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     renderHero();
     renderArtistIntro();
     renderCollectorVoices();
     renderArtInRoom();
+    renderContactForm();
   });
 })();

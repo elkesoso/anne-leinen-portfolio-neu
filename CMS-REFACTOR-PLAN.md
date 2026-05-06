@@ -255,7 +255,7 @@ Ziel: Seiten bestehen aus ansteuerbaren Sektionen.
 Aufgaben:
 
 - Startseiten-Sektionen einzeln benennen und mit stabilen IDs versehen.
-- Sektionen als Render-Funktionen vorbereiten. Begonnen: `sections.js` rendert `hero`, `artist-intro`, `collector-voices` und `art-in-room` aus `pageData.home.sections`.
+- Sektionen als Render-Funktionen vorbereiten. Begonnen: `sections.js` rendert `hero`, `artist-intro`, `collector-voices`, `art-in-room` und `contact` aus `pageData.home.sections`.
 - Pro Sektion definieren, welche Daten sie braucht.
 - Sichtbarkeit/Reihenfolge ueber Daten steuerbar machen.
 - Bestehendes Design exakt beibehalten.
@@ -300,7 +300,7 @@ Ziel: Formular einmal beschreiben, mehrfach nutzen.
 Aufgaben:
 
 - Gemeinsame Formularstruktur fuer Startseite und Kontaktseite definieren.
-- Formularlogik in `contact-form.js` kapseln. Begonnen: Startseite und Kontaktseite nutzen dieselbe Submit-, Validierungs-, Honeypot-, Subject- und Erfolgslogik.
+- Formularlogik in `contact-form.js` kapseln. Begonnen: Startseite und Kontaktseite nutzen dieselbe Submit-, Validierungs-, Honeypot-, Subject- und Erfolgslogik; die Startseiten-Kontaktsektion wird aus `pageData` gerendert.
 - Erfolgszustand und Fehlermeldungen zentral verwalten.
 - API `api/send.js` erst anfassen, wenn noetig.
 

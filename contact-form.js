@@ -7,6 +7,8 @@ window.AnneLeinen = window.AnneLeinen || {};
   function initContactForm() {
     var form = document.getElementById('contact-form');
     if (!form) return;
+    if (form.getAttribute('data-contact-form-ready') === 'true') return;
+    form.setAttribute('data-contact-form-ready', 'true');
 
     var nameField = document.getElementById('field-name');
     var emailField = document.getElementById('field-email');
