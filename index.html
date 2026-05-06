@@ -44,8 +44,8 @@
     #modal-overlay:not(.is-minimal) #modal-content { height: min(82vh, 46rem); }
     #modal-overlay:not(.is-minimal) .modal-image-wrap { width: auto !important; height: 100% !important; }
     #modal-overlay:not(.is-minimal) #modal-text { flex: 1 1 auto; min-width: 0; }
-    #modal-overlay.is-open:not(.is-minimal) > .modal-desktop-nav { display: flex; }
-    #modal-overlay.is-open:not(.is-minimal) .modal-image-wrap .modal-slider-nav { display: none; }
+    #modal-overlay.is-open > .modal-desktop-nav { display: flex; }
+    #modal-overlay.is-open .modal-image-wrap .modal-slider-nav { display: none; }
     .modal-desktop-nav {
       position: absolute;
       top: 50%;
@@ -321,7 +321,7 @@
 
 <script src="data.js?v=1.14"></script>
 <script src="sections.js?v=1.4"></script>
-<script src="gallery.js?v=4.6"></script>
+<script src="gallery.js?v=4.7"></script>
 <script src="contact-form.js?v=1.1"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
