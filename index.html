@@ -422,6 +422,7 @@
 <script src="data.js?v=1.11"></script>
 <script src="sections.js?v=1.1"></script>
 <script src="gallery.js?v=4.3"></script>
+<script src="contact-form.js?v=1.0"></script>
 <script>
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
@@ -429,98 +430,6 @@
   toggle.addEventListener('click', () => menu.classList.add('open'));
   closeBtn.addEventListener('click', () => menu.classList.remove('open'));
   function closeMenu() { menu.classList.remove('open'); }
-</script>
-
-<script>
-  const contactForm = document.getElementById('contact-form');
-  const nameField = document.getElementById('field-name');
-  const emailField = document.getElementById('field-email');
-  const submitBtn = document.getElementById('submit-btn');
-
-  function updateSubmitState() {
-    submitBtn.disabled = !(nameField.value.trim() && emailField.value.trim() && emailField.validity.valid);
-  }
-
-  nameField.addEventListener('input', updateSubmitState);
-  emailField.addEventListener('input', updateSubmitState);
-  updateSubmitState();
-
-  document.getElementById('contact-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    // Honeypot: Bots füllen dieses Feld aus – still ignorieren
-    if (document.getElementById('website').value) return;
-
-    const name    = document.getElementById('field-name').value.trim();
-    const email   = document.getElementById('field-email').value.trim();
-    const subject = document.getElementById('field-subject').value.trim();
-    const message = document.getElementById('field-message').value.trim();
-    const btn     = document.getElementById('submit-btn');
-    const errorEl = document.getElementById('form-error');
-
-    // Client-seitige Validierung (Nachricht ist optional)
-    if (!name || !email) {
-      errorEl.textContent = 'Bitte füllen Sie Name und E-Mail aus.';
-      errorEl.classList.remove('hidden');
-      return;
-    }
-
-    // Button in Lade-Zustand versetzen
-    btn.disabled = true;
-    btn.textContent = 'Wird gesendet…';
-    errorEl.classList.add('hidden');
-
-    try {
-      const res = await fetch('/api/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, subject, message, website: '' }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Unbekannter Fehler.');
-      }
-
-      // Erfolg: Crossfade via CSS-Grid-Stacking – kein display-Toggle, kein Blitzen
-      const container = document.getElementById('form-container');
-      const success   = document.getElementById('form-success');
-      const header    = document.getElementById('form-header');
-
-      container.style.opacity      = '0';
-      container.style.pointerEvents = 'none';
-      header.style.opacity          = '0';
-
-      setTimeout(function () {
-        container.style.visibility   = 'hidden'; // Layout bleibt erhalten
-        header.style.visibility      = 'hidden';
-        success.style.opacity        = '1';
-        success.style.pointerEvents  = 'auto';
-      }, 400);
-
-    } catch (err) {
-      // Fehler: Button zurücksetzen und Meldung anzeigen
-      btn.textContent = 'Nachricht senden';
-      updateSubmitState();
-      errorEl.textContent = err.message || 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
-      errorEl.classList.remove('hidden');
-    }
-  });
-</script>
-
-<script>
-  // Sichtbare Anfrage-Auswahl → hidden field für den Versand synchron halten
-  (function () {
-    var field = document.getElementById('field-subject');
-    var choices = document.querySelectorAll('input[name="subject-choice"]');
-    if (!field || !choices.length) return;
-    choices.forEach(function (choice) {
-      choice.addEventListener('change', function () {
-        if (choice.checked) field.value = choice.value;
-      });
-    });
-  })();
 </script>
 </body>
 </html>

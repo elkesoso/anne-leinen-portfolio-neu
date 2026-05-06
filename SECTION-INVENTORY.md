@@ -24,7 +24,7 @@ Dieses Inventar beschreibt, welche sichtbaren Bereiche aktuell existieren, wo ih
 | Stimmen | HTML | Drei Zitate/Karten | `testimonials[]` mit Text, Name, Kontext, Sichtbarkeit |
 | Kunstwerke-Slider | HTML-Container + `gallery.js` + `data.js` | Slider wird aus `sliderData` gerendert | `featuredArtworks[]`, Reihenfolge, Titel, CTA |
 | Kunst im Raum | HTML | Statischer Raum-/Mockup-Abschnitt | Wahrscheinlich ersetzen durch `materialProcess` |
-| Kontaktformular | HTML + inline JS + API | Anfrageformular mit Erfolgsmeldung | Formular-Konfiguration, Empfaenger, Betreffoptionen |
+| Kontaktformular | HTML + `contact-form.js` + API | Anfrageformular mit Erfolgsmeldung | Formular-Konfiguration, Empfaenger, Betreffoptionen |
 | Modal Lightbox | HTML + `gallery.js` | Bildmodal fuer Slider/Galerie | Zentrales Modal-Modul |
 
 Empfohlene neue Startseiten-Dramaturgie:
@@ -44,7 +44,8 @@ Status:
 - `collector-voices` wird als erste Testsektion ueber `sections.js` aus `pageData` gerendert.
 - `art-in-room` wird ebenfalls ueber `sections.js` aus `pageData` gerendert.
 - Die uebrigen Startseiten-Sektionen rendern noch statisch in `index.html`.
-- Naechster Umbaupunkt waere das Kontaktformular, damit Startseite und Kontaktseite dieselbe Formularlogik nutzen.
+- Das Kontaktformular-Markup ist noch statisch, nutzt aber dieselbe Formularlogik wie `contact.html` ueber `contact-form.js`.
+- Naechster Umbaupunkt waere, die Formular-Konfiguration und Texte als Datenmodell vorzubereiten.
 
 ## `artworks.html`
 
@@ -87,14 +88,14 @@ Guter Kandidat fuer fruehen CMS-Test, weil die Seite bereits datenbasiert arbeit
 | Sektion | Aktueller Ort | Inhalt aktuell | CMS-Felder spaeter |
 | --- | --- | --- | --- |
 | Page Header | HTML | Titel und Intro | `pageTitle`, `intro`, `seo` |
-| Kontaktformular | HTML + JS + `api/send.js` | Formularfelder, Honeypot, Erfolgsmeldung | Feldkonfiguration, Mailtexte, Betreffoptionen |
+| Kontaktformular | HTML + `contact-form.js` + `api/send.js` | Formularfelder, Honeypot, Erfolgsmeldung | Feldkonfiguration, Mailtexte, Betreffoptionen |
 | Kontaktinfo | HTML | E-Mail, Instagram, Ort | `contact.email`, `socials[]`, `location` |
 | Auftragsarbeiten | HTML | Infotext | `commissionInfo.title`, `body`, `cta` |
 | FAQ | HTML | Fragen/Antworten | `faq[]` |
 
 Wichtigster Refactor:
 
-Startseite und Kontaktseite sollten dieselbe Formularlogik nutzen.
+Startseite und Kontaktseite nutzen jetzt dieselbe Formularlogik ueber `contact-form.js`. Als naechster Schritt kann die Formular-Konfiguration aus `pageData` oder einem eigenen Kontakt-Datenbereich gespeist werden.
 
 ## `impressum.html`
 

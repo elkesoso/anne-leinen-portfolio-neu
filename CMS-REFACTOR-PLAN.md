@@ -288,12 +288,14 @@ Aufgaben:
 
 ### Phase 6: Kontaktformular entkoppeln
 
+Status: begonnen
+
 Ziel: Formular einmal beschreiben, mehrfach nutzen.
 
 Aufgaben:
 
 - Gemeinsame Formularstruktur fuer Startseite und Kontaktseite definieren.
-- Formularlogik in `contact-form.js` kapseln.
+- Formularlogik in `contact-form.js` kapseln. Begonnen: Startseite und Kontaktseite nutzen dieselbe Submit-, Validierungs-, Honeypot-, Subject- und Erfolgslogik.
 - Erfolgszustand und Fehlermeldungen zentral verwalten.
 - API `api/send.js` erst anfassen, wenn noetig.
 
