@@ -307,6 +307,8 @@ Status am 06.05.2026:
 - Startseiten-Modal und Kunstwerke-Modal nutzen auf Desktop dieselbe aeussere Pfeilposition.
 - Das Startseiten-Slider-Modal bleibt technisch `is-minimal`, verwendet auf Desktop aber die aeusseren Pfeile.
 - Die Desktop-Pfeile unterscheiden in `gallery.js` anhand von `is-minimal`, ob `navigateSliderModal(...)` oder `navigateArtworkModal(...)` ausgefuehrt wird.
+- Das Startseiten-Slider-Modal hat kein Textfeld; der sichtbare Minimal-Modal-Rahmen orientiert sich am Bild.
+- Die Desktop-Pfeile des Startseiten-Slider-Modals werden anhand der tatsaechlichen Bildkanten positioniert.
 - Auf Mobile bleiben die inneren Pfeile sichtbar; die aeusseren Desktop-Pfeile bleiben ausgeblendet.
 - Aenderung wurde in der CMS-Testkopie, auf `cms-refactor` und auf `main` uebernommen.
 
@@ -314,6 +316,8 @@ Commits:
 
 - `77050c5` auf `cms-refactor-plan` und `cms-refactor`: `Align homepage modal arrows`
 - `1033282` auf `main`: `Align homepage modal arrows`
+- `e893264` auf `cms-refactor-plan` und `cms-refactor`: `Align slider modal arrows to image bounds`
+- `9aa7273` auf `main`: `Align slider modal arrows to image bounds`
 
 ### Phase 6: Kontaktformular entkoppeln
 
@@ -325,6 +329,7 @@ Aufgaben:
 
 - Gemeinsame Formularstruktur fuer Startseite und Kontaktseite definieren.
 - Formularlogik in `contact-form.js` kapseln. Begonnen: Startseite und Kontaktseite nutzen dieselbe Submit-, Validierungs-, Honeypot-, Subject- und Erfolgslogik; die Startseiten-Kontaktsektion wird aus `pageData` gerendert.
+- Kontaktseite aus Daten rendern. Begonnen: `pageData.contact` beschreibt Header, Formular-Konfiguration, Kontaktinfo, Auftragsarbeiten und FAQ; `contact-page.js` rendert diese Bereiche in `contact.html`.
 - Erfolgszustand und Fehlermeldungen zentral verwalten.
 - API `api/send.js` erst anfassen, wenn noetig.
 

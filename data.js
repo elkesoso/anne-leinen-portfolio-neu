@@ -132,6 +132,88 @@ window.AnneLeinen.pageData = {
         ]
       }
     ]
+  },
+  contact: {
+    slug: "contact",
+    title: "Kontakt | Anne Leinen",
+    metaDescription: "Kontakt zu Anne Leinen fuer Kunstwerke, Auftragsarbeiten, Atelierbesuche und Zusammenarbeit.",
+    header: {
+      eyebrow: "Kontakt",
+      title: "Anfragen & Kontakt",
+      intro: "Interesse an einem Werk oder einer Auftragsarbeit? Ich freue mich auf Ihre Nachricht."
+    },
+    form: {
+      subjects: [
+        "Kaufinteresse",
+        "Auftragsarbeit",
+        "Allgemeine Frage zu meiner Kunst",
+        "Zusammenarbeit oder Ideen austauschen"
+      ],
+      success: {
+        title: "Vielen Dank für Ihre Nachricht.",
+        body: "Ich melde mich so bald wie möglich bei Ihnen.",
+        signature: "Anne Leinen"
+      }
+    },
+    contactInfo: {
+      logo: {
+        src: "assets/logo.webp",
+        alt: "Artful Anne Logo",
+        width: 200,
+        height: 201
+      },
+      items: [
+        {
+          icon: "mail",
+          label: "E-Mail",
+          value: "contact@anneleinen.art",
+          href: "mailto:contact@anneleinen.art"
+        },
+        {
+          icon: "phone",
+          label: "Jetzt anrufen",
+          value: "+49 1590 1301386",
+          href: "tel:+4915901301386"
+        },
+        {
+          icon: "location_on",
+          label: "Atelier",
+          value: "Berlin, Deutschland"
+        },
+        {
+          icon: "schedule",
+          label: "Atelierbesuche",
+          value: "Nach Vereinbarung"
+        }
+      ],
+      quote: {
+        text: "Erschaffen wir gemeinsam etwas Einzigartiges.",
+        signature: "Anne Leinen"
+      }
+    },
+    commissionInfo: {
+      title: "Auftragsarbeiten",
+      body: "Anne Leinen fertigt exklusive Auftragswerke für private Sammler und architektonische Projekte – individuell abgestimmt auf Räumlichkeiten und persönliche Wünsche.",
+      items: [
+        "Persönliches Beratungsgespräch",
+        "Individuelle Formate & Materialien",
+        "Zertifikat & Echtheitsdokumentation"
+      ]
+    },
+    faq: [
+      {
+        question: "Versenden Sie Originalwerke sicher?",
+        answer: "Ja, der Versand erfolgt in spezialisierter Kunstverpackung und ist voll versichert."
+      },
+      {
+        question: "Sind individuelle Auftragsarbeiten möglich?",
+        answer: "Ja, ich nehme begrenzte Aufträge für individuelle Werke an. Kontaktieren Sie mich gerne für Details."
+      },
+      {
+        question: "Kann ich die Werke vor Ort besichtigen?",
+        answer: "Besichtigungen sind nach vorheriger Terminvereinbarung in meinem Atelier möglich."
+      }
+    ]
   }
 };
 

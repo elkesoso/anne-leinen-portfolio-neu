@@ -78,196 +78,18 @@
 <main class="pt-32 pb-24">
 
   <!-- PAGE HEADER -->
-  <header class="px-8 md:px-24 mb-20 max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-      <div class="md:col-span-8">
-        <span class="font-label text-xs uppercase tracking-[0.3em] text-secondary-container/60 mb-6 block">Kontakt</span>
-        <h1 class="font-headline text-5xl md:text-8xl text-secondary-fixed leading-tight italic">Anfragen &amp; Kontakt</h1>
-      </div>
-      <div class="md:col-span-4 pb-4">
-        <p class="font-body text-lg leading-relaxed text-secondary-container/80 border-l border-secondary-fixed/30 pl-6">Interesse an einem Werk oder einer Auftragsarbeit? Ich freue mich auf Ihre Nachricht.</p>
-      </div>
-    </div>
-  </header>
+  <header class="px-8 md:px-24 mb-20 max-w-7xl mx-auto" data-contact-render="header"></header>
 
   <div class="px-8 md:px-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-start">
-
-    <!-- KONTAKTFORMULAR -->
-    <div class="bg-secondary-fixed px-6 py-8 md:px-12 md:py-16 order-2 md:order-1">
-      <!-- form-header bleibt leer – wird vom Erfolgs-Crossfade per JS referenziert -->
-      <div id="form-header" style="transition:opacity 0.5s ease-in-out;"></div>
-      <!-- Formular/Erfolg-Wrapper: CSS-Grid-Stacking – beide Divs überlagern sich, kein display-Toggle -->
-      <div style="display:grid;grid-template-areas:'stack';">
-      <div id="form-container" style="grid-area:stack;transition:opacity 0.5s ease-in-out;">
-        <form id="contact-form" class="space-y-5 md:space-y-10" novalidate autocomplete="off">
-
-          <!-- Honeypot: für Bots unsichtbar, echte Nutzer füllen es nicht aus -->
-          <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
-            <label for="website">Website leer lassen</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8">
-            <div class="flex flex-col">
-              <label for="field-name" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Name <span class="normal-case tracking-normal opacity-70">(Pflichtfeld)</span></label>
-              <input id="field-name" name="name" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="Ihr Name" type="text" required/>
-            </div>
-            <div class="flex flex-col">
-              <label for="field-email" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">E-Mail <span class="normal-case tracking-normal opacity-70">(Pflichtfeld)</span></label>
-              <input id="field-email" name="email" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40" placeholder="ihre@email.de" type="email" required/>
-            </div>
-          </div>
-          <div class="flex flex-col">
-            <span class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-3">Anlass der Anfrage</span>
-            <input id="field-subject" name="subject" type="hidden" value="Kaufinteresse">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup" aria-label="Anlass der Anfrage">
-              <label class="subject-radio cursor-pointer">
-                <input class="sr-only" type="radio" name="subject-choice" value="Kaufinteresse" checked>
-                <span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">Kaufinteresse</span>
-              </label>
-              <label class="subject-radio cursor-pointer">
-                <input class="sr-only" type="radio" name="subject-choice" value="Auftragsarbeit">
-                <span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">Auftragsarbeit</span>
-              </label>
-              <label class="subject-radio cursor-pointer">
-                <input class="sr-only" type="radio" name="subject-choice" value="Allgemeine Frage zu meiner Kunst">
-                <span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">Allgemeine Frage</span>
-              </label>
-              <label class="subject-radio cursor-pointer">
-                <input class="sr-only" type="radio" name="subject-choice" value="Zusammenarbeit oder Ideen austauschen">
-                <span class="block border border-on-secondary-fixed/25 px-4 py-3 font-body text-sm text-on-secondary-fixed transition-colors">Zusammenarbeit</span>
-              </label>
-            </div>
-          </div>
-          <div class="flex flex-col">
-            <label for="field-message" class="font-label text-[10px] uppercase tracking-widest text-on-secondary-fixed mb-2">Ihre Nachricht <span class="normal-case tracking-normal opacity-70">(optional)</span></label>
-            <textarea id="field-message" name="message" autocomplete="off" class="bg-transparent border-0 border-b border-on-secondary-fixed/30 focus:ring-0 focus:border-on-secondary-fixed text-on-secondary-fixed font-body py-2 placeholder-on-secondary-fixed/40 resize-none leading-relaxed" placeholder="" rows="1"></textarea>
-          </div>
-          <div class="pt-2 md:pt-4">
-            <button id="submit-btn" class="contact-submit w-full bg-primary text-on-primary py-5 font-label uppercase tracking-widest text-xs hover:brightness-110 hover:shadow-md transition-all duration-300 disabled:cursor-not-allowed" type="submit" disabled>Nachricht senden</button>
-            <p id="form-error" class="hidden font-body text-sm text-red-300 mt-4 text-center"></p>
-          </div>
-        </form>
-      </div>
-
-      <!-- Erfolgsmeldung: liegt per grid-area im selben Bereich wie form-container -->
-      <div id="form-success" class="py-16 text-center space-y-6" style="grid-area:stack;opacity:0;pointer-events:none;transition:opacity 0.5s ease-in-out;">
-        <p class="font-headline text-3xl md:text-4xl italic text-on-secondary-fixed leading-relaxed">„Vielen Dank für<br>Ihre Nachricht."</p>
-        <p class="font-body text-on-secondary-fixed-variant leading-relaxed">Ich melde mich so bald wie möglich bei Ihnen.</p>
-        <p class="font-label text-xs uppercase tracking-[0.25em] text-on-secondary-fixed/50 pt-2">— Anne Leinen</p>
-      </div>
-      </div><!-- end grid wrapper -->
-    </div>
-
-    <!-- KONTAKTINFO -->
-    <div class="flex flex-col md:self-stretch order-1 md:order-2">
-
-      <div class="flex flex-col h-full">
-
-        <div class="flex-none mb-12">
-          <img src="assets/logo.webp" alt="Artful Anne Logo" style="width: 180px; filter: brightness(0) invert(1);" class="mb-10 mx-auto md:mx-0" width="200" height="201">
-
-          <div class="space-y-8">
-            <div class="flex items-start gap-6">
-              <span class="material-symbols-outlined text-secondary-container text-2xl mt-1">mail</span>
-              <div>
-                <p class="font-label text-[10px] uppercase tracking-widest text-secondary-container/60 mb-1">E-Mail</p>
-                <a href="mailto:contact@anneleinen.art" class="font-headline text-xl text-secondary-fixed hover:text-secondary-container transition-colors">contact@anneleinen.art</a>
-              </div>
-            </div>
-            <div class="flex items-start gap-6">
-              <svg class="w-6 h-6 text-secondary-container mt-1 flex-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.89.66 2.78a2 2 0 0 1-.45 2.11L8.05 9.88a16 16 0 0 0 6.07 6.07l1.27-1.27a2 2 0 0 1 2.11-.45c.89.31 1.82.53 2.78.66A2 2 0 0 1 22 16.92z"/>
-              </svg>
-              <div>
-                <p class="font-label text-[10px] uppercase tracking-widest text-secondary-container/60 mb-1">Jetzt anrufen</p>
-                <a href="tel:+4915901301386" class="font-headline text-xl text-secondary-fixed hover:text-secondary-container transition-colors">+49 1590 1301386</a>
-              </div>
-            </div>
-            <div class="flex items-start gap-6">
-              <span class="material-symbols-outlined text-secondary-container text-2xl mt-1">location_on</span>
-              <div>
-                <p class="font-label text-[10px] uppercase tracking-widest text-secondary-container/60 mb-1">Atelier</p>
-                <p class="font-headline text-xl text-secondary-fixed">Berlin, Deutschland</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-6">
-              <span class="material-symbols-outlined text-secondary-container text-2xl mt-1">schedule</span>
-              <div>
-                <p class="font-label text-[10px] uppercase tracking-widest text-secondary-container/60 mb-1">Atelierbesuche</p>
-                <p class="font-headline text-xl text-secondary-fixed">Nach Vereinbarung</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-auto border-l-4 border-secondary-fixed pl-8 py-1">
-          <p class="font-headline text-2xl italic text-secondary-fixed leading-tight">
-            "Erschaffen wir gemeinsam etwas Einzigartiges."
-          </p>
-          <p class="font-label text-xs uppercase tracking-widest text-secondary-container/60 mt-4">
-            Anne Leinen
-          </p>
-        </div>
-
-      </div>
-
-    </div>
+    <div class="order-2 md:order-1" data-contact-render="form"></div>
+    <div class="flex flex-col md:self-stretch order-1 md:order-2" data-contact-render="info"></div>
   </div>
 
-  <!-- AUFTRAGSARBEITEN – volle Breite unter beiden Spalten -->
-  <div class="px-8 md:px-24 max-w-7xl mx-auto mt-12 md:mt-16">
-    <div class="bg-secondary-fixed/10 p-10 border border-secondary-fixed/20 text-center">
-      <h2 class="font-headline text-2xl text-secondary-fixed mb-4">Auftragsarbeiten</h2>
-      <p class="font-body text-secondary-container/80 leading-relaxed mb-6">Anne Leinen fertigt exklusive Auftragswerke für private Sammler und architektonische Projekte – individuell abgestimmt auf Räumlichkeiten und persönliche Wünsche.</p>
-      <div class="space-y-3 inline-flex flex-col items-start">
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-          <span class="font-body text-sm text-secondary-container">Persönliches Beratungsgespräch</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-          <span class="font-body text-sm text-secondary-container">Individuelle Formate &amp; Materialien</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-          <span class="font-body text-sm text-secondary-container">Zertifikat &amp; Echtheitsdokumentation</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- AUFTRAGSARBEITEN -->
+  <div class="px-8 md:px-24 max-w-7xl mx-auto mt-12 md:mt-16" data-contact-render="commission"></div>
 
   <!-- FAQ -->
-  <section class="px-8 md:px-24 max-w-7xl mx-auto mt-12 md:mt-20">
-    <h2 class="font-headline text-2xl text-secondary-fixed mb-8">Häufige Fragen</h2>
-    <div class="border-t border-secondary-fixed/20">
-
-      <details class="group border-b border-secondary-fixed/20">
-        <summary class="flex justify-between items-center py-5 cursor-pointer" style="list-style:none;">
-          <span class="font-headline text-lg text-secondary-fixed">Versenden Sie Originalwerke sicher?</span>
-          <span class="ml-6 shrink-0 font-light text-2xl leading-none transition-transform duration-200 group-open:rotate-45" style="color:#a38d5b;">+</span>
-        </summary>
-        <p class="font-body text-secondary-container/80 leading-relaxed pb-5 max-w-2xl">Ja, der Versand erfolgt in spezialisierter Kunstverpackung und ist voll versichert.</p>
-      </details>
-
-      <details class="group border-b border-secondary-fixed/20">
-        <summary class="flex justify-between items-center py-5 cursor-pointer" style="list-style:none;">
-          <span class="font-headline text-lg text-secondary-fixed">Sind individuelle Auftragsarbeiten möglich?</span>
-          <span class="ml-6 shrink-0 font-light text-2xl leading-none transition-transform duration-200 group-open:rotate-45" style="color:#a38d5b;">+</span>
-        </summary>
-        <p class="font-body text-secondary-container/80 leading-relaxed pb-5 max-w-2xl">Ja, ich nehme begrenzte Aufträge für individuelle Werke an. Kontaktieren Sie mich gerne für Details.</p>
-      </details>
-
-      <details class="group border-b border-secondary-fixed/20">
-        <summary class="flex justify-between items-center py-5 cursor-pointer" style="list-style:none;">
-          <span class="font-headline text-lg text-secondary-fixed">Kann ich die Werke vor Ort besichtigen?</span>
-          <span class="ml-6 shrink-0 font-light text-2xl leading-none transition-transform duration-200 group-open:rotate-45" style="color:#a38d5b;">+</span>
-        </summary>
-        <p class="font-body text-secondary-container/80 leading-relaxed pb-5 max-w-2xl">Besichtigungen sind nach vorheriger Terminvereinbarung in meinem Atelier möglich.</p>
-      </details>
-
-    </div>
-  </section>
+  <section class="px-8 md:px-24 max-w-7xl mx-auto mt-12 md:mt-20" data-contact-render="faq"></section>
 
 </main>
 
@@ -289,6 +111,8 @@
   closeBtn.addEventListener('click', () => menu.classList.remove('open'));
   function closeMenu() { menu.classList.remove('open'); }
 </script>
+<script src="data.js?v=1.15"></script>
 <script src="contact-form.js?v=1.1"></script>
+<script src="contact-page.js?v=1.0"></script>
 </body>
 </html>

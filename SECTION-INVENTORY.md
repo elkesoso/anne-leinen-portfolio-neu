@@ -96,14 +96,14 @@ Status:
 | Sektion | Aktueller Ort | Inhalt aktuell | CMS-Felder spaeter |
 | --- | --- | --- | --- |
 | Page Header | HTML | Titel und Intro | `pageTitle`, `intro`, `seo` |
-| Kontaktformular | HTML + `contact-form.js` + `api/send.js` | Formularfelder, Honeypot, Erfolgsmeldung | Feldkonfiguration, Mailtexte, Betreffoptionen |
-| Kontaktinfo | HTML | E-Mail, Instagram, Ort | `contact.email`, `socials[]`, `location` |
-| Auftragsarbeiten | HTML | Infotext | `commissionInfo.title`, `body`, `cta` |
-| FAQ | HTML | Fragen/Antworten | `faq[]` |
+| Kontaktformular | `contact-page.js` + `contact-form.js` + `api/send.js` | Formularfelder, Honeypot, Erfolgsmeldung | Feldkonfiguration, Mailtexte, Betreffoptionen |
+| Kontaktinfo | `contact-page.js` + `data.js` | E-Mail, Telefon, Ort, Atelierbesuche | `contact.email`, `phone`, `socials[]`, `location` |
+| Auftragsarbeiten | `contact-page.js` + `data.js` | Infotext und Leistungsstichpunkte | `commissionInfo.title`, `body`, `items` |
+| FAQ | `contact-page.js` + `data.js` | Fragen/Antworten | `faq[]` |
 
 Wichtigster Refactor:
 
-Startseite und Kontaktseite nutzen jetzt dieselbe Formularlogik ueber `contact-form.js`. Als naechster Schritt kann die Formular-Konfiguration aus `pageData` oder einem eigenen Kontakt-Datenbereich gespeist werden.
+Startseite und Kontaktseite nutzen jetzt dieselbe Formularlogik ueber `contact-form.js`. Die Kontaktseite rendert Header, Formular, Kontaktinfo, Auftragsarbeiten und FAQ aus `pageData.contact`.
 
 ## `impressum.html`
 

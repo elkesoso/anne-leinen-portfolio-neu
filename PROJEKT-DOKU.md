@@ -139,17 +139,19 @@ Aktuelle Regeln:
 - Overlay bleibt sofort blickdicht
 - Nur `#modal-content` fadet per Opacity
 - Bildbereich im normalen Kunstwerk-Modal ist auf 4:5 fixiert
-- Desktop-Pfeile liegen ausserhalb des Bildrahmens und werden auf Startseite und Kunstwerke-Seite gleich positioniert.
+- Desktop-Pfeile liegen ausserhalb des Bildrahmens.
 - Im Startseiten-Slider-Modal (`is-minimal`) nutzen die aeusseren Desktop-Pfeile die Slider-Navigation; im normalen Kunstwerk-Modal nutzen sie die Kunstwerk-Navigation.
+- Das Startseiten-Slider-Modal hat kein Textfeld. Der sichtbare Minimal-Modal-Rahmen orientiert sich am Bild.
+- Die Desktop-Pfeile im Startseiten-Slider-Modal orientieren sich an den tatsaechlichen Bildkanten, nicht an einem Text-/Content-Bereich.
 - Auf Mobile bleiben die inneren Bild-Pfeile sichtbar, die aeusseren Desktop-Pfeile bleiben ausgeblendet.
 
 Letzte Modal-Aenderung am 06.05.2026:
 
-- `main`: Commit `1033282` (`Align homepage modal arrows`)
-- `cms-refactor`: Commit `77050c5` (`Align homepage modal arrows`)
-- CMS-Testkopie `cms-refactor-plan`: Commit `77050c5`
+- `main`: Commit `9aa7273` (`Align slider modal arrows to image bounds`)
+- `cms-refactor`: Commit `e893264` (`Align slider modal arrows to image bounds`)
+- CMS-Testkopie `cms-refactor-plan`: Commit `e893264`
 
-Geprueft wurden `node -c gallery.js`, `git diff --check` und ein lokaler Browser-Test fuer Startseite und Kunstwerke-Seite.
+Geprueft wurden `node -c gallery.js`, `git diff --check` und ein manueller Browser-Test durch die Nutzerin.
 
 ## Branches
 
